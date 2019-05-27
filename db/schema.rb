@@ -10,10 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_27_142121) do
+ActiveRecord::Schema.define(version: 2019_05_27_154933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookings", force: :cascade do |t|
+    t.datetime "date"
+    t.integer "number_of_customers"
+    t.string "source"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "restaurant_id"
+    t.bigint "customer_id"
+    t.index ["customer_id"], name: "index_bookings_on_customer_id"
+    t.index ["restaurant_id"], name: "index_bookings_on_restaurant_id"
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "phone_number"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "restaurants", force: :cascade do |t|
+    t.string "address"
+    t.string "zipcode"
+    t.string "city"
+    t.string "name"
+    t.string "restaurant_phone_number"
+    t.integer "capacity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -23,8 +55,13 @@ ActiveRecord::Schema.define(version: 2019_05_27_142121) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "restaurant_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["restaurant_id"], name: "index_users_on_restaurant_id"
   end
 
+  add_foreign_key "bookings", "customers"
+  add_foreign_key "bookings", "restaurants"
+  add_foreign_key "users", "restaurants"
 end
