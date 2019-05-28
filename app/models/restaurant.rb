@@ -1,6 +1,5 @@
 class Restaurant < ApplicationRecord
-  has_many :bookings
+  has_many :bookings, dependent: :destroy
   has_many :customers, through: :bookings
-  has_many :users
-
+  has_many :users, dependent: :destroy
 end
