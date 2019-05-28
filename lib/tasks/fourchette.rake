@@ -44,4 +44,3 @@ namespace :fourchette do
   end
 end
 
-

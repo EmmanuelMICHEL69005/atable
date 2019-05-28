@@ -17,6 +17,7 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'rest-client'
 gem 'awesome_print'
+gem 'facebook-messenger'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
