@@ -72,6 +72,8 @@ GEM
     facebook-messenger (1.4.0)
       httparty (~> 0.13, >= 0.13.7)
       rack (>= 1.4.5)
+    faker (1.9.3)
+      i18n (>= 0.7)
     ffi (1.11.1)
     font-awesome-sass (5.6.1)
       sassc (>= 1.11)
@@ -221,6 +223,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   facebook-messenger
+  faker
   font-awesome-sass (~> 5.6.1)
   jbuilder (~> 2.0)
   listen (~> 3.0.5)
