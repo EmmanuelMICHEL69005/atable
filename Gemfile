@@ -17,6 +17,7 @@ gem 'webpacker'
 gem 'faker'
 gem 'rest-client'
 gem 'awesome_print'
+gem 'facebook-messenger'
 
 
 group :development do
