@@ -22,7 +22,7 @@ namespace :fourchette do
 
     response = RestClient.post(url, payload, headers)
     result = JSON.parse(response.body)
-
+    restaurant = Restaurant.create!(name: "Rafiresto")
     result["rows"].each do |resa|
       last_name = resa["cell"]["customer.lastName"]
       first_name = resa["cell"]["customer.firstName"]
@@ -36,8 +36,6 @@ namespace :fourchette do
       reservation_status = resa["cell"]["reservation.state"]
       reservation_validation_link = resa["cell"]["reservation.url_to_validate"]
       reservation_edit_link = resa["cell"]["reservation.edit"]
-
-      restaurant = Restaurant.create!(name: "Rafiresto")
       client = Customer.create!(first_name: first_name, last_name: last_name, phone_number: phone_number, email: email)
       Booking.create!(date: reservation_date, number_of_customers: reservation_people, source: "la fourchette", customer: client, restaurant: restaurant)
     end
