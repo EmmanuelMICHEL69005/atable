@@ -5,7 +5,8 @@ Customer.destroy_all
 Booking.destroy_all
 
 
-10.times do
+
+
 restaurant = Restaurant.create!(name: Faker::Restaurant.name, address: Faker::Address.street_address, zipcode: Faker::Address.zip_code, city: Faker::Address.city, capacity: (20..50).to_a.sample  )
 
   rand(5).times do
@@ -24,32 +25,31 @@ restaurant = Restaurant.create!(name: Faker::Restaurant.name, address: Faker::Ad
       email: Faker::Internet.email,
       )
 
-    rand(5).times do
+    rand(25).times do
       booking = Booking.create!(
-        date: Faker::Date.forward(23),
+        date: Faker::Date.forward(15),
         number_of_customers: (4..10).to_a.sample,
         restaurant: restaurant,
         customer: Customer.all.sample,
-        hour: ['11h30', '12h00', '12h30', '13h00', '13h30', '14h00'].sample,
+        hour: ['12h00', '12h30', '13h00', '13h30', '19H30', '20h00', '20h30', '21h00'].sample,
         content: ['Table ronde', 'Terrasse', 'Vue mer','Discretion assurée',''].sample,
         status: ['Pending', 'Valided', 'Canceled'].sample,
       )
     end
   end
-end
 
     user = User.create!(
       email: 'test@atable.live',
       password: 'azerty',
       restaurant: Restaurant.last
       )
-  rand(5).times do
+  rand(15).times do
       booking = Booking.create!(
-        date: Faker::Date.forward(23),
+        date: Faker::Date.forward(15),
         number_of_customers: (4..10).to_a.sample,
         restaurant: Restaurant.last,
         customer: Customer.all.sample,
-        hour: ['11h30', '12h00', '12h30', '13h00', '13h30', '14h00'].sample,
+        hour: ['12h00', '12h30', '13h00', '13h30', '19H30', '20h00', '20h30', '21h00'].sample,
         content: ['Table ronde', 'Terrasse', 'Vue mer','Discretion assurée',''].sample,
         status: ['Pending', 'Valided', 'Canceled'].sample,
       )

@@ -1,6 +1,23 @@
-<h1>Bookings#index</h1>
-<p>Find me in app/views/bookings/index.html.erb</p>
+<h1>Mon restaurant  <%= current_user.restaurant.name %> </h1>
+<h2>Ma salle : <%= current_user.restaurant.capacity %> couverts</h2>
 
-<% @bookings.each do |booking| %>
-  <p>Number of customers : <%= booking.number_of_customers %> / <%= booking.date %> / <%= booking.hour %> / <%= booking.content %> / <%= booking.customer.last_name %> / <%= booking.customer.first_name %> / <%= booking.customer.phone_number %> / <%= booking.customer.email %></p>
-<%end%>
+<h3>Nous sommes le <%= Time.now.strftime("%d-%m-%y") %>
+
+
+<h2>Mes reservations sur les 7 prochains jours</h2>
+  <% @calendar.each do |service| %>
+    <p>Le <%= service[0].strftime("%d-%m-%y") %>
+      <%= service[1] %>
+    Total des reservations <%= service[2]   %>/<%= current_user.restaurant.capacity %></p>
+  <% end %>
+
+  <input type="submit" name="commit" value="Ajouter une réservation" class="btn">
+
+<!-- <div>
+  <% @bookings.each do |booking| %>
+    <div>Nombre de convives : <%= booking.number_of_customers %> / <%= booking.date %> / <%= booking.hour %> / <%= booking.content %> /
+     <%= booking.customer.last_name %> / <%= booking.customer.first_name %> /
+     <%= booking.customer.phone_number %> / <%= booking.customer.email %>
+    </div>
+  <%end%> -->
+</div>
