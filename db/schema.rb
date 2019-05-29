@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_27_154933) do
+ActiveRecord::Schema.define(version: 2019_05_28_144513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,11 @@ ActiveRecord::Schema.define(version: 2019_05_27_154933) do
     t.datetime "updated_at", null: false
     t.bigint "restaurant_id"
     t.bigint "customer_id"
+    t.string "hour"
+    t.string "content"
+    t.string "status"
+    t.string "validation_link"
+    t.string "edit_link"
     t.index ["customer_id"], name: "index_bookings_on_customer_id"
     t.index ["restaurant_id"], name: "index_bookings_on_restaurant_id"
   end
@@ -34,6 +39,7 @@ ActiveRecord::Schema.define(version: 2019_05_27_154933) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "fourchette_id"
   end
 
   create_table "restaurants", force: :cascade do |t|
