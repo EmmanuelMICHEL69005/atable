@@ -15,6 +15,7 @@
     <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
+    <%= f.hidden_field :restaurant_id, :value => 11 %>
   </div>
 
   <div class="form-actions">
