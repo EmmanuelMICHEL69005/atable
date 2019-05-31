@@ -23,10 +23,27 @@
                             input_html: { autocomplete: "new-password" } %>
               </div>
 
+<<<<<<< HEAD
                 <div class="form-actions">
                   <%= f.button :submit, "Sign up", class: "btn btn-primary" %>
                 </div>
               <% end %>
+=======
+  <div class="form-inputs">
+    <%= f.input :email,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "email" }%>
+    <%= f.input :password,
+                required: true,
+                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                input_html: { autocomplete: "new-password" } %>
+    <%= f.input :password_confirmation,
+                required: true,
+                input_html: { autocomplete: "new-password" } %>
+    <%= f.hidden_field :restaurant_id, :value => 11 %>
+  </div>
+>>>>>>> master
 
               <div class="forgot">
             <%= render "devise/shared/links" %>
