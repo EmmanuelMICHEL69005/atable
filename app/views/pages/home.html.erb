@@ -1,39 +1,38 @@
 <div class="wrapper">
- <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.9)), url(https://images.unsplash.com/photo-1508006728353-6ecef00dcbb8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1651&q=80);">
+  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.65)), url(https://images.unsplash.com/photo-1508006728353-6ecef00dcbb8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1651&q=80);">
     <div class="container-home">
       <h1><%= "@TABLE" %><i id="icon" class="fas fa-utensils"></i></h1>
-      <h4><%= "L'OUTIL QUI CENTRALISE VOS RESERVATIONS." %></h4>
-      <a class="btn-primary" <%= link_to "
-se connecter", new_user_session_path, class: "nav-link" %>
-  </a>
+        <h4><%= "L'OUTIL QUI CENTRALISE VOS RESERVATIONS" %></h4>
+          <a class="btn-primary homepage" <%= link_to "
+          se connecter", new_user_session_path, class: "nav-link" %>
+          </a>
+          <a class="btn-primary homepage" <%= link_to "
+          s'inscrire", new_user_registration_path, class: "nav-link" %>
+          </a>
 
-      <a class="btn-primary" <%= link_to "
-s'inscrire", new_user_registration_path, class: "nav-link" %>
-      </a>
-    </div>
+  <div class="margeH2Home"><h2><b><%= "Découvrez-nous!" %></b></h2></div>
+      <div class="cards-home">
+        <div class="card-home">
+          <%= image_tag("planning2.png", :alt => "plannig") %>
+          <p><%= "Facilitez votre quotidien" %></p>
+        </div>
+        <div class="card-home">
+          <%= image_tag("ca.png", :alt => "ca") %>
+          <p><%= "Améliorez votre Chiffre d'affaire" %></p>
+        </div>
+        <div class="card-home">
+          <%= image_tag("outgoing-call.png", :alt => "com") %>
+          <p> <%= "Communiquez facilement avec vos clients" %> </p>
+        </div>
+      </div>
   </div>
 </div>
+</div>
+
 
 <div class="container-home">
-    <h2 class="text-center"><b><%= "Découvrez-nous!" %></b></h2>
-    <div class="cards-home">
 
-      <div class="card-home">
-        <%= image_tag("planning2.png", :alt => "plannig") %>
-        <p><%= "Facilitez votre quotidien" %></p>
-      </div>
-
-      <div class="card-home">
-        <%= image_tag("ca.png", :alt => "ca") %>
-        <p><%= "Améliorez votre Chiffre d'affaire" %></p>
-      </div>
-
-      <div class="card-home">
-        <%= image_tag("com2.png", :alt => "com") %>
-        <p> <%= "Communiquez mieux avec vos équipes" %> </p>
-      </div>
-    </div>
-  </div>
+</div>
 
   <div class="footer">
     <div class="footer-links">
