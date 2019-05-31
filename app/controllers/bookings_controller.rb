@@ -1,6 +1,8 @@
 class BookingsController < ApplicationController
   def index
     @bookings = current_user.restaurant.bookings
+    @customer = Customer.new
+    @customer.bookings.build
     @calendar = []
     lunchHour = ['12h00', '12h30', '13h00', '13h30', '14h00']
     dinnerHour = ['19h00', '19h30', '20h00', '20h30', '21h00']
@@ -10,27 +12,17 @@ class BookingsController < ApplicationController
       @calendar << [date, bookingsLunch, bookingsDinner]
    end
 
-   # @calendar = []
-   #  lunchHour = ['12h00', '12h30', '13h00', '13h30', '14h00']
-   #  dinnerHour = ['19h00', '19h30', '20h00', '20h30', '21h00']
-   #  Date.today.upto(Date.today + 7).each do |date|
-   #    bookingsLunch = Booking.where(restaurant_id: current_user.restaurant.id).where(date: date, hour: lunchHour)
-   #    @calendar << [date, 'lunch', bookingsLunch.inject(0) { |sum, booking| sum + booking.number_of_customers}]
-
-   #    bookingsDinner = Booking.where(restaurant_id: current_user.restaurant.id).where(date: date, hour: dinnerHour)
-   #    @calendar << [date,  'dinner', bookingsDinner.inject(0) { |sum, booking| sum + booking.number_of_customers}]
-   # end
-
-
  end
 
 
 
   def show
-    @bookings = Booking.new
+
   end
 
   def new
+    @booking = Booking.new
+    @customer = Customer.new
   end
 
   def create
@@ -38,6 +30,7 @@ class BookingsController < ApplicationController
     authorize @booking
     @booking.user = current_user
     # @booking.price = params[:booking][:beginning_date].upto(params[:booking][:ending_date]).size * @booking.boat.price
+    raise
     @booking.save!
     redirect_to bookings_path
   end
@@ -55,5 +48,13 @@ end
 private
 
 def booking_params
-  params.require(:booking).permit(:date, :hour, :customer, :restaurant, :number_of_customer, :content, :source)
+  params.require(:booking).permit(:date, :hour, :customer, :restaurant, :number_of_customer, :content, :source,
+    customers_attributes: [:id, :last_name, :phone_number, :email, :first_name])
 end
+
+
+
+
+
+
+

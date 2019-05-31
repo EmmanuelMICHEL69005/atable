@@ -1,0 +1,75 @@
+.book-a-table {
+ width: 1000px;
+ margin:0 auto;
+  }
+
+.schedule {
+ width: 1000px;
+ margin:0 auto;
+ border: 1px solid grey;
+ padding-bottom: 10px;
+
+.OverSchedule {
+  text-align: center
+}
+
+.Facebook {
+ background-color: rgb(66, 103, 178);
+}
+.LaFourchette {
+ background-color: rgb(88, 148, 66);
+}
+.WebSite {
+ background-color: rgb(64, 89, 107);
+}
+.Phone {
+ background-color: rgb(255, 112, 88);
+}
+.Other{
+ background-color: rgb(230, 26, 73);
+}
+.booking:hover{
+ opacity: 0.8;
+ height:35px;
+}
+
+.reservation{
+  height:30px;
+}
+
+.reservation-head{
+  display: flex;
+  justify-content: space-evenly;
+  color: white;
+  font-size: 16px;
+  font-style: light;
+}
+
+.reservation-contact{
+  display:flex;
+  align-items: center;
+}
+
+
+ td {
+ border-radius: 30px;
+ width: 50px;
+ height:30px;
+}
+ th {
+}
+}
+
+.iconeBoudin {
+  img {
+    width: 30px;
+  }
+}
+
+.agendaMidi {
+  border: 10px;
+}
+
+.agendaSoir {
+  border: 10px;
+}

@@ -685,6 +685,24 @@
   resolved "https://registry.yarnpkg.com/@fullcalendar/daygrid/-/daygrid-4.1.0.tgz#058b02585d17a63f448e2ab42f65db7bacca2296"
   integrity sha512-y2w+js+cr0SFC3f88QIS91V8LeZ5TEG/W6hX+CcokP+KTZdepW0uCjPzf9QwVE0LM904tZ2kjCe209hZGfSNGg==
 
+"@fullcalendar/resource-common@~4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@fullcalendar/resource-common/-/resource-common-4.1.0.tgz#7342a6737965ec49b6fbdc700ae74f9a9062780c"
+  integrity sha512-IaqUeHnjTZtVoiJsvcJqNuUdh8UQl1wYcbdA1n2Xu/e/9lUKKUVHmrzAuq+YdfwhOsmXeTGgMy2Fu9NazRXSjQ==
+
+"@fullcalendar/resource-timeline@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@fullcalendar/resource-timeline/-/resource-timeline-4.1.0.tgz#d4e8ee18a98c55f138a4dfe73e1fe8fda6ac721a"
+  integrity sha512-/FZpwyjvZD3IhV+Y2yLnqiiXEbN0AeZDmb5ACGOqHrqDyEnA+gkbOq83K46lf9CGJOMlE9jqb5Hbx7VMRxGaEA==
+  dependencies:
+    "@fullcalendar/resource-common" "~4.1.0"
+    "@fullcalendar/timeline" "~4.1.0"
+
+"@fullcalendar/timeline@~4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@fullcalendar/timeline/-/timeline-4.1.0.tgz#e85f43ff56b1c238b844e89e56d926cda367ee21"
+  integrity sha512-GS3ocCuK8dvM+cbsBtqhEOnUl1u0/FO8b8wpgH+kxT8K4bkPoOTyRRqeX4oZKkNSxZReFHOfYfTUVHpwhhSEGQ==
+
 "@rails/webpacker@^4.0.2":
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/@rails/webpacker/-/webpacker-4.0.2.tgz#2c2e96527500b060a84159098449ddb1615c65e8"
