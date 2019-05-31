@@ -1,46 +1,198 @@
-<h1>Mon restaurant  <%= current_user.restaurant.name %> </h1>
+<h1> <%= current_user.restaurant.name %> </h1>
 <h2>Ma salle : <%= current_user.restaurant.capacity %> couverts</h2>
 
-<h3>Nous sommes le <%= Time.now.strftime("%d-%m-%y") %>
- <div id="calendar"></div>
+<h6>Nous sommes le <%= Time.now.strftime("%d-%m-%y") %></<h6></h6>>
+ <div id="form"></div>
 
-<h2>Mes reservations sur les 7 prochains jours</h2>
-  <% @calendar.each do |day| %>
-    <p>Le <%= day[0].strftime("%d-%m-%y") %>
-      <% day[1].sort_by(&:hour).each do |lunch|  %>
-
-    <div class= <%= lunch.hour %>></div>
-     <% end %>
-     <div class="lunchtime">
-      <div class="row">
-        <div class="col-sm">
-          12H00
-        </div>
-        <div class="col-sm">
-         12H30
-        </div>
-        <div class="col-sm">
-          13H00
-        </div>
-        <div class="col-sm">
-         13H30
-        </div>
-  </div>
-
-    <div><% day[2].each do |dinner|  %>
-      <%= dinner.hour %></div>
-  <% end %>
 
 </div>
+<div class ="book-a-table">
+  <%= simple_form_for @customer do |f| %>
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :phone_number %>
+    <%= f.input :email %>
+    <%= f.simple_fields_for :bookings do |f| %>
+      <%= f.input :date %>
+      <%= f.input :hour %>
+      <%= f.input :number_of_customers %>
+      <%= f.input :content %>
+    <% end %>
+    <%= f.button :submit %>
   <% end %>
+</div>
 
-  <input type="submit" name="commit" value="Ajouter une réservation" class="btn">
 
-<!-- <div>
-  <% @bookings.each do |booking| %>
-    <div>Nombre de convives : <%= booking.number_of_customers %> / <%= booking.date %> / <%= booking.hour %> / <%= booking.content %> /
-     <%= booking.customer.last_name %> / <%= booking.customer.first_name %> /
-     <%= booking.customer.phone_number %> / <%= booking.customer.email %>
-    </div>
-  <%end%>
-</div> -->
+<h3 class="OverSchedule text-align: center  ">Mes réservations du jour
+
+  <%= link_to "Ajouter une reservation", new_booking_path(@bookings) %>   </h3>
+      <div class="agendaMidi">
+      <table class="schedule">
+       <th>
+         <td style="width: 50px">12h00</td>
+         <td style="width: 50px">12h30</td>
+         <td style="width: 50px">13h00</td>
+         <td style="width: 50px">13h30</td>
+         <td style="width: 50px">14h00</td>
+         <td style="width: 50px">14h30</td>
+         <td style="width: 50px">15h00</td>
+       </th>
+
+         <% @bookings.where(date: Date.today).each do |booking| %>
+           <% @heure = booking.hour %>
+           <% @origin = ['LaFourchette', 'Facebook', 'WebSite', 'Phone', 'Other'].sample%>
+           <% @customer = "#{booking.customer.first_name.capitalize} #{booking.customer.last_name.upcase}"%>
+           <% @number_of_customers = booking.number_of_customers %>
+
+
+      <%if @heure =='12h00'%>
+         <tr><td></td><td colspan = 3 class= "booking <%=@origin%>"> <div class="reservation">
+            <div class="reservation-head">
+              <p><%=@customer%></p>
+              <p> <%=booking.number_of_customers%>pers</p>
+              <p class="card-text"><%=booking.content%></p>
+              <p class="iconeBoudin "><%= image_tag("message.png", :alt => "icon mail" ) %></p>
+              <p class="iconeBoudin "><%= image_tag("outgoing-call.png", :alt => "icon tel") %></p>
+            </div>
+          </div>
+        </td><td ></td><td></td><td ></td><td ></td></tr>
+
+      <%elsif @heure =='12h30' then%>
+       <tr><td></td><td></td><td  colspan = 3 class= "booking <%=@origin%>"> <div class="reservation">
+        <div class="reservation-head">
+          <p><%=@customer%></p>
+          <p> <%=booking.number_of_customers%>pers</p>
+          <p class="card-text"><%=booking.content%></p>
+          <p class="iconeBoudin "><%= image_tag("message.png", :alt => "icon mail" ) %></p>
+          <p class="iconeBoudin "><%= image_tag("outgoing-call.png", :alt => "icon tel") %></p>
+        </div>
+      </div>
+    </td><td ></td><td ></td><td ></td></tr>
+
+      <%elsif @heure =='13h00' then%>
+       <tr><td></td><td></td><td></td>
+        <td colspan = 3  class= "booking <%=@origin%>"> <div class="reservation">
+        <div class="reservation-head">
+          <p><%=@customer%></p>
+          <p> <%=booking.number_of_customers%>pers</p>
+          <p class="card-text"><%=booking.content%></p>
+          <p class="iconeBoudin "><%= image_tag("message.png", :alt => "icon mail" ) %></p>
+          <p class="iconeBoudin "><%= image_tag("outgoing-call.png", :alt => "icon tel") %></p>
+        </div>
+      </div></td><td ></td><td ></td></tr>
+
+      <%elsif @heure =='13h30' then%>
+       <tr><td></td><td></td><td></td><td></td>
+        <td colspan = 3  class= "booking <%=@origin%>"><div class="reservation">
+        <div class="reservation-head">
+          <p><%=@customer%></p>
+          <p> <%=booking.number_of_customers%>pers</p>
+          <p class="card-text"><%=booking.content%></p>
+          <p class="iconeBoudin "><%= image_tag("message.png", :alt => "icon mail" ) %></p>
+          <p class="iconeBoudin "><%= image_tag("outgoing-call.png", :alt => "icon tel") %></p>
+        </div>
+
+      </div></td><td ></td></tr>
+
+      <%else%>
+
+
+        </div>
+   </div></td></tr>
+      <%end%>
+      <%end%>
+      </table>
+  </div>
+ <br>
+  <div class="agendaSoir">
+      <table class="schedule">
+       <th>
+         <td style="width: 50px">19H00</td>
+         <td style="width: 50px">19H30</td>
+         <td style="width: 50px">20H00</td>
+         <td style="width: 50px">20H30</td>
+         <td style="width: 50px">21H00</td>
+         <td style="width: 50px">21H30</td>
+         <td style="width: 50px">22H00</td>
+
+       </th>
+         <% @bookings.where(date: Date.today).each do |booking| %>
+           <% @heure = booking.hour %>
+           <% @origin = ['LaFourchette', 'Facebook', 'WebSite', 'Phone', 'Other'].sample%>
+           <% @customer = "#{booking.customer.first_name} #{booking.customer.last_name.upcase}"%>
+           <% @number_of_customers = booking.number_of_customers %>
+
+
+      <%if @heure =='19h00' then%>
+         <tr><td></td><td colspan = 3 class= "booking <%=@origin%>"> <div class="reservation">
+            <div class="reservation-head">
+              <p><%=@customer%></p>
+              <p> <%=booking.number_of_customers%>pers</p>
+              <p class="card-text"><%=booking.content%></p>
+              <p class="iconeBoudin "><%= image_tag("message.png", :alt => "icon mail" ) %></p>
+              <p class="iconeBoudin "><%= image_tag("outgoing-call.png", :alt => "icon tel") %></p>
+              <p class="iconeBoudin "><%= image_tag("message.png", :alt => "icon mail" ) %></p>
+              <p class="iconeBoudin "><%= image_tag("outgoing-call.png", :alt => "icon tel") %></p>
+            </div>
+          </div>
+        </td><td ></td><td></td><td ></td><td ></td></tr>
+
+      <%elsif @heure =='19h30' then%>
+       <tr><td></td><td></td><td  colspan = 3 class= "booking <%=@origin%>"> <div class="reservation">
+        <div class="reservation-head">
+          <p><%=@customer%></p>
+          <p> <%=booking.number_of_customers%>pers</p>
+          <p class="card-text"><%=booking.content%></p>
+          <p class="iconeBoudin "><%= image_tag("message.png", :alt => "icon mail" ) %></p>
+          <p class="iconeBoudin "><%= image_tag("outgoing-call.png", :alt => "icon tel") %></p>
+        </div>
+      </div>
+    </td><td ></td><td ></td><td ></td></tr>
+
+      <%elsif @heure =='20h00' then%>
+       <tr><td></td><td></td><td></td>
+        <td colspan = 3  class= "booking <%=@origin%>"> <div class="reservation">
+        <div class="reservation-head">
+          <p><%=@customer%></p>
+          <p> <%=booking.number_of_customers%>pers</p>
+          <p class="card-text"><%=booking.content%></p>
+          <p class="iconeBoudin "><%= image_tag("message.png", :alt => "icon mail" ) %></p>
+          <p class="iconeBoudin "><%= image_tag("outgoing-call.png", :alt => "icon tel") %></p>
+        </div>
+      </div></td><td ></td><td ></td></tr>
+
+      <%elsif @heure =='20h30' then%>
+       <tr><td></td><td></td><td></td><td></td>
+        <td colspan = 3  class= "booking <%=@origin%>"><div class="reservation">
+        <div class="reservation-head">
+          <p><%=@customer%></p>
+          <p> <%=booking.number_of_customers%>pers</p>
+          <p class="card-text"><%=booking.content%></p>
+          <p class="iconeBoudin "><%= image_tag("message.png", :alt => "icon mail" ) %></p>
+          <p class="iconeBoudin "><%= image_tag("outgoing-call.png", :alt => "icon tel") %></p>
+        </div>
+
+      </div></td><td ></td></tr>
+
+       <%elsif @heure =='21h00' then%>
+       <tr><td></td><td></td><td></td><td></td>
+        <td colspan = 3  class= "booking <%=@origin%>"><div class="reservation">
+        <div class="reservation-head">
+          <p><%=@customer%></p>
+          <p> <%=booking.number_of_customers%>pers</p>
+          <p class="card-text"><%=booking.content%></p>
+          <p class="iconeBoudin "><%= image_tag("message.png", :alt => "icon mail" ) %></p>
+          <p class="iconeBoudin "><%= image_tag("outgoing-call.png", :alt => "icon tel") %></p>
+        </div>
+
+      <%else%>
+
+      <%end%>
+      <%end%>
+      </table>
+  </div>
+
+</div>
+
+
+

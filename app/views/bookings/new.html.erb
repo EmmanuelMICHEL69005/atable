@@ -1,2 +1,12 @@
-<h1>Bookings#new</h1>
-<p>Find me in app/views/bookings/new.html.erb</p>
+<div><h1 class="text-align= center">Créer une réservation</h1>
+</div>
+
+
+<%= simple_form_for @booking do |f| %>
+
+  <%= f.input :date, palceholder: 'JJ/MM/AA' %>
+  <%= f.input :hour, placeholder: 'mmhhh' %>
+  <%= f.input :number_of_customers, inline_label: 'nb de convives' %>
+
+  <%= f.button :submit %>
+<% end %>
