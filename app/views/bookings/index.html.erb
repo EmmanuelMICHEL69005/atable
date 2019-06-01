@@ -26,17 +26,30 @@
 <h3 class="OverSchedule text-align: center  ">Mes réservations du jour
 
   <%= link_to "Ajouter une reservation", new_booking_path(@bookings) %>   </h3>
+
+
+
       <div class="agendaMidi">
       <table class="schedule">
+        <tr>
+          <td style="width: 50px"></td>
+          <td style="width: 50px"><%=@total_customer[0].sum%></td>
+           <td style="width: 50px"><%=@total_customer[1].sum%></td>
+           <td style="width: 50px"><%=@total_customer[2].sum%></td>
+           <td style="width: 50px"><%=@total_customer[3].sum%></td>
+           <td style="width: 50px"><%=@total_customer[4].sum%></td>
+           <td style="width: 50px"></td>
+        </tr>
        <th>
+         <td style="width: 50px">11h30</td>
          <td style="width: 50px">12h00</td>
          <td style="width: 50px">12h30</td>
          <td style="width: 50px">13h00</td>
          <td style="width: 50px">13h30</td>
          <td style="width: 50px">14h00</td>
          <td style="width: 50px">14h30</td>
-         <td style="width: 50px">15h00</td>
        </th>
+
 
          <% @bookings.where(date: Date.today).each do |booking| %>
            <% @heure = booking.hour %>
@@ -106,6 +119,15 @@
  <br>
   <div class="agendaSoir">
       <table class="schedule">
+      <tr>
+        <td style="width: 50px"></td>
+        <td style="width: 50px"><%=@total_customer[5].sum%></td>
+         <td style="width: 50px"><%=@total_customer[6].sum%></td>
+         <td style="width: 50px"><%=@total_customer[7].sum%></td>
+         <td style="width: 50px"><%=@total_customer[8].sum%></td>
+         <td style="width: 50px"><%=@total_customer[9].sum%></td>
+         <td style="width: 50px"></td>
+      </tr>
        <th>
          <td style="width: 50px">19H00</td>
          <td style="width: 50px">19H30</td>
