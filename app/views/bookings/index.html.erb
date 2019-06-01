@@ -1,31 +1,32 @@
-<h1> <%= current_user.restaurant.name %> </h1>
-<h2>Ma salle : <%= current_user.restaurant.capacity %> couverts</h2>
-
-<h6>Nous sommes le <%= Time.now.strftime("%d-%m-%y") %></<h6></h6>>
- <div id="form"></div>
-
+  <h1> <%= current_user.restaurant.name %> </h1>
+<div class="BookingIndexTitle">
+  <div>Capacité Max : <%= current_user.restaurant.capacity %> couverts</div>
+  <div>Nous sommes le <%= Time.now.strftime("%d-%m-%y") %></div>
 
 </div>
-<div class ="book-a-table">
-  <%= simple_form_for @customer do |f| %>
-    <%= f.input :first_name %>
-    <%= f.input :last_name %>
-    <%= f.input :phone_number %>
-    <%= f.input :email %>
+<%= simple_form_for @customer do |f| %>
+  <div class ="book-a-table">
+    <div> <%= f.input :first_name  %> </div>
+    <div> <%= f.input :last_name %>  </div>
+    <div> <%= f.input :phone_number  %></div>
+    <div> <%= f.input :email %>      </div>
     <%= f.simple_fields_for :bookings do |f| %>
-      <%= f.input :date %>
-      <%= f.input :hour %>
-      <%= f.input :number_of_customers %>
-      <%= f.input :content %>
+     <div>
+      <%= label_tag(:DateReservation, "Date de réservation" ) %>
+      <%= text_field_tag(:dateReservation, params[:dateReservation]) %>
+      </div>
+     <div><%= label_tag(:heureReservation, "Heure de réservation" ) %>
+      <%= text_field_tag(:heureReservation, params[:heureReservation]) %></div>
+     <div> <%= f.input :number_of_customers %></div>
+     <div><%= f.input :content%> </div>
     <% end %>
-    <%= f.button :submit %>
+    <div> <%= f.button :submit, "Ajouter la reservation", class: "btn-primary homepage"%></div>
   <% end %>
 </div>
 
 
-<h3 class="OverSchedule text-align: center  ">Mes réservations du jour
 
-  <%= link_to "Ajouter une reservation", new_booking_path(@bookings) %>   </h3>
+<h3 class="OverSchedule text-align: center  ">Mes réservations du jours</h3>
 
 
 
@@ -41,7 +42,6 @@
            <td style="width: 50px"></td>
         </tr>
        <th>
-         <td style="width: 50px">11h30</td>
          <td style="width: 50px">12h00</td>
          <td style="width: 50px">12h30</td>
          <td style="width: 50px">13h00</td>
@@ -141,7 +141,7 @@
          <% @bookings.where(date: Date.today).each do |booking| %>
            <% @heure = booking.hour %>
            <% @origin = ['LaFourchette', 'Facebook', 'WebSite', 'Phone', 'Other'].sample%>
-           <% @customer = "#{booking.customer.first_name} #{booking.customer.last_name.upcase}"%>
+           <% @customer = "#{booking.customer.first_name.capitalize} #{booking.customer.last_name.upcase}"%>
            <% @number_of_customers = booking.number_of_customers %>
 
 
@@ -151,8 +151,6 @@
               <p><%=@customer%></p>
               <p> <%=booking.number_of_customers%>pers</p>
               <p class="card-text"><%=booking.content%></p>
-              <p class="iconeBoudin "><%= image_tag("message.png", :alt => "icon mail" ) %></p>
-              <p class="iconeBoudin "><%= image_tag("outgoing-call.png", :alt => "icon tel") %></p>
               <p class="iconeBoudin "><%= image_tag("message.png", :alt => "icon mail" ) %></p>
               <p class="iconeBoudin "><%= image_tag("outgoing-call.png", :alt => "icon tel") %></p>
             </div>
