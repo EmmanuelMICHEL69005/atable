@@ -17,6 +17,7 @@
      <div><%= label_tag(:hour, "Heure de réservation" ) %>
       <%= text_field_tag(:hour, params[:hour], id: "requestHour") %></div>
     <div> <%= f.input :number_of_people, id: "clients" %>      </div>
+
     <div> <%= f.input :comments %>      </div>
     <s></s>
     <div> <%= f.button :submit, "Ajouter la reservation", id: "BookingValidation", class: "btn-primary homepage"%></div>

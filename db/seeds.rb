@@ -9,8 +9,6 @@ Booking.destroy_all
 
 restaurant = Restaurant.create!(name: Faker::Restaurant.name, address: Faker::Address.street_address, zipcode: Faker::Address.zip_code, city: Faker::Address.city, capacity: (20..50).to_a.sample  )
 
-
-
 kevin = Customer.create!(
   first_name: "kevin",
   last_name: "Chavanne",
