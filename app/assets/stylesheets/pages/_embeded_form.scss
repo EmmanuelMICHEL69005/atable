@@ -1,0 +1,38 @@
+.embeded-form {
+  background-color: #0000001c;
+  font-size: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-left: 0px;
+
+  .form-control {
+    color: white !important;
+  }
+
+  .btn-primary {
+    margin-left: 0px;
+  }
+
+  // .embeded-form label {
+  //   color: white;
+  //   font-size: 16px;
+  // }
+
+  .embeded-form iframe {
+    border-width: 0px;
+  }
+
+  label {
+    color: white !important;
+    font-size: 16px;
+  }
+
+  input[type=text]:not(.browser-default)[readonly="readonly"]{
+    color: white;
+  }
+
+  input[type=text]:not(.browser-default)[readonly="readonly"]{
+    border-bottom: 1px dotted rgba(255, 255, 255, 0.7);
+  }
+
+}
