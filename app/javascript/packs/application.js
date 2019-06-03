@@ -10,7 +10,7 @@ import 'flatpickr/dist/flatpickr.min.css'
 console.log(flatpickr)
 console.log('mkjbljbijnoinibniuhbiuh')
 
-flatpickr("#dateReservation", {
+flatpickr("#date", {
   altInput: true,
     altFormat: "j F Y",
     dateFormat: "Y-m-d",
@@ -19,7 +19,7 @@ flatpickr("#dateReservation", {
 "disable": [
         function(date) {
             // return true to disable
-            return (date.getDay() === 1);
+            return (date.getDay() === 0);
 
         }
     ],
@@ -33,7 +33,7 @@ flatpickr("#dateReservation", {
 
 
 
-flatpickr("#heureReservation", {
+flatpickr("#hour", {
     enableTime: true,
     noCalendar: true,
     dateFormat: "H:i",
@@ -44,3 +44,35 @@ flatpickr("#heureReservation", {
 
 
 },);
+
+querySelector('')
+flatpickr(".date", {
+  altInput: true,
+    altFormat: "j F Y",
+    dateFormat: "Y-m-d",
+    minDate: "today",
+
+"disable": [
+        function(date) {
+            // return true to disable
+            return (date.getDay() === 0);
+
+        }
+    ],
+    "locale": {
+        "firstDayOfWeek": 1 // start week on Monday
+    },
+
+
+
+},);
+
+
+flatpickr(".hour", {
+  enableTime: true,
+    noCalendar: true,
+    dateFormat: "H:i",
+    defaultDate: "12:00",
+    minuteIncrement: 30,
+    time_24hr: true,
+});

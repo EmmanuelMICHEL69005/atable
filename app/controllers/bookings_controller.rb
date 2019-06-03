@@ -28,12 +28,36 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = Booking.new(booking_params)
-    authorize @booking
-    @booking.user = current_user
-    # @booking.price = params[:booking][:beginning_date].upto(params[:booking][:ending_date]).size * @booking.boat.price
-    raise
-    @booking.save!
+    # binding.pry
+
+    customer = Customer.find_by(email: params[:booking][:email])
+
+    if customer.blank?
+      # customer = Customer.create(email: ?)
+      customer = Customer.create!(
+        email: params[:booking][:email],
+        first_name: params[:booking][:first_name],
+        last_name: params[:booking][:last_name],
+        phone_number: params[:booking][:phone_number]
+      )
+    end
+    puts "3"*99
+    puts params
+    puts params[:booking][:date]
+    puts params[:date]
+    puts params[:hour]
+    puts params[:hour].class
+
+    Booking.create!(
+      date: params[:date],
+      number_of_customers: params[:booking][:number_of_people],
+      source: 'other',
+      restaurant: current_user.restaurant,
+      customer: customer,
+      hour: params[:hour].tr(":", "h"),
+      content: params[:booking][:comments]
+    )
+
     redirect_to bookings_path
   end
 
