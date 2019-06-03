@@ -1,5 +1,7 @@
 class BookingsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
+
+
   def index
     @bookings = current_user.restaurant.bookings
     @customer = Customer.new
@@ -29,37 +31,43 @@ class BookingsController < ApplicationController
 
   def create
     # binding.pry
+    @bookings = current_user.restaurant.bookings
+    @total_customer = total_customers
 
     customer = Customer.find_by(email: params[:booking][:email])
+    heure = params[:hour].tr(":", "h")
+    nombre_client = params[:booking][:number_of_people]
 
-    if customer.blank?
-      # customer = Customer.create(email: ?)
-      customer = Customer.create!(
-        email: params[:booking][:email],
-        first_name: params[:booking][:first_name],
-        last_name: params[:booking][:last_name],
-        phone_number: params[:booking][:phone_number]
+    if (current_user.restaurant.capacity - nombre_client.to_i - @total_customer[2].sum)>0
+      if customer.blank?
+        # customer = Customer.create(email: ?)
+        customer = Customer.create!(
+          email: params[:booking][:email],
+          first_name: params[:booking][:first_name],
+          last_name: params[:booking][:last_name],
+          phone_number: params[:booking][:phone_number]
+        )
+      end
+
+      Booking.create!(
+        date: params[:date],
+        number_of_customers: params[:booking][:number_of_people],
+        source: 'other',
+        restaurant: current_user.restaurant,
+        customer: customer,
+        hour: params[:hour].tr(":", "h"),
+        content: params[:booking][:comments]
       )
-    end
-    puts "3"*99
-    puts params
-    puts params[:booking][:date]
-    puts params[:date]
-    puts params[:hour]
-    puts params[:hour].class
+       @result = "La réservation N° #{Booking.last.id} du #{Booking.last.date} pour XX a bien été prise en compte"
 
-    Booking.create!(
-      date: params[:date],
-      number_of_customers: params[:booking][:number_of_people],
-      source: 'other',
-      restaurant: current_user.restaurant,
-      customer: customer,
-      hour: params[:hour].tr(":", "h"),
-      content: params[:booking][:comments]
-    )
-
-    redirect_to bookings_path
+    else
+       @result = "Le restaurant n'est pas dispo. Merci de suggérer une autre date"
+     end
+      redirect_to bookings_path
   end
+
+
+
 
   def update
   end

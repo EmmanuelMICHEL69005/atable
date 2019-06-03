@@ -98,9 +98,9 @@ gerard_booking1 = Booking.create!(
 
 maxime = Customer.create!(
   first_name: "maxime",
-  last_name: "narco",
+  last_name: "blanc",
   phone_number: "0675342561",
-  email: "maxime.narcoleptique@gmail.com",
+  email: "maxime.blanc@gmail.com",
   )
 
 maxime_booking1 = Booking.create!(
