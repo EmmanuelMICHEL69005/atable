@@ -12,57 +12,177 @@
 .schedule {
  width: 1000px;
  margin:0 auto;
- border: 1px solid grey;
  padding-bottom: 10px;
+
 
 .OverSchedule {
   text-align: center
 }
 
-.Facebook {
- background-color: rgb(66, 103, 178);
-}
-.LaFourchette {
- background-color: rgb(88, 148, 66);
-}
-.WebSite {
- background-color: rgb(64, 89, 107);
-}
-.Phone {
- background-color: rgb(255, 112, 88);
-}
-.Other{
- background-color: rgb(230, 26, 73);
-}
+// .Facebook {
+//  background-color: rgb(66, 103, 178);
+// }
+// .LaFourchette {
+//  background-color: rgb(88, 148, 66);
+// }
+// .WebSite {
+//  background-color: rgb(64, 89, 107);
+// }
+// .Phone {
+//  background-color: rgb(255, 112, 88);
+// }
+// .Other{
+//  background-color: rgb(230, 26, 73);
+// }
 .booking:hover{
- opacity: 0.8;
+
+ background-color: rgba(30, 221, 136,0.3);
  height:35px;
 }
 
 .reservation{
-  height:25px;
+  display:inline-block;
+}
+.booking {
+  background-color: rgb(220, 220, 220);
 }
 
 .reservation-head{
-  display: flex;
-  justify-content: space-evenly;
-  color: white;
+  display: inline-block;
+  color: rgb(64, 89, 107);
   font-size: 16px;
   font-style: light;
+  width:300px;
 }
 
-.reservation-contact{
+.nb-clients {
+  border-radius: 50%;
+  text-align: center;
+  justify-content:center;
+  font-size:14px;
+  background-color:rgb(30, 221, 136);
+  font-weight: bold;
+  color:black;
+  position:relative;
+  top:-10px;
+  left:-10px;
+  width:20px;
+  height:20px;
+}
+
+.nb-dispo {
+  font-size:20px;
+  color: black;
+  font-weight: bold;
+  width:25px;
+  height:25px;
+}
+
+.dispo {
+
+}
+
+.icone-client{
+    height:20px;
+    width:20px;
+}
+.block-client {
   display:flex;
-  align-items: center;
+  position:relative;
+  display-content: space-between;
+}
+.sous-block-client {
+  display:flex;
+  position:relative;
+}
+.sous-block-dispo {
+  display:flex;
+  vertical-align: middle;
 }
 
+.reservation-admin{
+  display:inline-block;
+  border-left:1px grey solid;
+}
+.block-admin {
+  display:flex;
+}
+.source {
+margin-right:10px;
+margin-left:5px;
+}
+
+.edit {
+  margin-right:10px;
+  margin-left:5px;
+}
+.reservation-icons {
+  display:flex;
+  position:relative;
+  top: 0px;
+}
+.client-rating {
+
+  width: 60px;
+
+}
+
+.info {
+  margin-left: 20px;
+  margin-bottom: 5px;
+}
+
+.reservation-content{
+  display:flex;
+  position:relative;
+  top:0px;
+
+}
+.content{
+  margin-left:20px;
+}
+.header-table{
+  background-color: rgb(30, 221, 136);
+    font-size: 20px;
+  font-weight:bold;
+
+}
+
+.header-table-soir {
+  background-color: rgb(2, 161, 249);
+  font-size: 20px;
+  font-weight:bold;
+}
+
+.content {
+  font-style: italic;
+}
+.reservation-content{
+  display:flex;
+}
+
+.restaurant-capacity {
+
+}
 
  td {
- border-radius: 16px;
- width: 40px;
- height:24px;
+ border-radius: 30px;
+ width: 50px;
+ height:40px;
+
+
 }
- th {
+tr {
+  border-spacing:15px;
+}
+tbody {
+  tr:hover {
+  background-color:rgba(30, 221, 136,0.1);
+}
+}
+ th  {
+  padding:10px;
+  border-spacing:15px;
 }
 }
 
@@ -80,6 +200,27 @@
   border: 10px;
 }
 
+.agendaSoir { tbody {
+  tr:hover {background-color:rgba(2, 161, 249,0.1)}
+  .booking:hover{
+ background-color: rgba(2, 161, 249,0.3);
+}
+.nb-clients {
+  border-radius: 50%;
+  text-align: center;
+  justify-content:center;
+  font-size:14px;
+  background-color:rgb(2, 161, 249);
+  font-weight: bold;
+  color:black;
+  position:relative;
+  top:-10px;
+  left:-10px;
+  width:20px;
+  height:20px;
+}
+}}
+
 
 
 .book-a-table {
@@ -92,3 +233,4 @@
     width: auto;
     margin: 0 10px;
 }
+

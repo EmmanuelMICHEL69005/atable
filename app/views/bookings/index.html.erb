@@ -29,9 +29,60 @@
 <h3 class="OverSchedule text-align: center  ">Mes réservations du jours</h3>
 
 
-
+<h1>Service du midi:</h1>
       <div class="agendaMidi">
       <table class="schedule">
+        <thead class ="header-table">
+            <td >11h30</td>
+            <td >12h00</td>
+            <td >12h30</td>
+            <td >13h00</td>
+            <td >13h30</td>
+            <td >14h00</td>
+            <td >14h30</td>
+            <td>15H00</td>
+        </thead>
+
+        <th class = "restaurant-capacity">
+          <td >
+            <div class = "sous-block-dispo">
+              <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[0].sum%></p>
+              <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
+            </div>
+          </td>
+           <td >
+             <div class = "sous-block-dispo">
+               <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[1].sum%></p>
+               <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
+             </div>
+           </td>
+           <td >
+             <div class = "sous-block-dispo">
+               <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[2].sum%></p>
+               <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
+             </div>
+           </td>
+           <td >
+             <div class = "sous-block-dispo">
+               <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[3].sum%></p>
+               <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
+             </div>
+           </td>
+           <td >
+             <div class = "sous-block-dispo">
+               <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[4].sum%></p>
+               <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
+             </div>
+           </td>
+           <td ><div class = "sous-block-dispo">
+               <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[4].sum%></p>
+               <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
+             </div>
+           </td>
+           <td></td>
+        </th>
+
+        <tbody>
         <tr>
           <td style="width: 50px"></td>
           <td style="width: 50px"><%=@total_customer[0].sum%></td>
@@ -50,62 +101,136 @@
          <td style="width: 50px">14h30</td>
        </th>
 
-
          <% @bookings.where(date: Date.today).each do |booking| %>
            <% @heure = booking.hour %>
-           <% @origin = ['LaFourchette', 'Facebook', 'WebSite', 'Phone', 'Other'].sample%>
+           <% @origin = [['LaFourchette','http://i0.wp.com/lewebcestfood.fr/wp-content/uploads/2016/02/La-fourchette.png?fit=300%2C300'], ['Facebook', 'https://img.icons8.com/color/384/facebook.png'], ['WebSite', 'https://img.icons8.com/ios/384/internet.png'], ['Phone','https://img.icons8.com/metro/384/phone.png'], ['Other', 'https://img.icons8.com/ios/384/conference-call-filled.png']].sample%>
+           <% @categorie= [['New', 'https://upload.wikimedia.org/wikipedia/commons/4/4a/Star_rating_0_of_5.png'], ['1 étoile', 'https://upload.wikimedia.org/wikipedia/commons/d/dd/Star_rating_1_of_5.png'], ['2 étoiles', 'https://upload.wikimedia.org/wikipedia/commons/9/95/Star_rating_2_of_5.png'], ['3 étoiles', 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Star_rating_3_of_5.png'], ['4 étoiles', 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Star_rating_4_of_5.png'], ['5 étoiles', 'https://upload.wikimedia.org/wikipedia/commons/1/17/Star_rating_5_of_5.png']].sample%>
            <% @customer = "#{booking.customer.first_name.capitalize} #{booking.customer.last_name.upcase}"%>
            <% @number_of_customers = booking.number_of_customers %>
 
 
       <%if @heure =='12h00'%>
-         <tr><td></td><td colspan = 3 class= "booking <%=@origin%>"> <div class="reservation">
+         <tr><td></td><td colspan = 3 class= "booking <%=@origin[0]%>">
+          <div class="reservation">
             <div class="reservation-head">
-              <p><%=@customer%></p>
-              <p> <%=booking.number_of_customers%>pers</p>
-              <p class="card-text"><%=booking.content%></p>
-              <p class="iconeBoudin "><%= image_tag("message.png", :alt => "icon mail" ) %></p>
-              <p class="iconeBoudin "><%= image_tag("outgoing-call.png", :alt => "icon tel") %></p>
+              <div class = "reservation-icons">
+                <img src="<%=@categorie[1]%>" class = "icone-client client-rating" style= "width:auto;">
+                <img src="https://img.icons8.com/metro/384/about.png" class = "icone-client info" style= "width:auto;">
+              </div>
+              <div class="reservation-content">
+                <a class ="nom-customer" href=""><%=@customer%></a>
+                <p class="card-text content">"<%=booking.content%>"</p>
+              </div>
+            </div>
+            <div class="reservation-admin">
+              <div class = "block-client">
+                <img src="<%=@origin[1]%>" class = "icone-client source">
+                <div class = "sous-block-client">
+                  <img src="https://img.icons8.com/metro/384/user-male.png" class = "icone-client">
+                  <p class ="nb-clients"> <%=booking.number_of_customers%></p>
+                </div>
+              </div>
+              <div class="block-admin">
+                <img src="https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/new-24-512.png" class = "icone-client edit">
+                 <img src="https://img.icons8.com/material/2x/filled-trash.png" class = "icone-client delete">
+              </div>
+            </div>
             </div>
           </div>
         </td><td ></td><td></td><td ></td><td ></td></tr>
 
       <%elsif @heure =='12h30' then%>
-       <tr><td></td><td></td><td  colspan = 3 class= "booking <%=@origin%>"> <div class="reservation">
-        <div class="reservation-head">
-          <p><%=@customer%></p>
-          <p> <%=booking.number_of_customers%>pers</p>
-          <p class="card-text"><%=booking.content%></p>
-          <p class="iconeBoudin "><%= image_tag("message.png", :alt => "icon mail" ) %></p>
-          <p class="iconeBoudin "><%= image_tag("outgoing-call.png", :alt => "icon tel") %></p>
-        </div>
-      </div>
+        <tr><td></td><td></td><td  colspan = 3 class= "booking <%=@origin[0]%>">
+          <div class="reservation">
+            <div class="reservation-head">
+              <div class = "reservation-icons">
+                <img src="<%=@categorie[1]%>" class = "icone-client client-rating" style= "width:auto;">
+                <img src="https://img.icons8.com/metro/384/about.png" class = "icone-client info" style= "width:auto;">
+              </div>
+              <div class="reservation-content">
+                <a class ="nom-customer" href=""><%=@customer%></a>
+                <p class="card-text content">"<%=booking.content%>"</p>
+              </div>
+            </div>
+            <div class="reservation-admin">
+              <div class = "block-client">
+                <img src="<%=@origin[1]%>" class = "icone-client source">
+                <div class = "sous-block-client">
+                  <img src="https://img.icons8.com/metro/384/user-male.png" class = "icone-client">
+                  <p class ="nb-clients"> <%=booking.number_of_customers%></p>
+                </div>
+              </div>
+              <div class="block-admin">
+                <img src="https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/new-24-512.png" class = "icone-client edit">
+                 <img src="https://img.icons8.com/material/2x/filled-trash.png" class = "icone-client delete">
+              </div>
+            </div>
+            </div>
+          </div>
     </td><td ></td><td ></td><td ></td></tr>
 
       <%elsif @heure =='13h00' then%>
        <tr><td></td><td></td><td></td>
-        <td colspan = 3  class= "booking <%=@origin%>"> <div class="reservation">
-        <div class="reservation-head">
-          <p><%=@customer%></p>
-          <p> <%=booking.number_of_customers%>pers</p>
-          <p class="card-text"><%=booking.content%></p>
-          <p class="iconeBoudin "><%= image_tag("message.png", :alt => "icon mail" ) %></p>
-          <p class="iconeBoudin "><%= image_tag("outgoing-call.png", :alt => "icon tel") %></p>
-        </div>
-      </div></td><td ></td><td ></td></tr>
+        <td colspan = 3  class= "booking <%=@origin%>">
+        <div class="reservation">
+                    <div class="reservation-head">
+                      <div class = "reservation-icons">
+                        <img src="<%=@categorie[1]%>" class = "icone-client client-rating" style= "width:auto;">
+                        <img src="https://img.icons8.com/metro/384/about.png" class = "icone-client info" style= "width:auto;">
+                      </div>
+                      <div class="reservation-content">
+                        <a class ="nom-customer" href=""><%=@customer%></a>
+                        <p class="card-text content">"<%=booking.content%>"</p>
+                      </div>
+                    </div>
+                    <div class="reservation-admin">
+                      <div class = "block-client">
+                        <img src="<%=@origin[1]%>" class = "icone-client source">
+                        <div class = "sous-block-client">
+                          <img src="https://img.icons8.com/metro/384/user-male.png" class = "icone-client">
+                          <p class ="nb-clients"> <%=booking.number_of_customers%></p>
+                        </div>
+                      </div>
+                      <div class="block-admin">
+                        <img src="https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/new-24-512.png" class = "icone-client edit">
+                         <img src="https://img.icons8.com/material/2x/filled-trash.png" class = "icone-client delete">
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+        </td><td ></td><td ></td></tr>
 
       <%elsif @heure =='13h30' then%>
        <tr><td></td><td></td><td></td><td></td>
-        <td colspan = 3  class= "booking <%=@origin%>"><div class="reservation">
-        <div class="reservation-head">
-          <p><%=@customer%></p>
-          <p> <%=booking.number_of_customers%>pers</p>
-          <p class="card-text"><%=booking.content%></p>
-          <p class="iconeBoudin "><%= image_tag("message.png", :alt => "icon mail" ) %></p>
-          <p class="iconeBoudin "><%= image_tag("outgoing-call.png", :alt => "icon tel") %></p>
-        </div>
+        <td colspan = 3  class= "booking <%=@origin%>">
+        <div class="reservation">
+                    <div class="reservation-head">
+                      <div class = "reservation-icons">
+                        <img src="<%=@categorie[1]%>" class = "icone-client client-rating" style= "width:auto;">
+                        <img src="https://img.icons8.com/metro/384/about.png" class = "icone-client info" style= "width:auto;">
+                      </div>
+                      <div class="reservation-content">
+                        <a class ="nom-customer" href=""><%=@customer%></a>
+                        <p class="card-text content">"<%=booking.content%>"</p>
+                      </div>
+                    </div>
+                    <div class="reservation-admin">
+                      <div class = "block-client">
+                        <img src="<%=@origin[1]%>" class = "icone-client source">
+                        <div class = "sous-block-client">
+                          <img src="https://img.icons8.com/metro/384/user-male.png" class = "icone-client">
+                          <p class ="nb-clients"> <%=booking.number_of_customers%></p>
+                        </div>
+                      </div>
+                      <div class="block-admin">
+                        <img src="https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/new-24-512.png" class = "icone-client edit">
+                         <img src="https://img.icons8.com/material/2x/filled-trash.png" class = "icone-client delete">
+                      </div>
+                    </div>
+                    </div>
+                  </div>
 
-      </div></td><td ></td></tr>
+        </td><td ></td></tr>
 
       <%else%>
 
@@ -114,40 +239,104 @@
    </div></td></tr>
       <%end%>
       <%end%>
+    </tbody>
+
       </table>
   </div>
  <br>
+ <h1>Service du soir:</h1>
   <div class="agendaSoir">
       <table class="schedule">
-      <tr>
-        <td style="width: 50px"></td>
-        <td style="width: 50px"><%=@total_customer[5].sum%></td>
-         <td style="width: 50px"><%=@total_customer[6].sum%></td>
-         <td style="width: 50px"><%=@total_customer[7].sum%></td>
-         <td style="width: 50px"><%=@total_customer[8].sum%></td>
-         <td style="width: 50px"><%=@total_customer[9].sum%></td>
-         <td style="width: 50px"></td>
-      </tr>
-       <th>
-         <td style="width: 50px">19H00</td>
-         <td style="width: 50px">19H30</td>
-         <td style="width: 50px">20H00</td>
-         <td style="width: 50px">20H30</td>
-         <td style="width: 50px">21H00</td>
-         <td style="width: 50px">21H30</td>
-         <td style="width: 50px">22H00</td>
+        <thead class ="header-table-soir">
+            <td >19h00</td>
+            <td >19h30</td>
+            <td >20h00</td>
+            <td >20h30</td>
+            <td >21h00</td>
+            <td >21h30</td>
+            <td >22h00</td>
+            <td>22H30</td>
+        </thead>
 
-       </th>
+        <th class = "restaurant-capacity">
+          <td >
+            <div class = "sous-block-dispo">
+              <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[5].sum%></p>
+              <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
+            </div>
+          </td>
+           <td >
+             <div class = "sous-block-dispo">
+               <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[6].sum%></p>
+               <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
+             </div>
+           </td>
+           <td >
+             <div class = "sous-block-dispo">
+               <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[7].sum%></p>
+               <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
+             </div>
+           </td>
+           <td >
+             <div class = "sous-block-dispo">
+               <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[8].sum%></p>
+               <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
+             </div>
+           </td>
+           <td >
+             <div class = "sous-block-dispo">
+               <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[9].sum%></p>
+               <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
+             </div>
+           </td>
+           <td ><div class = "sous-block-dispo">
+               <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[9].sum%></p>
+               <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
+             </div>
+           </td>
+           <td><div class = "sous-block-dispo">
+               <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[9].sum%></p>
+               <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
+             </div></td>
+        </th>
+
+        <tbody>
          <% @bookings.where(date: Date.today).each do |booking| %>
            <% @heure = booking.hour %>
+           <% @origin = [['LaFourchette','http://i0.wp.com/lewebcestfood.fr/wp-content/uploads/2016/02/La-fourchette.png?fit=300%2C300'], ['Facebook', 'https://img.icons8.com/color/384/facebook.png'], ['WebSite', 'https://img.icons8.com/ios/384/internet.png'], ['Phone','https://img.icons8.com/metro/384/phone.png'], ['Other', 'https://img.icons8.com/ios/384/conference-call-filled.png']].sample%>
+           <% @categorie= [['New', 'https://upload.wikimedia.org/wikipedia/commons/4/4a/Star_rating_0_of_5.png'], ['1 étoile', 'https://upload.wikimedia.org/wikipedia/commons/d/dd/Star_rating_1_of_5.png'], ['2 étoiles', 'https://upload.wikimedia.org/wikipedia/commons/9/95/Star_rating_2_of_5.png'], ['3 étoiles', 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Star_rating_3_of_5.png'], ['4 étoiles', 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Star_rating_4_of_5.png'], ['5 étoiles', 'https://upload.wikimedia.org/wikipedia/commons/1/17/Star_rating_5_of_5.png']].sample%>
+
            <% @origin = ['LaFourchette', 'Facebook', 'WebSite', 'Phone', 'Other'].sample%>
            <% @customer = "#{booking.customer.first_name.capitalize} #{booking.customer.last_name.upcase}"%>
            <% @number_of_customers = booking.number_of_customers %>
 
 
       <%if @heure =='19h00' then%>
-         <tr><td></td><td colspan = 3 class= "booking <%=@origin%>"> <div class="reservation">
+         <tr><td></td><td colspan = 3 class= "booking <%=@origin%>">
+          <div class="reservation">
             <div class="reservation-head">
+              <div class = "reservation-icons">
+                <img src="<%=@categorie[1]%>" class = "icone-client client-rating" style= "width:auto;">
+                <img src="https://img.icons8.com/metro/384/about.png" class = "icone-client info" style= "width:auto;">
+              </div>
+              <div class="reservation-content">
+                <a class ="nom-customer" href=""><%=@customer%></a>
+                <p class="card-text content">"<%=booking.content%>"</p>
+              </div>
+            </div>
+            <div class="reservation-admin">
+              <div class = "block-client">
+                <img src="<%=@origin[1]%>" class = "icone-client source">
+                <div class = "sous-block-client">
+                  <img src="https://img.icons8.com/metro/384/user-male.png" class = "icone-client">
+                  <p class ="nb-clients"> <%=booking.number_of_customers%></p>
+                </div>
+              </div>
+              <div class="block-admin">
+                <img src="https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/new-24-512.png" class = "icone-client edit">
+                 <img src="https://img.icons8.com/material/2x/filled-trash.png" class = "icone-client delete">
+              </div>
+            </div>
               <p><%=@customer%></p>
               <p> <%=booking.number_of_customers%>pers</p>
               <p class="card-text"><%=booking.content%></p>
@@ -158,60 +347,104 @@
         </td><td ></td><td></td><td ></td><td ></td></tr>
 
       <%elsif @heure =='19h30' then%>
-       <tr><td></td><td></td><td  colspan = 3 class= "booking <%=@origin%>"> <div class="reservation">
-        <div class="reservation-head">
-          <p><%=@customer%></p>
-          <p> <%=booking.number_of_customers%>pers</p>
-          <p class="card-text"><%=booking.content%></p>
-          <p class="iconeBoudin "><%= image_tag("message.png", :alt => "icon mail" ) %></p>
-          <p class="iconeBoudin "><%= image_tag("outgoing-call.png", :alt => "icon tel") %></p>
+       <tr><td></td><td></td><td  colspan = 3 class= "booking <%=@origin%>">
+        <div class="reservation">
+          <div class="reservation-head">
+            <div class = "reservation-icons">
+              <img src="<%=@categorie[1]%>" class = "icone-client client-rating" style= "width:auto;">
+              <img src="https://img.icons8.com/metro/384/about.png" class = "icone-client info" style= "width:auto;">
+            </div>
+            <div class="reservation-content">
+              <a class ="nom-customer" href=""><%=@customer%></a>
+              <p class="card-text content">"<%=booking.content%>"</p>
+            </div>
+          </div>
+          <div class="reservation-admin">
+            <div class = "block-client">
+              <img src="<%=@origin[1]%>" class = "icone-client source">
+              <div class = "sous-block-client">
+                <img src="https://img.icons8.com/metro/384/user-male.png" class = "icone-client">
+                <p class ="nb-clients"> <%=booking.number_of_customers%></p>
+              </div>
+            </div>
+            <div class="block-admin">
+              <img src="https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/new-24-512.png" class = "icone-client edit">
+               <img src="https://img.icons8.com/material/2x/filled-trash.png" class = "icone-client delete">
+            </div>
+          </div>
+          </div>
         </div>
-      </div>
     </td><td ></td><td ></td><td ></td></tr>
 
       <%elsif @heure =='20h00' then%>
        <tr><td></td><td></td><td></td>
-        <td colspan = 3  class= "booking <%=@origin%>"> <div class="reservation">
-        <div class="reservation-head">
-          <p><%=@customer%></p>
-          <p> <%=booking.number_of_customers%>pers</p>
-          <p class="card-text"><%=booking.content%></p>
-          <p class="iconeBoudin "><%= image_tag("message.png", :alt => "icon mail" ) %></p>
-          <p class="iconeBoudin "><%= image_tag("outgoing-call.png", :alt => "icon tel") %></p>
-        </div>
-      </div></td><td ></td><td ></td></tr>
-
-      <%elsif @heure =='20h30' then%>
-       <tr><td></td><td></td><td></td><td></td>
-        <td colspan = 3  class= "booking <%=@origin%>"><div class="reservation">
-        <div class="reservation-head">
-          <p><%=@customer%></p>
-          <p> <%=booking.number_of_customers%>pers</p>
-          <p class="card-text"><%=booking.content%></p>
-          <p class="iconeBoudin "><%= image_tag("message.png", :alt => "icon mail" ) %></p>
-          <p class="iconeBoudin "><%= image_tag("outgoing-call.png", :alt => "icon tel") %></p>
-        </div>
-
-      </div></td><td ></td></tr>
+        <td colspan = 3  class= "booking <%=@origin%>">
+          <div class="reservation">
+            <div class="reservation-head">
+              <div class = "reservation-icons">
+                <img src="<%=@categorie[1]%>" class = "icone-client client-rating" style= "width:auto;">
+                <img src="https://img.icons8.com/metro/384/about.png" class = "icone-client info" style= "width:auto;">
+              </div>
+              <div class="reservation-content">
+                <a class ="nom-customer" href=""><%=@customer%></a>
+                <p class="card-text content">"<%=booking.content%>"</p>
+              </div>
+            </div>
+            <div class="reservation-admin">
+              <div class = "block-client">
+                <img src="<%=@origin[1]%>" class = "icone-client source">
+                <div class = "sous-block-client">
+                  <img src="https://img.icons8.com/metro/384/user-male.png" class = "icone-client">
+                  <p class ="nb-clients"> <%=booking.number_of_customers%></p>
+                </div>
+              </div>
+              <div class="block-admin">
+                <img src="https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/new-24-512.png" class = "icone-client edit">
+                 <img src="https://img.icons8.com/material/2x/filled-trash.png" class = "icone-client delete">
+              </div>
+            </div>
+            </div>
+          </div>
+        </td><td ></td></tr>
 
        <%elsif @heure =='21h00' then%>
        <tr><td></td><td></td><td></td><td></td>
-        <td colspan = 3  class= "booking <%=@origin%>"><div class="reservation">
-        <div class="reservation-head">
-          <p><%=@customer%></p>
-          <p> <%=booking.number_of_customers%>pers</p>
-          <p class="card-text"><%=booking.content%></p>
-          <p class="iconeBoudin "><%= image_tag("message.png", :alt => "icon mail" ) %></p>
-          <p class="iconeBoudin "><%= image_tag("outgoing-call.png", :alt => "icon tel") %></p>
+        <td colspan = 3  class= "booking <%=@origin%>">
+        <div class="reservation">
+          <div class="reservation-head">
+            <div class = "reservation-icons">
+              <img src="<%=@categorie[1]%>" class = "icone-client client-rating" style= "width:auto;">
+              <img src="https://img.icons8.com/metro/384/about.png" class = "icone-client info" style= "width:auto;">
+            </div>
+            <div class="reservation-content">
+              <a class ="nom-customer" href=""><%=@customer%></a>
+              <p class="card-text content">"<%=booking.content%>"</p>
+            </div>
+          </div>
+          <div class="reservation-admin">
+            <div class = "block-client">
+              <img src="<%=@origin[1]%>" class = "icone-client source">
+              <div class = "sous-block-client">
+                <img src="https://img.icons8.com/metro/384/user-male.png" class = "icone-client">
+                <p class ="nb-clients"> <%=booking.number_of_customers%></p>
+              </div>
+            </div>
+            <div class="block-admin">
+              <img src="https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/new-24-512.png" class = "icone-client edit">
+               <img src="https://img.icons8.com/material/2x/filled-trash.png" class = "icone-client delete">
+            </div>
+          </div>
+          </div>
         </div>
+      </td></tr>
 
       <%else%>
 
       <%end%>
       <%end%>
+    </tbody>
       </table>
   </div>
-
 </div>
 
 
