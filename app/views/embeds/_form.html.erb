@@ -1,0 +1,13 @@
+<div class="form">
+  <%= simple_form_for :booking, url: embeds_path, method: :post do |f| %>
+  <%= f.input :first_name  %>
+  <%= f.input :last_name %>
+  <%= f.input :phone_number %>
+  <%= f.input :email %>
+  <%= f.input :booking_date %>
+  <%= f.input :booking_hour %>
+  <%= f.input :number_of_people %>
+  <%= f.input :comments %>
+  <%= f.button :submit, "Ajouter la reservation", class: 'btn btn-primary' %>
+<% end %>
+</div>

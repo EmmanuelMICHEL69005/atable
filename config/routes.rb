@@ -6,6 +6,9 @@ Rails.application.routes.draw do
 
   root to: 'pages#home'
  # resources :users
+
+  resources :embeds, only: [:new, :create]
+
   resources :bookings, only: [:index] do
       resources :customers, only: [:show]
   end
