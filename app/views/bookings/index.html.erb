@@ -4,22 +4,21 @@
   <div>Nous sommes le <%= Time.now.strftime("%d-%m-%y") %></div>
 
 </div>
-<%= simple_form_for @customer do |f| %>
+<%= simple_form_for :booking, url: bookings_path, method: :post do |f| %>
   <div class ="book-a-table">
     <div> <%= f.input :first_name  %> </div>
     <div> <%= f.input :last_name %>  </div>
     <div> <%= f.input :phone_number  %></div>
     <div> <%= f.input :email %>      </div>
-    <%= f.simple_fields_for :bookings do |f| %>
-     <div>
-      <%= label_tag(:DateReservation, "Date de réservation" ) %>
-      <%= text_field_tag(:dateReservation, params[:dateReservation]) %>
-      </div>
-     <div><%= label_tag(:heureReservation, "Heure de réservation" ) %>
-      <%= text_field_tag(:heureReservation, params[:heureReservation]) %></div>
-     <div> <%= f.input :number_of_customers %></div>
-     <div><%= f.input :content%> </div>
-    <% end %>
+    <%# f.input :date, as: :date, html5: true, :input_html => {class: 'date'}%>
+
+    <div><%= label_tag(:date, "Date de réservation" ) %>
+     <%= text_field_tag(:date, params[:date])%>      </div>
+     <div><%= label_tag(:hour, "Heure de réservation" ) %>
+      <%= text_field_tag(:hour, params[:hour]) %></div>
+    <div> <%= f.input :number_of_people %>      </div>
+    <div> <%= f.input :comments %>      </div>
+    <s></s>
     <div> <%= f.button :submit, "Ajouter la reservation", class: "btn-primary homepage"%></div>
   <% end %>
 </div>
