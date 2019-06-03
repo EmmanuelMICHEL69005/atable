@@ -1,12 +1,78 @@
 import "bootstrap";
-// import { Calendar } from '@fullcalendar/core';
-// import resourceTimelinePlugin from '@fullcalendar/resource-timeline';
-// ...
-// let calendar = new Calendar(calendarEl, {
-//   plugins: [ resourceTimelinePlugin ],
-//   defaultView: 'resourceTimeline',
-//   resources: [
-//     // your resource list
-//   ]
-// });
-// ...
+ document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.datepicker');
+    var instances = M.Datepicker.init(elems, options);
+  });
+
+
+import flatpickr from "flatpickr"
+import 'flatpickr/dist/flatpickr.min.css'
+console.log(flatpickr)
+console.log('mkjbljbijnoinibniuhbiuh')
+
+flatpickr("#date", {
+  altInput: true,
+    altFormat: "j F Y",
+    dateFormat: "Y-m-d",
+    minDate: "today",
+
+"disable": [
+        function(date) {
+            // return true to disable
+            return (date.getDay() === 0);
+
+        }
+    ],
+    "locale": {
+        "firstDayOfWeek": 1 // start week on Monday
+    },
+
+
+
+},);
+
+
+
+flatpickr("#hour", {
+    enableTime: true,
+    noCalendar: true,
+    dateFormat: "H:i",
+    defaultDate: "12:00",
+    minuteIncrement: 30,
+    time_24hr: true,
+
+
+
+},);
+
+querySelector('')
+flatpickr(".date", {
+  altInput: true,
+    altFormat: "j F Y",
+    dateFormat: "Y-m-d",
+    minDate: "today",
+
+"disable": [
+        function(date) {
+            // return true to disable
+            return (date.getDay() === 0);
+
+        }
+    ],
+    "locale": {
+        "firstDayOfWeek": 1 // start week on Monday
+    },
+
+
+
+},);
+
+
+flatpickr(".hour", {
+  enableTime: true,
+    noCalendar: true,
+    dateFormat: "H:i",
+    defaultDate: "12:00",
+    minuteIncrement: 30,
+    time_24hr: true,
+});

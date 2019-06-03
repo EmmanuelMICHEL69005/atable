@@ -13,8 +13,8 @@ class EmbedsController < ApplicationController
     )
 
     Booking.create(
-      date: params[:booking][:booking_date],
-      hour: params[:booking][:booking_hour],
+      date: params[:booking][:date],
+      hour: params[:booking][:hour],
       number_of_customers: params[:booking][:number_of_people],
       content: params[:booking][:comments],
       restaurant_id: '25',

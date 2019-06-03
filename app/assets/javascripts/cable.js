@@ -11,3 +11,14 @@
   App.cable = ActionCable.createConsumer();
 
 }).call(this);
+
+
+
+const iconElement = document.getElementById('icon');
+const options = {
+    from: 'fa-bars',
+    to: 'fa-arrow-right',
+    animation: 'rubberBand'
+};
+
+iconate(iconElement, options);
