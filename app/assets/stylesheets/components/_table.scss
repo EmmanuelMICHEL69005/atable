@@ -2,6 +2,12 @@
  width: 1000px;
  margin:0 auto;
   }
+.bookingIndexTitle {
+  display: flex;
+
+
+}
+
 
 .schedule {
  width: 1000px;
@@ -214,3 +220,17 @@ tbody {
   height:20px;
 }
 }}
+
+
+
+.book-a-table {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto;
+    grid-gap: 10px;
+    border: 0.5px solid grey;
+    border-radius: 4px;
+    width: auto;
+    margin: 0 10px;
+}
+

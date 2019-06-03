@@ -1,31 +1,32 @@
-<h1> <%= current_user.restaurant.name %> </h1>
-<h2>Ma salle : <%= current_user.restaurant.capacity %> couverts</h2>
-
-<h6>Nous sommes le <%= Time.now.strftime("%d-%m-%y") %></<h6></h6>>
- <div id="form"></div>
-
+  <h1> <%= current_user.restaurant.name %> </h1>
+<div class="BookingIndexTitle">
+  <div>Capacité Max : <%= current_user.restaurant.capacity %> couverts</div>
+  <div>Nous sommes le <%= Time.now.strftime("%d-%m-%y") %></div>
 
 </div>
-<div class ="book-a-table">
-  <%= simple_form_for @customer do |f| %>
-    <%= f.input :first_name %>
-    <%= f.input :last_name %>
-    <%= f.input :phone_number %>
-    <%= f.input :email %>
+<%= simple_form_for @customer do |f| %>
+  <div class ="book-a-table">
+    <div> <%= f.input :first_name  %> </div>
+    <div> <%= f.input :last_name %>  </div>
+    <div> <%= f.input :phone_number  %></div>
+    <div> <%= f.input :email %>      </div>
     <%= f.simple_fields_for :bookings do |f| %>
-      <%= f.input :date %>
-      <%= f.input :hour %>
-      <%= f.input :number_of_customers %>
-      <%= f.input :content %>
+     <div>
+      <%= label_tag(:DateReservation, "Date de réservation" ) %>
+      <%= text_field_tag(:dateReservation, params[:dateReservation]) %>
+      </div>
+     <div><%= label_tag(:heureReservation, "Heure de réservation" ) %>
+      <%= text_field_tag(:heureReservation, params[:heureReservation]) %></div>
+     <div> <%= f.input :number_of_customers %></div>
+     <div><%= f.input :content%> </div>
     <% end %>
-    <%= f.button :submit %>
+    <div> <%= f.button :submit, "Ajouter la reservation", class: "btn-primary homepage"%></div>
   <% end %>
 </div>
 
 
-<h3 class="OverSchedule text-align: center  ">Mes réservations du jour
 
-  <%= link_to "Ajouter une reservation", new_booking_path(@bookings) %>   </h3>
+<h3 class="OverSchedule text-align: center  ">Mes réservations du jours</h3>
 
 
 <h1>Service du midi:</h1>
@@ -82,6 +83,24 @@
         </th>
 
         <tbody>
+        <tr>
+          <td style="width: 50px"></td>
+          <td style="width: 50px"><%=@total_customer[0].sum%></td>
+           <td style="width: 50px"><%=@total_customer[1].sum%></td>
+           <td style="width: 50px"><%=@total_customer[2].sum%></td>
+           <td style="width: 50px"><%=@total_customer[3].sum%></td>
+           <td style="width: 50px"><%=@total_customer[4].sum%></td>
+           <td style="width: 50px"></td>
+        </tr>
+       <th>
+         <td style="width: 50px">12h00</td>
+         <td style="width: 50px">12h30</td>
+         <td style="width: 50px">13h00</td>
+         <td style="width: 50px">13h30</td>
+         <td style="width: 50px">14h00</td>
+         <td style="width: 50px">14h30</td>
+       </th>
+
          <% @bookings.where(date: Date.today).each do |booking| %>
            <% @heure = booking.hour %>
            <% @origin = [['LaFourchette','http://i0.wp.com/lewebcestfood.fr/wp-content/uploads/2016/02/La-fourchette.png?fit=300%2C300'], ['Facebook', 'https://img.icons8.com/color/384/facebook.png'], ['WebSite', 'https://img.icons8.com/ios/384/internet.png'], ['Phone','https://img.icons8.com/metro/384/phone.png'], ['Other', 'https://img.icons8.com/ios/384/conference-call-filled.png']].sample%>
@@ -286,6 +305,8 @@
            <% @heure = booking.hour %>
            <% @origin = [['LaFourchette','http://i0.wp.com/lewebcestfood.fr/wp-content/uploads/2016/02/La-fourchette.png?fit=300%2C300'], ['Facebook', 'https://img.icons8.com/color/384/facebook.png'], ['WebSite', 'https://img.icons8.com/ios/384/internet.png'], ['Phone','https://img.icons8.com/metro/384/phone.png'], ['Other', 'https://img.icons8.com/ios/384/conference-call-filled.png']].sample%>
            <% @categorie= [['New', 'https://upload.wikimedia.org/wikipedia/commons/4/4a/Star_rating_0_of_5.png'], ['1 étoile', 'https://upload.wikimedia.org/wikipedia/commons/d/dd/Star_rating_1_of_5.png'], ['2 étoiles', 'https://upload.wikimedia.org/wikipedia/commons/9/95/Star_rating_2_of_5.png'], ['3 étoiles', 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Star_rating_3_of_5.png'], ['4 étoiles', 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Star_rating_4_of_5.png'], ['5 étoiles', 'https://upload.wikimedia.org/wikipedia/commons/1/17/Star_rating_5_of_5.png']].sample%>
+
+           <% @origin = ['LaFourchette', 'Facebook', 'WebSite', 'Phone', 'Other'].sample%>
            <% @customer = "#{booking.customer.first_name.capitalize} #{booking.customer.last_name.upcase}"%>
            <% @number_of_customers = booking.number_of_customers %>
 
@@ -316,6 +337,11 @@
                  <img src="https://img.icons8.com/material/2x/filled-trash.png" class = "icone-client delete">
               </div>
             </div>
+              <p><%=@customer%></p>
+              <p> <%=booking.number_of_customers%>pers</p>
+              <p class="card-text"><%=booking.content%></p>
+              <p class="iconeBoudin "><%= image_tag("message.png", :alt => "icon mail" ) %></p>
+              <p class="iconeBoudin "><%= image_tag("outgoing-call.png", :alt => "icon tel") %></p>
             </div>
           </div>
         </td><td ></td><td></td><td ></td><td ></td></tr>
