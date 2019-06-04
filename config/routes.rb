@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :embeds, only: [:new, :create]
 
-  resources :bookings, only: [:index, :create, :new] do
+  resources :bookings, only: [:index, :create, :edit, :new, :update, :destroy] do
       resources :customers, only: [:show]
   end
 
