@@ -11,11 +11,14 @@ Rails.application.routes.draw do
 
   resources :embeds, only: [:new, :create]
 
+
   resources :bookings, only: [:index, :create, :edit, :new, :update, :destroy] do
+
       resources :customers, only: [:show]
   end
 
-  resources :customers, only: :create
+  resources :customers, only: [:create, :show, :edit]
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   # ...
   mount Facebook::Messenger::Server, at: 'bot'
