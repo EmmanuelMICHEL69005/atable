@@ -1,2 +1,14 @@
-<p> Votre réservation a bien été prise en compte </p>
+<% if @booking.errors.present? %>
+  <p>La réservation n'a pas pu être effectuée</p>
+  <p>
+    <ul>
+      <% @booking.errors.full_messages.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  </p>
+<% else %>
+  <p> Votre réservation a bien été prise en compte </p>
+<% end %>
+
 <%= render 'form' %>
