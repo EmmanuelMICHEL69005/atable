@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   end
 
   resources :customers, only: [:create, :show, :edit]
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   # ...
   mount Facebook::Messenger::Server, at: 'bot'

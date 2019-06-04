@@ -17,7 +17,7 @@ class EmbedsController < ApplicationController
       hour: params[:booking][:hour],
       number_of_customers: params[:booking][:number_of_people],
       content: params[:booking][:comments],
-      restaurant_id: '25',
+      restaurant: Restaurant.last,
       customer: @customer,
       source: 'iframe'
     )
