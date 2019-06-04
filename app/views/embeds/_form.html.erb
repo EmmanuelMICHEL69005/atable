@@ -5,9 +5,9 @@
   <%= f.input :phone_number %>
   <%= f.input :email %>
   <%= label_tag(:date, "Date de réservation" ) %>
-     <%= text_field_tag(:date, params[:date])%>
+  <%= text_field_tag('booking[date]', params[:date], class: 'date')%>
   <%= label_tag(:hour, "Heure de réservation" ) %>
-      <%= text_field_tag(:hour, params[:hour]) %>
+  <%= text_field_tag('booking[hour]', params[:hour], class: 'hour') %>
   <%= f.input :number_of_people %>
   <%= f.input :comments %>
   <%= f.button :submit, "Ajouter la reservation", class: 'btn btn-primary' %>
