@@ -145,7 +145,7 @@ alex_booking1 = Booking.create!(
       )
 
     rand(2).times do
-      booking = Booking.create!(
+      booking = Booking.create(
         date: (Date.today..10.days.from_now).to_a.sample,
         number_of_customers: (4..10).to_a.sample,
         restaurant: restaurant,
