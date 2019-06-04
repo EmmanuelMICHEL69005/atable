@@ -1,11 +1,11 @@
 require 'facebook/messenger'
 include Facebook::Messenger
 
-Facebook::Messenger::Subscriptions.subscribe(access_token: ENV["ACCESS_TOKEN"])
 
 bb = nil
 
 clients = {}
+
 # {
 #   "ertyu456" =>       BotBooking.new,
 #   "ertyu456qsqsdf" => BotBooking.new,
@@ -30,7 +30,6 @@ def response_simple(bot_msg, question)
 end
 
 Bot.on :message do |message|
-
   facebook_id = message.sender['id'].to_s
 
   if clients.key? facebook_id
