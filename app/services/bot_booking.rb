@@ -66,16 +66,14 @@ def booking_confirmation
 end
 
   def next_question_day
-    if Time.now.hour < 14
+    if Time.now.hour <= 13
       multiple_choice("Bonjour #{@first_name}, quand est ce que vous voulez venir?", ["midi", "soir", "demain"])
-    elsif Time.now.hour < 21
+    elsif Time.now.hour <= 20
       multiple_choice("Bonjour #{@first_name}, voulez vous venir ce soir ou demain?", ["soir", "demain"])
     else
       multiple_choice("Bonjour #{@first_name}, quel jour vous voulez venir?", ["demain", "apres demain"])
     end
   end
-
-
 
   def answer_day(text)
     case text
