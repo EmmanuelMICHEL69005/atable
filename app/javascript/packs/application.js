@@ -4,6 +4,11 @@ import "bootstrap";
     var instances = M.Datepicker.init(elems, options);
   });
 
+console.log('test JS');
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.collapsible');
+    var instances = M.Collapsible.init(elems, options);
+  });
 
 import flatpickr from "flatpickr"
 import 'flatpickr/dist/flatpickr.min.css'
@@ -84,5 +89,6 @@ $(document).ready(function() {
     nextText: '<i class="fa fa-fw fa-angle-right"></i>'
   });
 });
+
 
 

@@ -2,9 +2,11 @@
 
  margin:0 auto;
   }
-.bookingIndexTitle {
-  display: flex;
 
+.flexbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
 }
 
