@@ -61,7 +61,7 @@ def booking_confirmation
   if @exist.nil?
     @user = Customer.create!(facebook_id: @facebook_id, first_name: @first_name, last_name: @last_name, email: @email, phone_number: @phone_number)
   end
-  Booking.create!(customer: @user, source: "Facebook", content: '', date: @day, number_of_customers: @nb_person, hour: @hour, restaurant_id: '25')
+  Booking.create!(customer: @user, source: "Facebook", content: '', date: @day, number_of_customers: @nb_person, hour: @hour, restaurant: Restaurant.last)
   simple_question("#{@first_name}, votre réservation a bien été prise en compte. Nous vous attendons le #{@day} à #{@hour} pour #{@nb_person} personne(s).")
 end
 
