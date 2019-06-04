@@ -15,7 +15,7 @@ kevin = Customer.create!(
   first_name: "kevin",
   last_name: "Chavanne",
   phone_number: "0675342561",
-  email: "kevin.Chavanne@gmail.com",
+  email: "kevin.chavanne@gmail.com",
   )
 
 kevin_booking1 = Booking.create!(
