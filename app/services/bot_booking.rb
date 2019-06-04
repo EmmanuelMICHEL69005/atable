@@ -58,7 +58,7 @@ class BotBooking
   private
 
   def booking_confirmation
-    if @exist.nil?
+    if @user.blank?
       @user = Customer.create!(facebook_id: @facebook_id, first_name: @first_name, last_name: @last_name, email: @email, phone_number: @phone_number)
     end
     Booking.create!(customer: @user, source: "Facebook", content: '', date: @day, number_of_customers: @nb_person, hour: @hour, restaurant: Restaurant.last)
@@ -145,7 +145,6 @@ class BotBooking
     @email = text
     if @user.blank?
       @user = Customer.find_by(email: @email)
-      @exist = true
     end
     @step = :phone_number
   end
