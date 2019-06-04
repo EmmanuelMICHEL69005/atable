@@ -76,3 +76,13 @@ flatpickr(".hour", {
     minuteIncrement: 30,
     time_24hr: true,
 });
+
+$(document).ready(function() {
+
+  $(".datepicker").datepicker({
+    prevText: '<i class="fa fa-fw fa-angle-left"></i>',
+    nextText: '<i class="fa fa-fw fa-angle-right"></i>'
+  });
+});
+
+
