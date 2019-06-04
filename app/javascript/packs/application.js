@@ -50,7 +50,6 @@ flatpickr("#hour", {
 
 },);
 
-querySelector('')
 flatpickr(".date", {
   altInput: true,
     altFormat: "j F Y",
