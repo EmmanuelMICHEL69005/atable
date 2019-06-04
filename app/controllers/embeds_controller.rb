@@ -1,5 +1,6 @@
 class EmbedsController < ApplicationController
   layout 'embed'
+  skip_before_action :authenticate_user!
 
   def new
   end
