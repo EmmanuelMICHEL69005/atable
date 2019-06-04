@@ -3,6 +3,10 @@ class CustomersController < ApplicationController
   end
 
 
+  def show
+     @customer = Customer.find(params[:id])
+  end
+
 
   def new
     @customer = Customer.new
@@ -23,6 +27,12 @@ class CustomersController < ApplicationController
   end
 
   def destroy
+    @customers.destroy
+    respond_to do |format|
+      format.html { redirect_to bookings_url, notice: 'Customer was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+
   end
 
   def edit
