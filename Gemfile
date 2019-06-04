@@ -18,6 +18,7 @@ gem 'faker'
 gem 'rest-client'
 gem 'awesome_print'
 gem 'facebook-messenger'
+gem 'omniauth-google-oauth2'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
