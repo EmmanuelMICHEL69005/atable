@@ -57,13 +57,13 @@ class BotBooking
 
   private
 
-def booking_confirmation
-  if @exist.nil?
-    @user = Customer.create!(facebook_id: @facebook_id, first_name: @first_name, last_name: @last_name, email: @email, phone_number: @phone_number)
+  def booking_confirmation
+    if @exist.nil?
+      @user = Customer.create!(facebook_id: @facebook_id, first_name: @first_name, last_name: @last_name, email: @email, phone_number: @phone_number)
+    end
+    Booking.create!(customer: @user, source: "Facebook", content: '', date: @day, number_of_customers: @nb_person, hour: @hour, restaurant: Restaurant.last)
+    simple_question("#{@first_name}, votre réservation a bien été prise en compte. Nous vous attendons le #{@day} à #{@hour} pour #{@nb_person} personne(s).")
   end
-  Booking.create!(customer: @user, source: "Facebook", content: '', date: @day, number_of_customers: @nb_person, hour: @hour, restaurant: Restaurant.last)
-  simple_question("#{@first_name}, votre réservation a bien été prise en compte. Nous vous attendons le #{@day} à #{@hour} pour #{@nb_person} personne(s).")
-end
 
   def next_question_day
     if Time.now.hour <= 13
@@ -136,13 +136,17 @@ end
     @step = :last_name
   end
 
-   def answer_last_name(text)
+  def answer_last_name(text)
     @last_name = text
     @step = :email
   end
 
   def answer_email(text)
     @email = text
+    if @user.blank?
+      @user = Customer.find_by(email: @email)
+      @exist = true
+    end
     @step = :phone_number
   end
 
