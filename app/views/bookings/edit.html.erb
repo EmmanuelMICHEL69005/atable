@@ -1,2 +1,15 @@
-<h1>Bookings#edit</h1>
-<p>Find me in app/views/bookings/edit.html.erb</p>
+
+<div class ="container">
+  <h1> <%= @booking.customer.first_name %> </h1>
+<div class = "page-header">
+  <div class = " col-8 formulaire">
+
+    <%= simple_form_for @booking do |f| %>
+      <%= f.input :date %>
+      <%= f.input :hour%>
+      <%= f.input :number_of_customers %>
+      <%= f.input :content %>
+      <%= f.submit class: "btn-secondary" %>
+    <% end %>
+  </div>
+</div>
