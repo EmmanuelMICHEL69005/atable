@@ -28,12 +28,9 @@ class BookingsController < ApplicationController
   end
 
   def create
-    # binding.pry
-
     customer = Customer.find_by(email: params[:booking][:email])
 
     if customer.blank?
-      # customer = Customer.create(email: ?)
       customer = Customer.create!(
         email: params[:booking][:email],
         first_name: params[:booking][:first_name],
@@ -48,7 +45,7 @@ class BookingsController < ApplicationController
     puts params[:hour]
     puts params[:hour].class
 
-    Booking.create!(
+    booking = Booking.new(
       date: params[:date],
       number_of_customers: params[:booking][:number_of_people],
       source: 'other',
@@ -58,7 +55,11 @@ class BookingsController < ApplicationController
       content: params[:booking][:comments]
     )
 
-    redirect_to bookings_path
+    if booking.save
+      redirect_to bookings_path
+    else
+      redirect_to bookings_path, alert: "Votre restaurant est plein"
+    end
   end
 
   def update
