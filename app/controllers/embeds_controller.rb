@@ -13,7 +13,7 @@ class EmbedsController < ApplicationController
       phone_number: params[:booking][:phone_number]
     )
 
-    @booking = Booking.create(
+    @book = Booking.create(
       date: params[:booking][:date],
       hour: params[:booking][:hour],
       number_of_customers: params[:booking][:number_of_people],

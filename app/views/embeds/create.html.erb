@@ -1,8 +1,8 @@
-<% if @booking.errors.present? %>
+<% if @errors.present? %>
   <p>La réservation n'a pas pu être effectuée</p>
   <p>
     <ul>
-      <% @booking.errors.full_messages.each do |error| %>
+      <% @book.errors.full_messages.each do |error| %>
         <li><%= error %></li>
       <% end %>
     </ul>
