@@ -2,9 +2,11 @@
 
  margin:0 auto;
   }
-.bookingIndexTitle {
-  display: flex;
 
+.flexbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
 }
 
@@ -45,7 +47,8 @@
 }
 
 .reservation{
-  display:inline-block;
+
+
 }
 .booking {
   background-color: rgb(220, 220, 220);
@@ -56,7 +59,8 @@
   color: rgb(64, 89, 107);
   font-size: 16px;
   font-style: light;
-  width:400px;
+  float: left;
+
 }
 
 .nb-clients {
@@ -76,8 +80,8 @@
 
 .nb-dispo {
   font-size:20px;
-  color: black;
-  font-weight: bold;
+  color: grey;
+  font-style: italic;
   width:25px;
   height:25px;
 }
@@ -107,6 +111,7 @@
 .reservation-admin{
   display:inline-block;
   border-left:1px grey solid;
+  float: right;
 }
 .block-admin {
   display:flex;

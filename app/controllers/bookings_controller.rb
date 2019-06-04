@@ -63,19 +63,36 @@ class BookingsController < ApplicationController
   end
 
   def update
+    @booking = Booking.find(params[:id])
+    respond_to do |format|
+      if @booking.update(booking_params)
+        format.html { redirect_to bookings_path, notice: 'La réservation a été modifiée avec succès.' }
+
+      else
+        format.html { render :edit }
+
+      end
+    end
   end
 
   def destroy
+    @booking = Booking.find(params[:id])
+    @booking.destroy
+    respond_to do |format|
+      format.html { redirect_to bookings_url, notice: 'La réservation a bien été supprimée.' }
+      format.json { head :no_content }
+    end
   end
 
   def edit
+     @booking = Booking.find(params[:id])
   end
 end
 
 private
 
 def booking_params
-  params.require(:booking).permit(:date, :hour, :customer, :restaurant, :number_of_customer, :content, :source,
+  params.require(:booking).permit(:date, :hour, :customer, :restaurant, :number_of_customers, :content, :source,
     customers_attributes: [:id, :last_name, :phone_number, :email, :first_name])
 end
 
