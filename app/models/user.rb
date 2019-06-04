@@ -15,7 +15,8 @@ class User < ApplicationRecord
     user ||= User.create(
       email: data['email'],
       password: Devise.friendly_token[0, 20],
-      restaurant: Restaurant.first
+      restaurant: Restaurant.first,
+      google_picture: data['image']
     )
     user
   end
