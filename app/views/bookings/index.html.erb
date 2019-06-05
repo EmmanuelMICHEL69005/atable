@@ -106,7 +106,7 @@
            <% @number_of_customers = booking.number_of_customers %>
 
 
-      <%if @heure =='12h00'%>
+      <%if @heure =='12h00' || @heure == '12:00'%>
          <tr><td><%=index +1 %></td><td colspan = 3 class= "booking <%=@origin[0]%>">
           <div class="reservation">
             <div class="reservation-head">

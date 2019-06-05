@@ -54,9 +54,10 @@ class BookingsController < ApplicationController
       source: 'other',
       restaurant: current_user.restaurant,
       customer: customer,
-      hour: params[:hour].tr(":", "h"),
+      hour: params[:hour].gsub(":", "h"),
       content: params[:booking][:comments]
     )
+
 
     if booking.save
       redirect_to bookings_path
