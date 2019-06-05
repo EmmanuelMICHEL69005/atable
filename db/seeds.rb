@@ -52,6 +52,7 @@ mathieu_booking1 = Booking.create!(
   number_of_customers: 7,
   restaurant: restaurant,
   customer: mathieu,
+  source: 'La Fourchette',
   hour: '19h30',
   content: 'Terrasse',
   status: 'Valided'
@@ -69,6 +70,7 @@ joseph_booking1 = Booking.create!(
   number_of_customers: 7,
   restaurant: restaurant,
   customer: joseph,
+  source: 'La Fourchette',
   hour: '20h30',
   content: 'une table Cool',
   status: 'Valided'
@@ -86,6 +88,7 @@ boris_booking1 = Booking.create!(
   number_of_customers: 2,
   restaurant: restaurant,
   customer: boris,
+  source: 'La Fourchette',
   hour: '13h30',
   content: 'Terrasse',
   status: 'Valided'
@@ -103,6 +106,7 @@ gerard_booking1 = Booking.create!(
   number_of_customers: 3,
   restaurant: restaurant,
   customer: gerard,
+  source: 'La Fourchette',
   hour: '13hOO',
   content: 'Terrasse',
   status: 'Valided'
@@ -120,6 +124,7 @@ maxime_booking1 = Booking.create!(
   number_of_customers: 4,
   restaurant: restaurant,
   customer: maxime,
+  source: 'La Fourchette',
   hour: '19h00',
   content: 'un canapé svp',
   status: 'Valided'
@@ -135,6 +140,7 @@ alex_booking1 = Booking.create!(
   date: Date.today,
   number_of_customers: 8,
   restaurant: restaurant,
+  source: 'La Fourchette',
   customer: alex,
   hour: '20h30',
   status: 'Valided'

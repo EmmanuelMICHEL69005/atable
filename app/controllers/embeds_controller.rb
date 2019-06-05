@@ -20,7 +20,7 @@ class EmbedsController < ApplicationController
       content: params[:booking][:comments],
       restaurant: Restaurant.last,
       customer: @customer,
-      source: 'iframe'
+      source: 'Site Internet'
     )
   end
 end

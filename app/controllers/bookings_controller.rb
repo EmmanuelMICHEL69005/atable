@@ -8,6 +8,13 @@ class BookingsController < ApplicationController
     @calendar = []
     lunchHour = ['12h00', '12h30', '13h00', '13h30', '14h00']
     dinnerHour = ['19h00', '19h30', '20h00', '20h30', '21h00']
+    @origin = {
+              'La Fourchette' => "http://i0.wp.com/lewebcestfood.fr/wp-content/uploads/2016/02/La-fourchette.png?fit=300%2C300",
+              'Facebook' => "https://img.icons8.com/color/384/facebook.png",
+              'Site Internet' => "https://img.icons8.com/ios/384/internet.png",
+              'Phone' => "https://img.icons8.com/metro/384/phone.png",
+              'Other' => "https://img.icons8.com/ios/384/conference-call-filled.png"
+              }
     ap @bookings
 
     Date.today.upto(Date.today + 7).each do |date|
@@ -96,7 +103,7 @@ end
 private
 
 def booking_params
-  params.require(:booking).permit(:date, :hour, :customer, :restaurant, :number_of_customers, :content, :source,
+  params.require(:booking).permit(:date, :forkid, :hour, :customer, :restaurant, :number_of_customers, :content, :source,
     customers_attributes: [:id, :last_name, :phone_number, :email, :first_name])
 end
 
