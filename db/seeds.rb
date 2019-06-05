@@ -152,14 +152,6 @@ User.create!(
   restaurant: Restaurant.last
 )
 
-Customer.create!(
-      first_name: 'Raphael',
-      last_name: 'Maman',
-      phone_number: '0615886787',
-      email: 'raphaelmamans@gmail.com',
-      facebook_id: '2671800516223322',
-      )
-
 
 
 
