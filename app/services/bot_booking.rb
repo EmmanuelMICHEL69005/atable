@@ -67,22 +67,22 @@ class BotBooking
 
   def next_question_day
     if Time.now.hour <= 13
-      if @exist = true
-      multiple_choice("Bonjour #{@first_name}, nous sommes ravi de vous revoir, quand souhaitez-vous revenir ?", ["midi", "soir", "demain"])
-      else
+      if @user.blank?
       multiple_choice("Bonjour à vous ! Quand souhaitez-vous venir vous régaler au Wagon Bar ?", ["midi", "soir", "demain"])
+      else
+      multiple_choice("Bonjour #{@first_name}, nous sommes ravi de vous revoir, quand souhaitez-vous revenir ?", ["midi", "soir", "demain"])
       end
     elsif Time.now.hour <= 20
-      if @exist = true
-      multiple_choice("Bonjour #{@first_name}, nous sommes ravi de vous revoir, quand souhaitez-vous revenir manger ?", ["soir", "demain"])
-      else
+      if @user.blank?
       multiple_choice("Bonjour à vous ! Quand souhaitez-vous venir vous régaler au Wagon Bar ??", ["midi", "soir", "demain"])
+      else
+      multiple_choice("Bonjour #{@first_name}, nous sommes ravi de vous revoir, quand souhaitez-vous revenir manger ?", ["soir", "demain"])
       end
     else
-      if @exist = true
-      multiple_choice("Bonjour #{@first_name}, nous sommes ravi de vous revoir, quand souhaitez-vous revenir manger ?", ["demain", "apres demain"])
-      else
+      if @user.blank?
       multiple_choice("Bonjour à vous ! Quand souhaitez-vous venir vous régaler au Wagon Bar ?", ["midi", "soir", "demain"])
+      else
+      multiple_choice("Bonjour #{@first_name}, nous sommes ravi de vous revoir, quand souhaitez-vous revenir manger ?", ["demain", "apres demain"])
       end
     end
   end
