@@ -67,11 +67,23 @@ class BotBooking
 
   def next_question_day
     if Time.now.hour <= 13
-      multiple_choice("Bonjour #{@first_name}, quand est ce que vous voulez venir?", ["midi", "soir", "demain"])
+      if @user.blank?
+      multiple_choice("Bonjour #{@first_name}, nous sommes ravi de vous revoir, quand souhaitez-vous revenir ?", ["midi", "soir", "demain"])
+      else
+      multiple_choice("Bonjour à vous ! Quand souhaitez-vous venir vous régaler au Wagon Bar ?", ["midi", "soir", "demain"])
+      end
     elsif Time.now.hour <= 20
-      multiple_choice("Bonjour #{@first_name}, voulez vous venir ce soir ou demain?", ["soir", "demain"])
+      if
+      multiple_choice("Bonjour #{@first_name}, nous sommes ravi de vous revoir, quand souhaitez-vous revenir manger ?", ["soir", "demain"])
+      else
+      multiple_choice("Bonjour à vous ! Quand souhaitez-vous venir vous régaler au Wagon Bar ??", ["midi", "soir", "demain"])
+      end
     else
-      multiple_choice("Bonjour #{@first_name}, quel jour vous voulez venir?", ["demain", "apres demain"])
+      if
+      multiple_choice("Bonjour #{@first_name}, nous sommes ravi de vous revoir, quand souhaitez-vous revenir manger ?", ["demain", "apres demain"])
+      else
+      multiple_choice("Bonjour à vous ! Quand souhaitez-vous venir vous régaler au Wagon Bar ?", ["midi", "soir", "demain"])
+      end
     end
   end
 
@@ -165,5 +177,4 @@ class BotBooking
   def simple_question(question)
     { type: :simple, question: question }
   end
-
 end
