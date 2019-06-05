@@ -1,2 +1,71 @@
-<h1>Customers#edit</h1>
-<p>Find me in app/views/customers/edit.html.erb</p>
+<div class="container">
+  <h1><%=@customer.first_name.capitalize%> <%=@customer.last_name.upcase%></h1>
+  <br>
+  <div class="fiche-client">
+    <div class = "formulaire-client">
+      <h2> Informations client: </h2>
+      <%= simple_form_for @customer do |f| %>
+        <%= f.input :first_name %>
+        <%= f.input :last_name%>
+        <%= f.input :phone_number %>
+        <%= f.input :email %>
+        <%= f.input :facebook_id %>
+        <%= f.input :fourchette_id %>
+        <%= f.submit class: "btn-secondary" %>
+      <% end %>
+    </div>
+    <div class="historique-client">
+      <h2> Historique du client</h2>
+      <table class = "table table-hover atable">
+        <thead class="table-dark atableH">
+          <td>Date</td>
+          <td>Heure</td>
+          <td>Nombre de couvert</td>
+          <td>Demande client</td>
+          <td>Source de réservation</td>
+          <td>Statut</td>
+          <td>Chiffre d'Affaire</td>
+        </thead>
+        <tbody>
+      <% @bookings.take(5).each do |booking| %>
+        <%if booking.status === 'Service rendu' %>
+          <% stat = ''%>
+        <% else %>
+          <% stat = 'table-success'%>
+        <%end%>
+        <tr>
+          <td class = <%=stat%>><%=booking.date.strftime("%d-%m-%Y")%></td>
+          <td class = <%=stat%>><%=booking.hour%></td>
+          <td class = <%=stat%>><%=booking.number_of_customers%></td>
+          <td class = <%=stat%>><%=booking.content%></td>
+          <td class = <%=stat%>><%=booking.source%></td>
+          <td class = <%=stat%>><%=booking.status%></td>
+          <%if booking.status === 'Service rendu' %>
+            <td class = <%=stat%>><%=(booking.number_of_customers.to_i * rand(1500..3500))/100.to_f%> €</td>
+          <%else%>
+            <td class = <%=stat%>></td>
+          <%end%>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
+  <h2> Les habitudes du client</h2>
+  <table class = "table table-hover atable">
+        <thead class="table-dark atableH">
+          <td>Collaborateur</td>
+          <td>Date</td>
+          <td>Commentaire</td>
+        </thead>
+        <tbody>
+      <% @bookings.take(3).each do |booking| %>
+        <tr>
+          <td><%=@customer.first_name%></td>
+          <td><%=booking.date.strftime("%d-%m-%Y")%></td>
+          <td><%=['Le client apprécie les tables proches des fenêtres', 'Le client est fan de Mojito, ne pas hésiter à lui proposer un cocktail en apéritif', 'Le client mange sa viande saignante'].sample%></td>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
+    </div>
+  </div>
+</div>

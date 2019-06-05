@@ -36,6 +36,8 @@ class CustomersController < ApplicationController
   end
 
   def edit
+    @customer = Customer.find(params[:id])
+    @bookings = @customer.bookings.all
   end
 
 private
