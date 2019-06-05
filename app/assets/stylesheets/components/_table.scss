@@ -15,7 +15,7 @@
 
  margin:0 auto;
  padding-bottom: 10px;
-
+background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(27, 72, 103, 0.8));
 
 .OverSchedule {
   text-align: center
@@ -38,8 +38,8 @@
 // }
 .booking:hover{
 
- background-color: rgba(30, 221, 136,0.3);
- height:35px;
+ background-color: white;
+ opacity:0.9;
 }
 // .formulaire {
 //   height: 300px;
@@ -51,7 +51,10 @@
 
 }
 .booking {
-  background-color: rgb(220, 220, 220);
+  background-color: white;
+}
+.book-a-table {
+  background-color: white;
 }
 
 .reservation-head{
@@ -80,7 +83,7 @@
 
 .nb-dispo {
   font-size:20px;
-  color: grey;
+  color: black;
   font-style: italic;
   width:25px;
   height:25px;
@@ -141,6 +144,7 @@ margin-left:5px;
   margin-bottom: 5px;
 }
 
+
 .reservation-content{
   display:flex;
   position:relative;
@@ -176,9 +180,13 @@ margin-left:5px;
 
 .page-header {
   display:flex;
+  background-color:white;
+  opacity:0.6;
 }
 
+.formulaire {
 
+}
 
  td {
  border-radius: 30px;
@@ -189,10 +197,11 @@ margin-left:5px;
 }
 tr {
   border-spacing:15px;
+  padding:10px;
 }
 tbody {
   tr:hover {
-  background-color:rgba(30, 221, 136,0.1);
+
 }
 }
  th  {
