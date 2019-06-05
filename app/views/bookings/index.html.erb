@@ -1,3 +1,4 @@
+
  <div class ="container">
   <div class="banner1">
   <h1 > <%= current_user.restaurant.name %> </h1>
@@ -93,9 +94,14 @@
            <% @customer = "#{booking.customer.first_name.capitalize} #{booking.customer.last_name.upcase}"%>
            <% @number_of_customers = booking.number_of_customers %>
 
+           <% if booking.status == "New" %>
+              <%@class="new"%>
+            <%else%>
+              <%@class=""%>
+            <%end%>
 
       <%if @heure =='12h00' || @heure == '12:00'%>
-         <tr><td></td><td colspan = 3 class= "booking">
+         <tr><td></td><td colspan = 3 class= "booking <%=@class%>">
           <div class="reservation">
             <div class="reservation-head">
               <div class = "reservation-icons">
@@ -120,12 +126,13 @@
               <%= link_to 'Delete', booking_path(booking), method: :delete, data: { confirm: 'Are you sure?' } %>
               </div>
             </div>
+
             </div>
           </div>
         </td><td ></td><td></td><td ></td><td ></td></tr>
 
       <%elsif @heure =='12h30'|| @heure == '12:30' then%>
-        <tr><td></td><td></td><td  colspan = 3 class= "booking">
+        <tr><td></td><td></td><td  colspan = 3 class= "booking <%=@class%>">
           <div class="reservation">
             <div class="reservation-head">
               <div class = "reservation-icons">
@@ -156,7 +163,7 @@
 
       <%elsif @heure =='13h00' || @heure == '13:00'then%>
        <tr><td></td><td></td><td></td>
-        <td colspan = 3  class= "booking">
+        <td colspan = 3  class= "booking <%=@class%>">
         <div class="reservation">
                     <div class="reservation-head">
                       <div class = "reservation-icons">
@@ -187,7 +194,7 @@
 
       <%elsif @heure =='13h30'|| @heure == '13:30' then%>
        <tr><td></td><td></td><td></td><td></td>
-        <td colspan = 3  class= "booking">
+        <td colspan = 3  class= "booking <%=@class%>" >
         <div class="reservation">
                     <div class="reservation-head">
                       <div class = "reservation-icons">

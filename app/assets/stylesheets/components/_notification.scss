@@ -1,0 +1,33 @@
+.nb-notification {
+  border-radius: 5%;
+  text-align: center;
+  justify-content:center;
+  font-size:14px;
+  background-color:rgb(250, 62, 62);
+  font-weight: bold;
+  color: white;
+  position:relative;
+  right: 10px;
+  top:-10px;
+  width:20px;
+  height:20px;
+}
+
+.nb-notification-menu {
+  border-radius: 5%;
+  text-align: center;
+  justify-content:center;
+  font-size:14px;
+  background-color:rgb(250, 62, 62);
+  font-weight: bold;
+  color: white;
+  position:relative;
+  left:-25px;
+  top:-5px;
+  width:20px;
+  height:20px;
+}
+
+.notification-dropdown{
+  display:flex;
+}

@@ -8,6 +8,7 @@ class BookingsController < ApplicationController
     @customer = Customer.new
     @customer.bookings.build
     @total_customer = total_customers
+    @notification = total_notifications
     @calendar = []
     lunchHour = ['12h00', '12h30', '13h00', '13h30', '14h00']
     dinnerHour = ['19h00', '19h30', '20h00', '20h30', '21h00']
@@ -161,6 +162,15 @@ end
 return [h1200, h1230, h1300, h1330, h1400, h1900, h1930, h2000, h2030, h2100]
 end
 
+def total_notifications
+  notification = 0
+  @bookings.where(date: Date.today).each do |booking|
+    if booking.status == "New"
+      notification += 1
+    end
+  end
+  return notification
+end
 
 
 
