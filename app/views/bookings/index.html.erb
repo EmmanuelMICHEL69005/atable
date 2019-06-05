@@ -8,21 +8,29 @@
         <li>
           <div class="collapsible-header"><i class="material-icons">add_circle_outline</i>Ajouter une réservation</div>
             <div class="collapsible-body">
-              <div class = " col-8 formulaire">
+              <div class = " col-12 formulaire">
                 <%= simple_form_for :booking, url: bookings_path, method: :post do |f| %>
                 <div class ="book-a-table">
-                  <div> <%= f.input :first_name  %> </div>
-                  <div> <%= f.input :last_name %>  </div>
-                  <div> <%= f.input :phone_number  %></div>
-                  <div> <%= f.input :email %>      </div>
+                  <div> <%= label_tag(:first_name, "Prénom" ) %>
+                    <%= f.input :first_name  %> </div>
+                  <div> <%= label_tag(:last_name, "Nom de famille" ) %>
+                    <%= f.input :last_name %>  </div>
+                  <div>
+                    <%= f.input :phone_number, label: "Téléphone"  %></div>
+                  <div  <%= f.input :email %>      </div>
                   <%# f.input :date, as: :date, html5: true, :input_html => {class: 'date'}%>
                   <div><%= label_tag(:date, "Date de réservation" ) %>
                    <%= text_field_tag(:date, params[:date])%>      </div>
+
                    <div><%= label_tag(:hour, "Heure de réservation" ) %>
                     <%= text_field_tag(:hour, params[:hour]) %></div>
-                  <div> <%= f.input :number_of_people %> </div>
-                  <div> <%= f.input :comments %>      </div>
-                  <s></s>
+
+                  <div> <%= label_tag(:number_of_people, "Nombre d'invités" ) %>
+                    <%= f.input :number_of_people %> </div>
+
+
+                  <div> <%= label_tag(:comments, "Attention particulière" ) %>
+                    <%= f.input :comments %>      </div>
                   <div> <%= f.button :submit, "Ajouter la reservation", class: "btn-secondary"%></div>
                 </div>
               <% end %>
@@ -32,15 +40,15 @@
         </li>
       </ul>
     </div>
-  </div>
-</div>
 
-<h3 class="OverSchedule text-align: center  ">Mes réservations du jour</h3>
+
+
+  <h3 class="OverSchedule text-align: center  ">Mes réservations du jour</h3>
 
 
 <h1>Service du midi:</h1>
       <div class="agendaMidi">
-      <table class="schedule">
+        <table class="schedule">
         <thead class ="header-table">
             <td >Nombre de réservation</td>
             <td >12h00</td>
@@ -97,7 +105,7 @@
            <% @number_of_customers = booking.number_of_customers %>
 
 
-      <%if @heure =='12h00'%>
+      <%if @heure =='12h00' || @heure == '12:00'%>
          <tr><td><%=index +1 %></td><td colspan = 3 class= "booking <%=@origin[0]%>">
           <div class="reservation">
             <div class="reservation-head">
@@ -419,8 +427,10 @@
 
       <%end%>
       <%end%>
+</div>
     </tbody>
       </table>
+</div>
   </div>
 </div>
 </div>

@@ -8,11 +8,14 @@ class BookingsController < ApplicationController
     @calendar = []
     lunchHour = ['12h00', '12h30', '13h00', '13h30', '14h00']
     dinnerHour = ['19h00', '19h30', '20h00', '20h30', '21h00']
+    ap @bookings
+
     Date.today.upto(Date.today + 7).each do |date|
       bookingsLunch = Booking.where(restaurant_id: current_user.restaurant.id).where(date: date, hour: lunchHour)
       bookingsDinner = Booking.where(restaurant_id: current_user.restaurant.id).where(date: date, hour: dinnerHour)
       @calendar << [date, bookingsLunch, bookingsDinner]
    end
+   ap @calendar
 
  end
 
@@ -51,9 +54,10 @@ class BookingsController < ApplicationController
       source: 'other',
       restaurant: current_user.restaurant,
       customer: customer,
-      hour: params[:hour].tr(":", "h"),
+      hour: params[:hour].gsub(":", "h"),
       content: params[:booking][:comments]
     )
+
 
     if booking.save
       redirect_to bookings_path
