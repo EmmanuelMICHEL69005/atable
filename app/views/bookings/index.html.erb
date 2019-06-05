@@ -11,13 +11,10 @@
               <div class = " col-12 formulaire">
                 <%= simple_form_for :booking, url: bookings_path, method: :post do |f| %>
                 <div class ="book-a-table">
-                  <div> <%= label_tag(:first_name, "Prénom" ) %>
-                    <%= f.input :first_name  %> </div>
-                  <div> <%= label_tag(:last_name, "Nom de famille" ) %>
-                    <%= f.input :last_name %>  </div>
+                  <div> <%= f.input :first_name, label: "Prénom"  %> </div>
                   <div>
-                    <%= f.input :phone_number, label: "Téléphone"  %></div>
-                  <div  <%= f.input :email %>      </div>
+                    <%= f.input :last_name, label: "Nom de Famille" %>  </div>
+                  <div> <%= f.input :email, label: "email" %> </div>
                   <%# f.input :date, as: :date, html5: true, :input_html => {class: 'date'}%>
                   <div><%= label_tag(:date, "Date de réservation" ) %>
                    <%= text_field_tag(:date, params[:date])%>      </div>
@@ -25,12 +22,9 @@
                    <div><%= label_tag(:hour, "Heure de réservation" ) %>
                     <%= text_field_tag(:hour, params[:hour]) %></div>
 
-                  <div> <%= label_tag(:number_of_people, "Nombre d'invités" ) %>
-                    <%= f.input :number_of_people %> </div>
+                  <div><%= f.input :number_of_people, label: "Nombre d'invités" %> </div>
 
-
-                  <div> <%= label_tag(:comments, "Attention particulière" ) %>
-                    <%= f.input :comments %>      </div>
+                  <div> <%= f.input :comments, label: "Demande spécifique" %>      </div>
                   <div> <%= f.button :submit, "Ajouter la reservation", class: "btn-secondary"%></div>
                 </div>
               <% end %>
@@ -136,7 +130,7 @@
           </div>
         </td><td ></td><td></td><td ></td><td ></td></tr>
 
-      <%elsif @heure =='12h30' then%>
+      <%elsif @heure =='12h30'|| @heure == '12:30' then%>
         <tr><td><%=index +1 %></td><td></td><td  colspan = 3 class= "booking <%=@origin[0]%>">
           <div class="reservation">
             <div class="reservation-head">
@@ -166,7 +160,7 @@
           </div>
     </td><td ></td><td ></td><td ></td></tr>
 
-      <%elsif @heure =='13h00' then%>
+      <%elsif @heure =='13h00' || @heure == '13:00'then%>
        <tr><td><%=index +1 %></td><td></td><td></td>
         <td colspan = 3  class= "booking <%=@origin%>">
         <div class="reservation">
@@ -197,7 +191,7 @@
                   </div>
         </td><td ></td><td ></td></tr>
 
-      <%elsif @heure =='13h30' then%>
+      <%elsif @heure =='13h30'|| @heure == '13:30' then%>
        <tr><td><%=index +1 %></td><td></td><td></td><td></td>
         <td colspan = 3  class= "booking <%=@origin%>">
         <div class="reservation">
@@ -303,7 +297,7 @@
            <% @number_of_customers = booking.number_of_customers %>
 
 
-      <%if @heure =='19h00' then%>
+      <%if @heure =='19h00' || @heure == '19:00'then%>
          <tr><td></td><td colspan = 3 class= "booking <%=@origin%>">
           <div class="reservation">
             <div class="reservation-head">
@@ -331,7 +325,7 @@
             </div>
         </td><td ></td><td></td><td ></td><td ></td></tr>
 
-      <%elsif @heure =='19h30' then%>
+      <%elsif @heure =='19h30'|| @heure == '19:30' then%>
        <tr><td></td><td></td><td  colspan = 3 class= "booking <%=@origin%>">
         <div class="reservation">
           <div class="reservation-head">
@@ -361,7 +355,7 @@
         </div>
     </td><td ></td><td ></td><td ></td></tr>
 
-      <%elsif @heure =='20h00' then%>
+      <%elsif @heure =='20h00'|| @heure == '20:00' then%>
        <tr><td></td><td></td><td></td>
         <td colspan = 3  class= "booking <%=@origin%>">
           <div class="reservation">
@@ -392,7 +386,7 @@
           </div>
         </td><td ></td></tr>
 
-       <%elsif @heure =='21h00' then%>
+       <%elsif @heure =='21h00'|| @heure == '21:00' then%>
        <tr><td></td><td></td><td></td><td></td>
         <td colspan = 3  class= "booking <%=@origin%>">
         <div class="reservation">
