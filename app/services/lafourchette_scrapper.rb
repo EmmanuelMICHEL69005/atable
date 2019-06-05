@@ -1,3 +1,4 @@
+require 'date'
 class LafourchetteScrapper
   def self.run
     url = "https://www.myfourchette.com/reservation/webList.json"
@@ -26,12 +27,13 @@ class LafourchetteScrapper
       phone_number = resa["cell"]["customer.phone"]
       id_customer = resa["cell"]["customer.idCustomer"]
       reservation_hour = resa["cell"]["reservation.startTime"]
-      reservation_date = resa["cell"]["reservation.date"]
+      reservation_date = resa["cell"]["reservation.date"].split('/')
       reservation_people = resa["cell"]["reservation.nbPeople"].to_i
       reservation_comment = resa["cell"]["reservation.notes"]
       reservation_status = resa["cell"]["reservation.state"]
       reservation_validation_link = resa["cell"]["reservation.url_to_validate"]
       reservation_edit_link = resa["cell"]["reservation.edit"]
+      date = reservation_date[0] + "/" + reservation_date[1] + "/20" + reservation_date[2]
 
       if Customer.find_by(fourchette_id: id_customer).nil?
       client = Customer.create!(first_name: first_name, last_name: last_name, phone_number: phone_number, email: email, fourchette_id: id_customer)
@@ -39,7 +41,7 @@ class LafourchetteScrapper
         client = Customer.find_by(fourchette_id: id_customer)
       end
 
-     Booking.create!(date: reservation_date, hour: reservation_hour, content: reservation_comment, number_of_customers: reservation_people, source: "La fourchette", customer: client, restaurant: Restaurant.last)
+     Booking.create!(date: date, hour: reservation_hour, content: reservation_comment, number_of_customers: reservation_people, source: "La fourchette", customer: client, restaurant: Restaurant.last)
      end
   end
 end
