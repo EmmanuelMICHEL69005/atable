@@ -41,12 +41,12 @@ class BookingsController < ApplicationController
         phone_number: params[:booking][:phone_number]
       )
     end
-    puts "3"*99
-    puts params
-    puts params[:booking][:date]
-    puts params[:date]
-    puts params[:hour]
-    puts params[:hour].class
+    # puts "3"*99
+    # puts params
+    # puts params[:booking][:date]
+    # puts params[:date]
+    # puts params[:hour]
+    # puts params[:hour].class
 
     booking = Booking.new(
       date: params[:date],
