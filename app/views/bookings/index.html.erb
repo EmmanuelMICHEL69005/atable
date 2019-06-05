@@ -16,7 +16,6 @@
                   <div> <%= f.input :phone_number  %></div>
                   <div> <%= f.input :email %>      </div>
                   <%# f.input :date, as: :date, html5: true, :input_html => {class: 'date'}%>
-
                   <div><%= label_tag(:date, "Date de réservation" ) %>
                    <%= text_field_tag(:date, params[:date])%>      </div>
                    <div><%= label_tag(:hour, "Heure de réservation" ) %>
@@ -107,6 +106,7 @@
                 <img src="https://img.icons8.com/metro/384/about.png" class = "icone-client info" style= "width:auto;">
               </div>
               <div class="reservation-content">
+                <%= link_to @customer, edit_customer_path(booking.customer) %>
                 <a class ="nom-customer" href=""><%=@customer%></a>
                 <p class="card-text content">"Commentaire: <%=booking.content%>"</p>
               </div>
@@ -137,7 +137,7 @@
                 <img src="https://img.icons8.com/metro/384/about.png" class = "icone-client info" style= "width:auto;">
               </div>
               <div class="reservation-content">
-                <a class ="nom-customer" href=""><%=@customer%></a>
+                <%= link_to @customer, edit_customer_path(booking.customer) %>
                 <p class="card-text content">"<%=booking.content%>"</p>
               </div>
             </div>

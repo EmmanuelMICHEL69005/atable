@@ -21,10 +21,24 @@ kevin_booking1 = Booking.create!(
   number_of_customers: 7,
   restaurant: restaurant,
   customer: kevin,
+  source: 'Facebook',
   hour: '12h30',
   content: 'Terrasse',
-  status: 'Valided'
+  status: 'Valided',
 )
+
+['10/01/2019', '28/02/2019', '30/03/2019', '15/04/2019', '01/05/2019'].each do |d|
+  Booking.create!(
+  date: d,
+  number_of_customers: rand(2..6),
+  restaurant: restaurant,
+  customer: kevin,
+  source: ['Facebook', 'La Fourchette', 'Site web', 'Telephone', 'Other'].sample,
+  hour: ['12h30', '13h30', '19h30', '20h30', '21h00'].sample,
+  content: ["Il s'agit d'un anniversaire", '', '','','Table ronde svp', 'Menu vegetarian svp'].sample,
+  status: 'Service rendu',
+)
+end
 
 mathieu = Customer.create!(
   first_name: "mathieu",
