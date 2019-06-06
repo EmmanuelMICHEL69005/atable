@@ -14,10 +14,12 @@ root to: 'pages#home'
 
   resources :bookings, only: [:index, :create, :edit, :new, :update, :destroy] do
 
-      resources :customers, only: [:show]
+      resources :customers, only: [ :show]
   end
 
-  resources :customers, only: [:create, :show, :edit]
+  resources :customers, only: [:index, :create, :show, :edit] do
+      resources :reviews, only: [:index, :create]
+  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   # ...
