@@ -33,9 +33,7 @@
             <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>
-        <% if @notification != 0 %>
-        <li class ="nb-notification"><%=@notification%></li>
-        <%end%>
+        <!-- ICI -->
       <% else %>
         <li class="nav-item">
           <%= link_to "Login", new_user_session_path, class: "nav-link" %>

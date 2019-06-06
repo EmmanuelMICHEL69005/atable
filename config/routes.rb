@@ -14,7 +14,10 @@ root to: 'pages#home'
 
   resources :bookings, only: [:index, :create, :edit, :new, :update, :destroy] do
 
-      resources :customers, only: [ :show]
+    resources :customers, only: [ :show]
+    collection do
+      get :notifications
+    end
   end
 
   resources :customers, only: [:index, :create, :show, :edit] do
