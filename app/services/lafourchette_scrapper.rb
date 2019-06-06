@@ -41,7 +41,7 @@ class LafourchetteScrapper
         client = Customer.find_by(fourchette_id: id_customer)
       end
       if Booking.find_by(forkid: reservation_id).nil?
-        Booking.create!(date: date, hour: reservation_hour, forkid: reservation_id, content: reservation_comment, number_of_customers: reservation_people, source: "La Fourchette", customer: client, restaurant: Restaurant.last)
+        Booking.create!(date: date, hour: reservation_hour, forkid: reservation_id, content: reservation_comment, number_of_customers: reservation_people, source: "La Fourchette", customer: client, restaurant: Restaurant.last, status: "New")
       end
      end
   end

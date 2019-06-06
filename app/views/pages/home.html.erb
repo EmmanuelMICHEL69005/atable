@@ -1,20 +1,21 @@
 <div class="wrapper">
-  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.65)), url(https://images.unsplash.com/photo-1508006728353-6ecef00dcbb8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1651&q=80);">
+  <div class="banner">
     <div class="container-home">
       <h1><%= "@TABLE" %><i id="icon" class="fas fa-utensils"></i></h1>
-        <h4><%= "L'OUTIL QUI CENTRALISE VOS RESERVATIONS" %></h4>
+      <br><br>
+        <h4><%= "Gérez vos réservations clients multi-canaux simplement." %></h4>
+        <br><br>
           <a class="btn-primary homepage" <%= link_to "
           se connecter", new_user_session_path, class: "nav-link" %>
           </a>
           <a class="btn-primary homepage" <%= link_to "
           s'inscrire", new_user_registration_path, class: "nav-link" %>
           </a>
-
-  <div class="margeH2Home"><h2><b><%= "Découvrez-nous!" %></b></h2></div>
+  <br><br><br><br><br><br>
       <div class="cards-home">
         <div class="card-home">
           <%= image_tag("planning2.png", :alt => "plannig") %>
-          <p><%= "Facilitez votre quotidien" %></p>
+          <p><%= "Centralisez en un clique toutes vos réservations" %></p>
         </div>
         <div class="card-home">
           <%= image_tag("ca.png", :alt => "ca") %>

@@ -24,7 +24,7 @@ kevin_booking1 = Booking.create!(
   source: 'Facebook',
   hour: '12h30',
   content: 'Terrasse',
-  status: 'Valided',
+  status: 'New',
 )
 
 ['10/01/2019', '28/02/2019', '30/03/2019', '15/04/2019', '01/05/2019'].each do |d|
@@ -55,7 +55,7 @@ mathieu_booking1 = Booking.create!(
   source: 'La Fourchette',
   hour: '19h30',
   content: 'Terrasse',
-  status: 'Valided'
+  status: 'New'
 )
 
 joseph = Customer.create!(
@@ -73,7 +73,7 @@ joseph_booking1 = Booking.create!(
   source: 'La Fourchette',
   hour: '20h30',
   content: 'une table Cool',
-  status: 'Valided'
+  status: 'New'
 )
 
 boris = Customer.create!(
@@ -91,7 +91,7 @@ boris_booking1 = Booking.create!(
   source: 'La Fourchette',
   hour: '13h30',
   content: 'Terrasse',
-  status: 'Valided'
+  status: 'New'
 )
 
 gerard = Customer.create!(
@@ -109,7 +109,7 @@ gerard_booking1 = Booking.create!(
   source: 'La Fourchette',
   hour: '13hOO',
   content: 'Terrasse',
-  status: 'Valided'
+  status: 'New'
 )
 
 maxime = Customer.create!(
@@ -127,7 +127,7 @@ maxime_booking1 = Booking.create!(
   source: 'La Fourchette',
   hour: '19h00',
   content: 'un canapé svp',
-  status: 'Valided'
+  status: 'New'
 )
 alex = Customer.create!(
   first_name: "alex",
