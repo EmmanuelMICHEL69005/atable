@@ -7,7 +7,7 @@ Booking.destroy_all
 
 # REEL DATA
 
-restaurant = Restaurant.create!(name: 'Le Wagon Bar', address: '20 rue des Capucins', zipcode: '69000', city: 'Lyon', capacity: 50 )
+restaurant = Restaurant.create!(name: 'Le Wagon Bar', address: '20 rue des Capucins', zipcode: '69000', city: 'Lyon', capacity: 38 )
 
 kevin = Customer.create!(
   first_name: "kevin",
@@ -60,9 +60,9 @@ mathieu_booking1 = Booking.create!(
 
 joseph = Customer.create!(
   first_name: "joseph",
-  last_name: "blanchard",
-  phone_number: "0675342561",
-  email: "joseph.blanchard@gmail.com",
+  last_name: "cordelle",
+  phone_number: "",
+  email: "joseph@gmail.com",
   )
 
 joseph_booking1 = Booking.create!(
@@ -78,7 +78,7 @@ joseph_booking1 = Booking.create!(
 
 boris = Customer.create!(
   first_name: "boris",
-  last_name: "leboss",
+  last_name: "smith",
   phone_number: "0675342561",
   email: "boris.leboss@gmail.com",
   )
@@ -96,9 +96,9 @@ boris_booking1 = Booking.create!(
 
 gerard = Customer.create!(
   first_name: "gerard",
-  last_name: "cuillere",
-  phone_number: "0675342561",
-  email: "gerard.cartilier@gmail.com",
+  last_name: "paul",
+  phone_number: "05476996890",
+  email: "gerard.paul@gmail.com",
   )
 
 gerard_booking1 = Booking.create!(
@@ -116,7 +116,7 @@ maxime = Customer.create!(
   first_name: "maxime",
   last_name: "givry",
   phone_number: "0675342561",
-  email: "maxime.narcoleptique@gmail.com",
+  email: "maxime.givry@gmail.com",
   )
 
 maxime_booking1 = Booking.create!(

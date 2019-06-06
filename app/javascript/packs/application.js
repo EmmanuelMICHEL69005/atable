@@ -1,4 +1,6 @@
 import "bootstrap";
+
+
  document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.datepicker');
     var instances = M.Datepicker.init(elems, options);
@@ -49,15 +51,47 @@ flatpickr("#hour", {
     defaultDate: "12:00",
     minuteIncrement: 30,
     time_24hr: true,
+    onChange: function(dateObj) {
+       console.log(dateObj);
+       // console.log(dateStr);
+   }
+},)
 
-},);
+let caldate = Array.from(document.querySelectorAll('span'));
+console.log(caldate);
+
+caldate.forEach(date => {
+ date.addEventListener('click', (e) => {
+   console.log(e.currentTarget);
+ });
+});
+
+
+let test = document.querySelectorAll('td');
+test.forEach(date => {
+ date.addEventListener('click', (e) => {
+   console.log(e.currentTarget);
+ });
+});
 
 flatpickr("#autredate", {
+    onChange: function(dateObj, dateStr) {
+       console.log(dateStr);
+       var url = window.location.href.split("?")[0];
+       if (url.indexOf('?') > -1){
+          url += `?date=${dateStr}`
+       }else{
+          url += `?date=${dateStr}`
+       }
+       window.location.href = url;
+   },
+
   altInput: true,
     altFormat: "j F Y",
     dateFormat: "Y-m-d",
     minDate: "today",
-     inline: true,
+    inline: true,
+
 
 "disable": [
         function(date) {
@@ -114,11 +148,7 @@ $(document).ready(function() {
   });
 });
 
-let changedate = document.querySelectorAll('.flatpickr-day')
-console.log(changedate)
 
-changedate.forEach(date => {
-date.addEventListener('click', e => {
-    console.log(e.currentTarget);
-  });
-});
+
+
+
