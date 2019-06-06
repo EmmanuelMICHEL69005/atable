@@ -1,38 +1,42 @@
 
  <div class ="container">
   <div class="banner1">
-  <h1 > <%= current_user.restaurant.name %> </h1>
-  <div class="BookingIndexTitle flexbox">
-    <div class = "page-header">
-      <ul class="collapsible">
-        <li>
-          <div class="col-12 collapsible-header" style="color:rgb(27, 72, 103); background-color:rgba(255,255,255,0.8); font-weight:bold;"><i class="material-icons" >add_circle_outline</i>Ajouter une réservation</div>
-            <div class="collapsible-body" style ="background-color:rgba(255,255,255, 0.7); color:rgb(27, 72, 103);">
-              <div class = "col-12 formulaire" style="color:black;" >
-                <%= simple_form_for :booking, url: bookings_path, method: :post do |f| %>
-                <div class ="book-a-table"  >
-                  <div> <%= f.input :first_name, label: "Prénom"  %> </div>
-                  <div>
-                    <%= f.input :last_name, label: "Nom de Famille" %>  </div>
-                  <div> <%= f.input :email, label: "email" %> </div>
-                  <%# f.input :date, as: :date, html5: true, :input_html => {class: 'date'}%>
-                  <div><%= label_tag(:date, "Date de réservation" ) %>
-                   <%= text_field_tag(:date, params[:date])%>      </div>
+    <div class="demiBanner1"> <h1 > <%= current_user.restaurant.name %> </h1>
+      <div class="BookingIndexTitle flexbox">
+        <div class = "page-header">
+          <ul class="collapsible">
+            <li>
+              <div class="col-12 collapsible-header" style="color:rgb(27, 72, 103); background-color:rgba(255,255,255,0.8); font-weight:bold;"><i class="material-icons" >add_circle_outline</i>Ajouter une réservation</div>
+                <div class="collapsible-body" style ="background-color:rgba(255,255,255, 0.7); color:rgb(27, 72, 103);">
+                  <div class = "col-12 formulaire" style="color:black;" >
+                    <%= simple_form_for :booking, url: bookings_path, method: :post do |f| %>
+                    <div class ="book-a-table"  >
+                      <div> <%= f.input :first_name, label: "Prénom"  %> </div>
+                      <div>
+                        <%= f.input :last_name, label: "Nom de Famille" %>  </div>
+                      <div> <%= f.input :email, label: "email" %> </div>
+                      <%# f.input :date, as: :date, html5: true, :input_html => {class: 'date'}%>
+                      <div><%= label_tag(:date, "Date de réservation" ) %>
+                       <%= text_field_tag(:date, params[:date])%>      </div>
 
-                   <div><%= label_tag(:hour, "Heure de réservation" ) %>
-                    <%= text_field_tag(:hour, params[:hour]) %></div>
+                       <div><%= label_tag(:hour, "Heure de réservation" ) %>
+                        <%= text_field_tag(:hour, params[:hour]) %></div>
 
-                  <div><%= f.input :number_of_people, label: "Nombre d'invités" %> </div>
+                      <div><%= f.input :number_of_people, label: "Nombre d'invités" %> </div>
 
-                  <div> <%= f.input :comments, label: "Demande spécifique" %>      </div>
-                  <div> <%= f.button :submit, "Ajouter la reservation", class: "btn-secondary"%></div>
+                      <div> <%= f.input :comments, label: "Demande spécifique" %>      </div>
+                      <div> <%= f.button :submit, "Ajouter la reservation", class: "btn-secondary"%></div>
+                    </div>
+                  <% end %>
+                  </div>
                 </div>
-              <% end %>
               </div>
-            </div>
-          </div>
-        </li>
-      </ul>
+            </li>
+          </ul>
+        </div>
+    </div>
+    <div class="ChangeDateCalendar .flatpickr-input">
+      <div><%= text_field_tag(:autredate, params[:date])%>  </div>
     </div>
   </div>
 
@@ -86,7 +90,6 @@
         </tr>
 
         <tbody>
-
 
          <% @bookings.where(date: Date.today).each_with_index do |booking, index| %>
            <% @heure = booking.hour %>

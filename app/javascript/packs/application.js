@@ -12,8 +12,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 import flatpickr from "flatpickr"
 import 'flatpickr/dist/flatpickr.min.css'
+import { French } from "flatpickr/dist/l10n/fr.js"
+
+
+
 console.log(flatpickr)
 console.log('mkjbljbijnoinibniuhbiuh')
+
+flatpickr.localize(French);
+
 
 flatpickr("#date", {
   altInput: true,
@@ -21,16 +28,13 @@ flatpickr("#date", {
     dateFormat: "Y-m-d",
     minDate: "today",
 
-"disable": [
+    "disable": [
         function(date) {
             // return true to disable
             return (date.getDay() === 0);
 
         }
-    ],
-    "locale": {
-        "firstDayOfWeek": 1 // start week on Monday
-    },
+    ]
 
 
 
@@ -45,6 +49,27 @@ flatpickr("#hour", {
     defaultDate: "12:00",
     minuteIncrement: 30,
     time_24hr: true,
+
+},);
+
+flatpickr("#autredate", {
+  altInput: true,
+    altFormat: "j F Y",
+    dateFormat: "Y-m-d",
+    minDate: "today",
+     inline: true,
+
+"disable": [
+        function(date) {
+            // return true to disable
+            return (date.getDay() === 0);
+
+        }
+    ],
+    "locale": {
+        "firstDayOfWeek": 1 // start week on Monday
+    },
+
 
 
 
@@ -89,5 +114,11 @@ $(document).ready(function() {
   });
 });
 
+let changedate = document.querySelectorAll('.flatpickr-day')
+console.log(changedate)
 
-
+changedate.forEach(date => {
+date.addEventListener('click', e => {
+    console.log(e.currentTarget);
+  });
+});
