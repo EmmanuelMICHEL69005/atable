@@ -124,6 +124,8 @@ def total_customers
   h2000 = []
   h2030 = []
   h2100 = []
+  h2130 = []
+  h2200 = []
   @bookings.where(date: Date.today).each do |b|
     if b.hour == '12h00' || b.hour == '12:00'
       h1200 << b.number_of_customers
@@ -155,13 +157,16 @@ def total_customers
       h2030 << b.number_of_customers
       h2000 << b.number_of_customers
     elsif b.hour == '20h30' || b.hour == '20:30'
+      h2130 << b.number_of_customers
       h2100 << b.number_of_customers
       h2030 << b.number_of_customers
     elsif b.hour == '21h00' || b.hour == '21:00'
+      h2200 << b.number_of_customers
+      h2130 << b.number_of_customers
       h2100 << b.number_of_customers
     end
 end
-return [h1200, h1230, h1300, h1330, h1400, h1900, h1930, h2000, h2030, h2100]
+return [h1200, h1230, h1300, h1330, h1400, h1900, h1930, h2000, h2030, h2100, h2130, h2200]
 end
 
 def total_notifications
