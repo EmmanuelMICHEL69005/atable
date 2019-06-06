@@ -1,10 +1,14 @@
 .reservation {
-  display: block;
+  display: flex;
   height: 100%;
   padding: 10px;
   border-radius: 5px;
   background: #cacaca61;
   border: 1px solid #cccccc6e;
+
+  .reservation-head {
+    flex-grow: 1;
+  }
 
   .client-rating {
     margin-left: 10px;
