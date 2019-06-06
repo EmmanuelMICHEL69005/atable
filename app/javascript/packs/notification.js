@@ -9,10 +9,10 @@ const initNotification = () => {
 
 
       const element = document.querySelector('.navbar-nav')
+      const element2 = document.querySelector('.notification-dropdown')
 
-      console.log(element)
       element.insertAdjacentHTML("beforeend", `<li class ="nb-notification">${data.total}</li>`);
-
+      element2.insertAdjacentHTML("beforeend", `<p class ="nb-notification-menu">${data.total}</p>`);
     })
 }
 

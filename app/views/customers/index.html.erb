@@ -1,5 +1,8 @@
-<h1><%=@restaurant%></h1>
 <div class ="container">
+<div class="banner1">
+<h1><%=@restaurant%></h1>
+</div>
+
 <div class="historique-client">
       <h2> Liste des clients</h2>
       <table class = "table table-hover atable">
@@ -13,10 +16,10 @@
           <td>rating</td>
         </thead>
         <tbody>
-      <% @customers.each do |customer| %>
+      <% @customers.sort_by { |customer| customer.updated_at }.reverse.each do |customer| %>
         <tr>
-          <td ><%=customer.first_name.capitalize%></td>
-          <td ><%=customer.last_name.upcase%></td>
+          <td ><%=link_to customer.first_name.capitalize, edit_customer_path(customer) %></td>
+          <td ><%= link_to customer.last_name.upcase, edit_customer_path(customer)%></td>
           <td ><%=customer.phone_number%></td>
           <td ><%=customer.email%></td>
           <td ><%=customer.fourchette_id%></td>
