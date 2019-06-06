@@ -1,5 +1,9 @@
 import "bootstrap";
 
+import initNotification from './notification.js'
+
+initNotification()
+
 
  document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.datepicker');

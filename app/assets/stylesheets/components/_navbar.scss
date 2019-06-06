@@ -4,13 +4,19 @@
   padding: 0 4px;
   color: white;
   margin-bottom: 40px;
+  height: 70px;
+  padding: 0 20px;
+}
+
+.navbar-nav {
+  align-items: center;
 }
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
   margin-left: 76px;
 }
 .navbar-lewagon .navbar-brand img {
-  width: 72px;
+  width: 100px;
 }
 .dropdown-item {
   display: flex;
@@ -31,7 +37,6 @@
   padding-left:20px;
   padding-right:20px;
   border-right: 1px solid rgb(27, 72, 103);
-  border-left: 1px solid rgb(27, 72, 103);
 }
 .atable-nav {
   display: inline-block;;
@@ -40,7 +45,6 @@
 .nb-couvert {
   padding-left:20px;
   padding-right:20px;
-  border-right: 1px solid rgb(27, 72, 103);
   text-decoration: none;
   color:white;
 }

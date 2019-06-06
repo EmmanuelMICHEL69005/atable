@@ -52,20 +52,34 @@
   <h2> Les habitudes du client</h2>
   <table class = "table table-hover atable">
         <thead class="table-dark atableH">
-          <td>Collaborateur</td>
+          <td>User ID</td>
           <td>Date</td>
+          <td>Nature</td>
           <td>Commentaire</td>
         </thead>
         <tbody>
-      <% @bookings.take(3).each do |booking| %>
-        <tr>
-          <td><%=@customer.first_name%></td>
-          <td><%=booking.date.strftime("%d-%m-%Y")%></td>
-          <td><%=['Le client apprécie les tables proches des fenêtres', 'Le client est fan de Mojito, ne pas hésiter à lui proposer un cocktail en apéritif', 'Le client mange sa viande saignante'].sample%></td>
+      <% @reviews.sort_by { |review| review.nature }.each do |review| %>
+        <tr class = <%=review.nature%>>
+          <td><%=review.user_id%></td>
+          <td><%=review.date%></td>
+          <td><%=review.nature%></td>
+          <td><%=review.content%></td>
         </tr>
       <%end%>
     </tbody>
   </table>
+  <% all_nature = ['Cuisine', 'Salle', 'Service', 'Ambiance']%>
+  <div class = "col-12 formulaire-review">
+  <%= simple_form_for ([@customer, @review]) do |f| %>
+  <div class ="book-a-review"  >
+    <%= f.input :nature, :collection => all_nature %>
+    <%= f.input :content%>
+    <%= f.input :date, as: :hidden, input_html: { value: Date.today } %>
+    <%= f.input :user_id, as: :hidden, input_html: { value: @user.id} %>
+    <%= f.submit class: "btn-secondary review"%>
+  </div>
+  <% end %>
+</div>
     </div>
   </div>
 </div>

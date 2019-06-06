@@ -1,5 +1,4 @@
-
- <div class ="container">
+<div class ="container bookings-index">
   <div class="banner1">
     <div class="demiBanner1"> <h1 > <%= current_user.restaurant.name %> </h1>
       <div class="BookingIndexTitle flexbox">
@@ -40,44 +39,45 @@
     </div>
   </div>
 
-<h1 style = "background-color: rgb(27, 72, 103); color:white; padding:10px; border-radius: 5px;">Service du midi:</h1>
-<br>
-      <div class="agendaMidi">
-        <table class="schedule">
+  <div class="section">
+    <h1 class="service-title">Service du midi:</h1>
+
+    <div class="agendaMidi">
+      <table class="schedule">
         <thead class ="atableH">
-            <td ></td>
-            <td >12h00</td>
-            <td >12h30</td>
-            <td >13h00</td>
-            <td >13h30</td>
-            <td >14h00</td>
-            <td >14h30</td>
-            <td>15H00</td>
+          <td></td>
+          <td>12h00</td>
+          <td>12h30</td>
+          <td>13h00</td>
+          <td>13h30</td>
+          <td>14h00</td>
+          <td>14h30</td>
+          <td>15H00</td>
         </thead>
 
         <tr class = "restaurant-capacity">
-          <td class = "sous-block-dispo nb-dispo"> Couverts:</td>
-          <td >
+          <td class = "sous-block-dispo nb-dispo">Couverts restants</td>
+          <td>
             <div class = "sous-block-dispo">
               <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[0].sum%></p>
             </div>
           </td>
-           <td >
+           <td>
              <div class = "sous-block-dispo">
                <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[1].sum%></p>
              </div>
            </td>
-           <td >
+           <td>
              <div class = "sous-block-dispo">
                <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[2].sum%></p>
              </div>
            </td>
-           <td >
+           <td>
              <div class = "sous-block-dispo">
                <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[3].sum%></p>
              </div>
            </td>
-           <td >
+           <td>
              <div class = "sous-block-dispo">
                <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[4].sum%></p>
              </div>
@@ -228,70 +228,72 @@
         </td><td ></td></tr>
 
       <%else%>
-
-
         </div>
    </div></td></tr>
       <%end%>
       <%end%>
     </tbody>
 
+
+
       </table>
+    </div>
   </div>
- <br>
- <h1>Service du soir:</h1>
- <br>
-  <div class="agendaSoir">
+
+  <div class="section">
+    <h1 class="service-title">Service du soir</h1>
+
+    <div class="agendaSoir">
       <table class="schedule">
         <thead class ="table-dark atableH">
-            <td >18h30</td>
-            <td >19h00</td>
-            <td >19h30</td>
-            <td >20h00</td>
-            <td >20h30</td>
-            <td >21h00</td>
-            <td >21h30</td>
-            <td>22H00</td>
+          <td >18h30</td>
+          <td >19h00</td>
+          <td >19h30</td>
+          <td >20h00</td>
+          <td >20h30</td>
+          <td >21h00</td>
+          <td >21h30</td>
+          <td>22H00</td>
         </thead>
 
-        <th class = "restaurant-capacity">
-          <td >
-            <div class = "sous-block-dispo">
-              <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[5].sum%></p>
-              <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
-            </div>
-          </td>
-           <td >
-             <div class = "sous-block-dispo">
-               <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[6].sum%></p>
-               <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
-             </div>
-           </td>
-           <td >
-             <div class = "sous-block-dispo">
-               <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[7].sum%></p>
-               <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
-             </div>
-           </td>
-           <td >
-             <div class = "sous-block-dispo">
-               <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[8].sum%></p>
-               <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
-             </div>
-           </td>
-           <td >
-             <div class = "sous-block-dispo">
-               <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[9].sum%></p>
-               <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
-             </div>
-           </td>
-           <td ><div class = "sous-block-dispo">
-               <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[9].sum%></p>
-               <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
-             </div>
-           </td>
-           <td></td>
-        </th>
+      <th class = "restaurant-capacity">
+        <td >
+          <div class = "sous-block-dispo">
+            <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[5].sum%></p>
+            <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
+          </div>
+        </td>
+         <td >
+           <div class = "sous-block-dispo">
+             <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[6].sum%></p>
+             <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
+           </div>
+         </td>
+         <td >
+           <div class = "sous-block-dispo">
+             <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[7].sum%></p>
+             <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
+           </div>
+         </td>
+         <td >
+           <div class = "sous-block-dispo">
+             <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[8].sum%></p>
+             <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
+           </div>
+         </td>
+         <td >
+           <div class = "sous-block-dispo">
+             <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[9].sum%></p>
+             <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
+           </div>
+         </td>
+         <td ><div class = "sous-block-dispo">
+             <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[9].sum%></p>
+             <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
+           </div>
+         </td>
+         <td></td>
+      </th>
 
         <tbody>
          <% @bookings.where(date: Date.today.strftime("%d-%m-%Y")).each do |booking| %>
@@ -425,7 +427,8 @@
 
       <%end%>
       <%end%>
-</div>
+  </div>
+
     </tbody>
       </table>
 </div>

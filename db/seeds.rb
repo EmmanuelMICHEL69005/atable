@@ -7,8 +7,14 @@ Booking.destroy_all
 
 # REEL DATA
 
+
 restaurant = Restaurant.create!(name: 'Le Wagon Bar', address: '20 rue des Capucins', zipcode: '69000', city: 'Lyon', capacity: 38 )
 
+Manu = User.create!(
+  email: 'manu@atable.live',
+  password: 'azerty',
+  restaurant: Restaurant.last
+)
 kevin = Customer.create!(
   first_name: "kevin",
   last_name: "Chavanne",
@@ -26,6 +32,31 @@ kevin_booking1 = Booking.create!(
   content: 'Terrasse',
   status: 'New',
 )
+
+Review.create!(
+  user: Manu,
+  customer: kevin,
+  date: '04/04/2019',
+  nature: 'Salle',
+  content: 'Le client préfère les tables proches des fenêtres.'
+  )
+
+Review.create!(
+  user: Manu,
+  customer: kevin,
+  date: '25/03/2019',
+  nature: 'Cuisine',
+  content: 'Le plat qui a été servi était trop salé.'
+  )
+
+Review.create!(
+  user: Manu,
+  customer: kevin,
+  date: '01/02/2019',
+  nature: 'Service',
+  content: 'Le client apprécie un service décontracté et convivial.'
+  )
+
 
 ['10/01/2019', '28/02/2019', '30/03/2019', '15/04/2019', '01/05/2019'].each do |d|
   Booking.create!(
