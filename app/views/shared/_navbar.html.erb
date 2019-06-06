@@ -24,9 +24,6 @@
             <%= link_to "Gérer mon compte", '', class: "dropdown-item" %>
             <div class="notification-dropdown">
             <%= link_to "Mes réservations", bookings_path, class: "dropdown-item" %>
-              <% if @notification != 0 %>
-              <p class ="nb-notification-menu"><%=@notification%></p>
-              <%end%>
             </div>
             <%= link_to "Mes clients", customers_path, class: "dropdown-item" %>
             <%= link_to "Mon équipe", '', class: "dropdown-item" %>
