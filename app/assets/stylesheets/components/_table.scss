@@ -10,6 +10,12 @@
 
 }
 
+.table-dark th,
+.table-dark td,
+.table-dark thead th,
+.table-dark tbody + tbody {
+  border-radius: 0;
+}
 
 .schedule {
 
