@@ -1,14 +1,14 @@
-
- <div class ="container">
+<div class ="container bookings-index">
   <div class="banner1">
-  <h1 > <%= current_user.restaurant.name %> </h1>
+  <h1><%= current_user.restaurant.name %></h1>
   <div class="BookingIndexTitle flexbox">
     <div class = "page-header">
       <ul class="collapsible">
         <li>
-          <div class="col-12 collapsible-header" style="color:rgb(27, 72, 103); background-color:rgba(255,255,255,0.8); font-weight:bold;"><i class="material-icons" >add_circle_outline</i>Ajouter une réservation</div>
+          <div class="col-12 collapsible-header" style="color:rgb(27, 72, 103); background-color:rgba(255,255,255,0.8); font-weight:bold;">
+            <i class="material-icons" >add_circle_outline</i>Ajouter une réservation</div>
             <div class="collapsible-body" style ="background-color:rgba(255,255,255, 0.7); color:rgb(27, 72, 103);">
-              <div class = "col-12 formulaire" style="color:black;" >
+              <div class = "col-12 formulaire" style="color:black;">
                 <%= simple_form_for :booking, url: bookings_path, method: :post do |f| %>
                 <div class ="book-a-table"  >
                   <div> <%= f.input :first_name, label: "Prénom"  %> </div>
@@ -36,44 +36,45 @@
     </div>
   </div>
 
-<h1 style = "background-color: rgb(27, 72, 103); color:white; padding:10px; border-radius: 5px;">Service du midi:</h1>
-<br>
-      <div class="agendaMidi">
-        <table class="schedule">
+  <div class="section">
+    <h1 class="service-title">Service du midi:</h1>
+
+    <div class="agendaMidi">
+      <table class="schedule">
         <thead class ="atableH">
-            <td ></td>
-            <td >12h00</td>
-            <td >12h30</td>
-            <td >13h00</td>
-            <td >13h30</td>
-            <td >14h00</td>
-            <td >14h30</td>
-            <td>15H00</td>
+          <td></td>
+          <td>12h00</td>
+          <td>12h30</td>
+          <td>13h00</td>
+          <td>13h30</td>
+          <td>14h00</td>
+          <td>14h30</td>
+          <td>15H00</td>
         </thead>
 
         <tr class = "restaurant-capacity">
-          <td class = "sous-block-dispo nb-dispo"> Couverts:</td>
-          <td >
+          <td class = "sous-block-dispo nb-dispo">Couverts restants</td>
+          <td>
             <div class = "sous-block-dispo">
               <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[0].sum%></p>
             </div>
           </td>
-           <td >
+           <td>
              <div class = "sous-block-dispo">
                <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[1].sum%></p>
              </div>
            </td>
-           <td >
+           <td>
              <div class = "sous-block-dispo">
                <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[2].sum%></p>
              </div>
            </td>
-           <td >
+           <td>
              <div class = "sous-block-dispo">
                <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[3].sum%></p>
              </div>
            </td>
-           <td >
+           <td>
              <div class = "sous-block-dispo">
                <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[4].sum%></p>
              </div>
@@ -86,209 +87,122 @@
         </tr>
 
         <tbody>
+          <% @bookings.where(date: Date.today).each_with_index do |booking, index| %>
+            <% @heure = booking.hour %>
+            <% @categorie= [['New', 'https://upload.wikimedia.org/wikipedia/commons/4/4a/Star_rating_0_of_5.png'], ['1 étoile', 'https://upload.wikimedia.org/wikipedia/commons/d/dd/Star_rating_1_of_5.png'], ['2 étoiles', 'https://upload.wikimedia.org/wikipedia/commons/9/95/Star_rating_2_of_5.png'], ['3 étoiles', 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Star_rating_3_of_5.png'], ['4 étoiles', 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Star_rating_4_of_5.png'], ['5 étoiles', 'https://upload.wikimedia.org/wikipedia/commons/1/17/Star_rating_5_of_5.png']].sample%>
+            <% @customer = "#{booking.customer.first_name.capitalize} #{booking.customer.last_name.upcase}"%>
+            <% @number_of_customers = booking.number_of_customers %>
 
+            <% if booking.status == "New" %>
+              <% @class="new" %>
+            <% else %>
+              <% @class="" %>
+            <% end %>
 
-         <% @bookings.where(date: Date.today).each_with_index do |booking, index| %>
-           <% @heure = booking.hour %>
-           <% @categorie= [['New', 'https://upload.wikimedia.org/wikipedia/commons/4/4a/Star_rating_0_of_5.png'], ['1 étoile', 'https://upload.wikimedia.org/wikipedia/commons/d/dd/Star_rating_1_of_5.png'], ['2 étoiles', 'https://upload.wikimedia.org/wikipedia/commons/9/95/Star_rating_2_of_5.png'], ['3 étoiles', 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Star_rating_3_of_5.png'], ['4 étoiles', 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Star_rating_4_of_5.png'], ['5 étoiles', 'https://upload.wikimedia.org/wikipedia/commons/1/17/Star_rating_5_of_5.png']].sample%>
-           <% @customer = "#{booking.customer.first_name.capitalize} #{booking.customer.last_name.upcase}"%>
-           <% @number_of_customers = booking.number_of_customers %>
-
-           <% if booking.status == "New" %>
-              <%@class="new"%>
-            <%else%>
-              <%@class=""%>
-            <%end%>
-
-      <%if @heure =='12h00' || @heure == '12:00'%>
-         <tr><td></td><td colspan = 3 class= "booking <%=@class%>">
-          <div class="reservation">
-            <div class="reservation-head">
-              <div class = "reservation-icons">
-                <img src="<%=@categorie[1]%>" class = "icone-client client-rating" style= "width:auto;">
-                <img src="https://img.icons8.com/metro/384/about.png" class = "icone-client info" style= "width:auto;">
-              </div>
-              <div class="reservation-content">
-                <%= link_to @customer, edit_customer_path(booking.customer) %>
-                <p class="card-text content">"Commentaire: <%=booking.content%>"</p>
-              </div>
-            </div>
-            <div class="reservation-admin">
-              <div class = "block-client">
-                <img src="<%=@origin[booking.source]%>" class = "icone-client source">
-                <div class = "sous-block-client">
-                  <img src="https://img.icons8.com/metro/384/user-male.png" class = "icone-client">
-                  <p class ="nb-clients"> <%=booking.number_of_customers%></p>
-                </div>
-              </div>
-              <div class="block-admin">
-              <%= link_to 'Edit', edit_booking_path(booking) %>
-              <%= link_to 'Delete', booking_path(booking), method: :delete, data: { confirm: 'Are you sure?' } %>
-              </div>
-            </div>
-
-            </div>
-          </div>
-        </td><td ></td><td></td><td ></td><td ></td></tr>
-
-      <%elsif @heure =='12h30'|| @heure == '12:30' then%>
-        <tr><td></td><td></td><td  colspan = 3 class= "booking <%=@class%>">
-          <div class="reservation">
-            <div class="reservation-head">
-              <div class = "reservation-icons">
-                <img src="<%=@categorie[1]%>" class = "icone-client client-rating" style= "width:auto;">
-                <img src="https://img.icons8.com/metro/384/about.png" class = "icone-client info" style= "width:auto;">
-              </div>
-              <div class="reservation-content">
-                <%= link_to @customer, edit_customer_path(booking.customer) %>
-                <p class="card-text content">"<%=booking.content%>"</p>
-              </div>
-            </div>
-            <div class="reservation-admin">
-              <div class = "block-client">
-                <img src="<%=@origin[booking.source]%>" class = "icone-client source">
-                <div class = "sous-block-client">
-                  <img src="https://img.icons8.com/metro/384/user-male.png" class = "icone-client">
-                  <p class ="nb-clients"> <%=booking.number_of_customers%></p>
-                </div>
-              </div>
-              <div class="block-admin">
-                <%= link_to 'Edit', edit_booking_path(booking) %>
-                <%= link_to 'Delete', booking_path(booking), method: :delete, data: { confirm: 'Are you sure?' } %>
-              </div>
-            </div>
-            </div>
-          </div>
-    </td><td ></td><td ></td><td ></td></tr>
-
-      <%elsif @heure =='13h00' || @heure == '13:00'then%>
-       <tr><td></td><td></td><td></td>
-        <td colspan = 3  class= "booking <%=@class%>">
-        <div class="reservation">
-                    <div class="reservation-head">
-                      <div class = "reservation-icons">
-                        <img src="<%=@categorie[1]%>" class = "icone-client client-rating" style= "width:auto;">
-                        <img src="https://img.icons8.com/metro/384/about.png" class = "icone-client info" style= "width:auto;">
-                      </div>
-                      <div class="reservation-content">
-                        <a class ="nom-customer" href=""><%=@customer%></a>
-                        <p class="card-text content">"<%=booking.content%>"</p>
-                      </div>
-                    </div>
-                    <div class="reservation-admin">
-                      <div class = "block-client">
-                        <img src="<%=@origin[booking.source]%>" class = "icone-client source">
-                        <div class = "sous-block-client">
-                          <img src="https://img.icons8.com/metro/384/user-male.png" class = "icone-client">
-                          <p class ="nb-clients"> <%=booking.number_of_customers%></p>
-                        </div>
-                      </div>
-                      <div class="block-admin">
-                        <%= link_to 'Edit', edit_booking_path(booking) %>
-                        <%= link_to 'Delete', booking_path(booking), method: :delete, data: { confirm: 'Are you sure?' } %>
-                      </div>
-                    </div>
-                    </div>
-                  </div>
-        </td><td ></td><td ></td></tr>
-
-      <%elsif @heure =='13h30'|| @heure == '13:30' then%>
-       <tr><td></td><td></td><td></td><td></td>
-        <td colspan = 3  class= "booking <%=@class%>" >
-        <div class="reservation">
-                    <div class="reservation-head">
-                      <div class = "reservation-icons">
-                        <img src="<%=@categorie[1]%>" class = "icone-client client-rating" style= "width:auto;">
-                        <img src="https://img.icons8.com/metro/384/about.png" class = "icone-client info" style= "width:auto;">
-                      </div>
-                      <div class="reservation-content">
-                        <a class ="nom-customer" href=""><%=@customer%></a>
-                        <p class="card-text content">"<%=booking.content%>"</p>
-                      </div>
-                    </div>
-                    <div class="reservation-admin">
-                      <div class = "block-client">
-                        <img src="<%=@origin[booking.source]%>" class = "icone-client source">
-                        <div class = "sous-block-client">
-                          <img src="https://img.icons8.com/metro/384/user-male.png" class = "icone-client">
-                          <p class ="nb-clients"> <%=booking.number_of_customers%></p>
-                        </div>
-                      </div>
-                      <div class="block-admin">
-                        <%= link_to 'Edit', edit_booking_path(booking) %>
-                        <%= link_to 'Delete', booking_path(booking), method: :delete, data: { confirm: 'Are you sure?' } %>
-                      </div>
-                    </div>
-                    </div>
-                  </div>
-
-        </td><td ></td></tr>
-
-      <%else%>
-
-
-        </div>
-   </div></td></tr>
-      <%end%>
-      <%end%>
-    </tbody>
-
+            <% if @heure =='12h00' || @heure == '12:00' %>
+              <tr>
+                <td></td>
+                <td colspan=3>
+                  <%= render 'reservation', booking: booking %>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            <% elsif @heure =='12h30'|| @heure == '12:30' %>
+              <tr>
+                <td></td>
+                <td></td>
+                <td colspan=3 >
+                  <%= render 'reservation', booking: booking %></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            <% elsif @heure =='13h00' || @heure == '13:00' %>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td colspan = 3  >
+                  <%= render 'reservation', booking: booking %>
+                </td>
+                <td></td>
+                <td></td>
+              </tr>
+            <% elsif @heure =='13h30'|| @heure == '13:30' %>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td colspan = 3  >
+                  <%= render 'reservation', booking: booking %>
+                </td>
+                <td></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
       </table>
+    </div>
   </div>
- <br>
- <h1>Service du soir:</h1>
- <br>
-  <div class="agendaSoir">
+
+  <div class="section">
+    <h1 class="service-title">Service du soir</h1>
+
+    <div class="agendaSoir">
       <table class="schedule">
         <thead class ="table-dark atableH">
-            <td >18h30</td>
-            <td >19h00</td>
-            <td >19h30</td>
-            <td >20h00</td>
-            <td >20h30</td>
-            <td >21h00</td>
-            <td >21h30</td>
-            <td>22H00</td>
+          <td >18h30</td>
+          <td >19h00</td>
+          <td >19h30</td>
+          <td >20h00</td>
+          <td >20h30</td>
+          <td >21h00</td>
+          <td >21h30</td>
+          <td>22H00</td>
         </thead>
 
-        <th class = "restaurant-capacity">
-          <td >
-            <div class = "sous-block-dispo">
-              <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[5].sum%></p>
-              <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
-            </div>
-          </td>
-           <td >
-             <div class = "sous-block-dispo">
-               <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[6].sum%></p>
-               <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
-             </div>
-           </td>
-           <td >
-             <div class = "sous-block-dispo">
-               <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[7].sum%></p>
-               <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
-             </div>
-           </td>
-           <td >
-             <div class = "sous-block-dispo">
-               <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[8].sum%></p>
-               <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
-             </div>
-           </td>
-           <td >
-             <div class = "sous-block-dispo">
-               <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[9].sum%></p>
-               <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
-             </div>
-           </td>
-           <td ><div class = "sous-block-dispo">
-               <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[9].sum%></p>
-               <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
-             </div>
-           </td>
-           <td></td>
-        </th>
+      <th class = "restaurant-capacity">
+        <td >
+          <div class = "sous-block-dispo">
+            <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[5].sum%></p>
+            <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
+          </div>
+        </td>
+         <td >
+           <div class = "sous-block-dispo">
+             <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[6].sum%></p>
+             <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
+           </div>
+         </td>
+         <td >
+           <div class = "sous-block-dispo">
+             <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[7].sum%></p>
+             <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
+           </div>
+         </td>
+         <td >
+           <div class = "sous-block-dispo">
+             <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[8].sum%></p>
+             <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
+           </div>
+         </td>
+         <td >
+           <div class = "sous-block-dispo">
+             <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[9].sum%></p>
+             <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
+           </div>
+         </td>
+         <td ><div class = "sous-block-dispo">
+             <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[9].sum%></p>
+             <img src="https://img.icons8.com/metro/2x/cutlery.png" class = "icone-client dispo">
+           </div>
+         </td>
+         <td></td>
+      </th>
 
         <tbody>
          <% @bookings.where(date: Date.today.strftime("%d-%m-%Y")).each do |booking| %>
@@ -422,7 +336,8 @@
 
       <%end%>
       <%end%>
-</div>
+  </div>
+
     </tbody>
       </table>
 </div>

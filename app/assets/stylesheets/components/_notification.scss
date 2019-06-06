@@ -1,6 +1,7 @@
 .nb-notification {
-  border-radius: 5%;
-  text-align: center;
+  align-items: center;
+  display: flex;
+  border-radius: 50%;
   justify-content:center;
   font-size:14px;
   background-color:rgb(250, 62, 62);
