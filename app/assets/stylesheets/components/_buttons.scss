@@ -35,30 +35,47 @@ border: 1px solid white;
 }
 
 .btn-session {
-  width: 150px;
-  background-color: #1EDD88;
+  width: 160px;
+  height: 40px;
+  background-color: white;
   border-radius: 10px;
+  margin-right: -45px;
+  margin-top: 5px;
+
 }
 
 .btn-password {
-   width: 350px;
+  width: 350px;
   background-color: #1EDD88;
   border-radius: 10px;
 }
 
-.btn-google {
-  width: 200px;
-  height: 25px;
-  background-color: white;
+.btn-google  {
+  width: 150px;
+  height: 40px;
+  background-color: #496B9C;
   border-radius: 7px;
-  margin: 15px;
+  margin: -60px;
   color: black;
+  margin-left: 200px;
+  margin-bottom: -20px;
+  line-height: 14px;
+  padding: 6px 10px 9px;
+  padding-right: 4px;
+  padding-left: 4px;
   text-decoration: none;
-  text-align: none;
-  margin-left: 56px;
-  margin-right: 46px;
-  padding-left: 10px;
+  text-align: center;
+
+
+}
+
+.container-bt {
+  justify-content: space-between;
+  align-items: center;
 
 }
 
 
+.forgot-session {
+  margin: -40px;
+}
