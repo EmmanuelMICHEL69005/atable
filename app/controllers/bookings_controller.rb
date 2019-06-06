@@ -30,6 +30,10 @@ class BookingsController < ApplicationController
 
  end
 
+  def notifications
+    @bookings = current_user.restaurant.bookings
+    render json: {total: total_notifications}.to_json
+  end
 
 
   def show
