@@ -1,47 +1,32 @@
 <div class="navbar  navbar-expand-sm navbar-fixed-top navbar-light navbar-fixed-top navbar-lewagon">
-  <%= link_to "#", class: "navbar-brand" do %>
-    <%= image_tag("@table.png", :alt => "logo@Table") %>
-    <% end %>
+  <%= link_to root_path, class: "navbar-brand" do %>
+    <%= image_tag("@table.png", alt: "logo@Table") %>
+  <% end %>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <ul class="navbar-nav">
+    <li class='date-jour'><%=Date.today.strftime('%d-%m-%Y')%></li>
+    <% if user_signed_in? %>
+      <li class ="nb-couvert">Couverts: <%=current_user.restaurant.capacity%></li>
+      <li class="nav-item">
+        <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
 
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <div class="atable-nav">
-    <ul class="navbar-nav mr-auto">
-      <li class='date-jour'><%=Date.today.strftime('%d-%m-%Y')%></li>
-      <% if user_signed_in? %>
-        <li class ="nb-couvert">Couverts: <%=current_user.restaurant.capacity%></li>
-        <li class="nb-couvert">
-          <%= link_to "Home", '/', class: "" %>
-        </li>
-        <li class="nav-item">
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Gérer mon compte", '', class: "dropdown-item" %>
-            <div class="notification-dropdown">
-            <%= link_to "Mes réservations", bookings_path, class: "dropdown-item" %>
-              <% if @notification != 0 %>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <%= link_to "Gérer mon compte", '', class: "dropdown-item" %>
+          <div class="notification-dropdown">
+          <%= link_to "Mes réservations", bookings_path, class: "dropdown-item" %>
+            <% if @notification != 0 %>
               <p class ="nb-notification-menu"><%=@notification%></p>
-              <%end%>
-            </div>
-            <%= link_to "Mes clients", customers_path, class: "dropdown-item" %>
-            <%= link_to "Mon équipe", '', class: "dropdown-item" %>
-            <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            <%end%>
           </div>
-        </li>
-        <!-- ICI -->
-      <% else %>
-        <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-  </div>
+          <%= link_to "Mes clients", customers_path, class: "dropdown-item" %>
+          <%= link_to "Mon équipe", '', class: "dropdown-item" %>
+          <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+        </div>
+      </li>
+    <% else %>
+      <li class="nav-item">
+        <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+      </li>
+    <% end %>
+  </ul>
 </div>
-
-
