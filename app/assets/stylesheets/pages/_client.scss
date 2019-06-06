@@ -4,7 +4,8 @@ display:flex;
 
 .formulaire-client{
   padding-right:30px;
-  border-right: 1px solid #80808036;
+<<<<<<< HEAD
+  border-right: 1px solid #80808054;
 }
 
 .historique-client {
@@ -25,7 +26,8 @@ display:flex;
 
 .nom-client {
   padding-bottom:30px;
-  border-bottom: 1px solid #80808036;
+  border-bottom: 1px solid #80808054;
+
   margin-bottom:10px;
   padding-left: 0px;
 
@@ -39,6 +41,7 @@ display:flex;
 
 .book-a-review {
     display: flex;
+    align-items:center;
     grid-gap: 15px;
     border-radius: 4px;
     width: auto;
