@@ -2,16 +2,13 @@
 
 class BookingsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  def index
+    def index
     LafourchetteScrapper.run
-    @bookings = current_user.restaurant.bookings
+    set_bookings
     @customer = Customer.new
     @customer.bookings.build
     @total_customer = total_customers
     @notification = total_notifications
-    @calendar = []
-    lunchHour = ['12h00', '12h30', '13h00', '13h30', '14h00']
-    dinnerHour = ['19h00', '19h30', '20h00', '20h30', '21h00']
     @origin = {
               'La Fourchette' => "http://i0.wp.com/lewebcestfood.fr/wp-content/uploads/2016/02/La-fourchette.png?fit=300%2C300",
               'Facebook' => "https://img.icons8.com/color/384/facebook.png",
@@ -19,16 +16,16 @@ class BookingsController < ApplicationController
               'Phone' => "https://img.icons8.com/metro/384/phone.png",
               'Other' => "https://img.icons8.com/ios/384/conference-call-filled.png"
               }
-    ap @bookings
 
-    Date.today.upto(Date.today + 7).each do |date|
-      bookingsLunch = Booking.where(restaurant_id: current_user.restaurant.id).where(date: date, hour: lunchHour)
-      bookingsDinner = Booking.where(restaurant_id: current_user.restaurant.id).where(date: date, hour: dinnerHour)
-      @calendar << [date, bookingsLunch, bookingsDinner]
-   end
-   ap @calendar
-
- end
+  end
+  def set_bookings
+    if params[:date]
+      date = Date.strptime(params[:date][2..-1], "%y-%m-%d")
+      @bookings = current_user.restaurant.bookings.where(date: date)
+    else
+      @bookings = current_user.restaurant.bookings.where(date: Date.today)
+    end
+  end
 
   def notifications
     @bookings = current_user.restaurant.bookings
@@ -49,6 +46,7 @@ class BookingsController < ApplicationController
     customer = Customer.find_by(email: params[:booking][:email])
 
     if customer.blank?
+
       customer = Customer.create!(
         email: params[:booking][:email],
         first_name: params[:booking][:first_name],
@@ -75,7 +73,7 @@ class BookingsController < ApplicationController
 
 
     if booking.save
-      redirect_to bookings_path
+      redirect_to bookings_path + '?date='+ params[:date]
     else
       redirect_to bookings_path, alert: "Votre restaurant est plein"
     end
