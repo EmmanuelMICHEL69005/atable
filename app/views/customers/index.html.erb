@@ -1,2 +1,29 @@
-<h1>Customers#index</h1>
-<p>Find me in app/views/customers/index.html.erb</p>
+<h1><%=@restaurant%></h1>
+<div class ="container">
+<div class="historique-client">
+      <h2> Liste des clients</h2>
+      <table class = "table table-hover atable">
+        <thead class="table-dark atableH">
+          <td>Prénom</td>
+          <td>Nom</td>
+          <td>Téléphone</td>
+          <td>email</td>
+          <td>La Fourchette_ID</td>
+          <td>Facebook_id</td>
+          <td>rating</td>
+        </thead>
+        <tbody>
+      <% @customers.each do |customer| %>
+        <tr>
+          <td ><%=customer.first_name.capitalize%></td>
+          <td ><%=customer.last_name.upcase%></td>
+          <td ><%=customer.phone_number%></td>
+          <td ><%=customer.email%></td>
+          <td ><%=customer.fourchette_id%></td>
+          <td ><%=customer.facebook_id%></td>
+          <td ><%=rand(1..5)%></td>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
+</div>

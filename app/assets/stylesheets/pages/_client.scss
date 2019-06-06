@@ -29,3 +29,33 @@ display:flex;
   margin-bottom:10px;
 
 }
+
+.formulaire-review {
+  display:inline-block;
+  border-top: 1px dashed rgba(27, 72, 103, 1);
+  padding-top:10px;
+}
+
+.book-a-review {
+    display: flex;
+    grid-gap: 15px;
+    border-radius: 4px;
+    width: auto;
+}
+
+.review {
+
+}
+.Cuisine {
+background-color:rgba(27, 72, 103, 0.2);
+}
+.Salle{
+background-color:rgba(62, 146, 204, 0.2);
+}
+.Service{
+background-color:rgba(250, 62, 62, 0.2);
+}
+.Ambiance{
+  background-color:rgba(51, 178, 78, 0.2);
+
+}

@@ -1,5 +1,12 @@
 class CustomersController < ApplicationController
   def index
+    @bookings = current_user.restaurant.bookings
+    @restaurant = current_user.restaurant.name
+    @liste = []
+    @bookings.each do |booking|
+      @liste << booking.customer
+    end
+    @customers = @liste.uniq
   end
 
 
@@ -19,7 +26,7 @@ class CustomersController < ApplicationController
 
   def create
     @customer = Customer.new(customer_params)
-    raise
+    @review = Review.new(review_params)
 
   end
 
@@ -38,6 +45,9 @@ class CustomersController < ApplicationController
   def edit
     @customer = Customer.find(params[:id])
     @bookings = @customer.bookings.all
+    @reviews = Customer.find(params[:id]).reviews
+    @review = Review.new
+    @user = current_user
   end
 
 private
@@ -45,5 +55,8 @@ private
   def customer_params
     params.require(:customer).permit(:first_name, :last_name, :fourchette_id, :facebook_id, :phone_number, :email,
       bookings_attributes: [:date, :hour, :customer, :restaurant, :number_of_customers, :content, :source])
+  end
+  def review_params
+    params.require(:review).permit(:date, :user_id, :nature, :content, :customer)
   end
 end
