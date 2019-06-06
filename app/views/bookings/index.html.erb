@@ -93,11 +93,7 @@
             <% @customer = "#{booking.customer.first_name.capitalize} #{booking.customer.last_name.upcase}"%>
             <% @number_of_customers = booking.number_of_customers %>
 
-            <% if booking.status == "New" %>
-              <% @class="new" %>
-            <% else %>
-              <% @class="" %>
-            <% end %>
+
 
             <% if @heure =='12h00' || @heure == '12:00' %>
               <tr>
