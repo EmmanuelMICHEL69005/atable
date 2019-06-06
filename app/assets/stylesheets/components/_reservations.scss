@@ -1,0 +1,20 @@
+.reservation {
+  display: block;
+  height: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  background: #cacaca61;
+  border: 1px solid #cccccc6e;
+
+  .client-rating {
+    margin-left: 10px;
+  }
+
+  .reservation-admin {
+    border-left: none;
+  }
+
+  .nb-clients {
+    position: initial;
+  }
+}
