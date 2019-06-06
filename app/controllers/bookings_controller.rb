@@ -68,7 +68,8 @@ class BookingsController < ApplicationController
       restaurant: current_user.restaurant,
       customer: customer,
       hour: params[:hour].gsub(":", "h"),
-      content: params[:booking][:comments]
+      content: params[:booking][:comments],
+      status: "new"
     )
 
 
