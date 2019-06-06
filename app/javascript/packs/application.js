@@ -1,7 +1,9 @@
 import "bootstrap";
+
 import initNotification from './notification.js'
 
 initNotification()
+
 
  document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.datepicker');
@@ -16,8 +18,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 import flatpickr from "flatpickr"
 import 'flatpickr/dist/flatpickr.min.css'
+import { French } from "flatpickr/dist/l10n/fr.js"
+
+
+
 console.log(flatpickr)
 console.log('mkjbljbijnoinibniuhbiuh')
+
+flatpickr.localize(French);
+
 
 flatpickr("#date", {
   altInput: true,
@@ -25,16 +34,13 @@ flatpickr("#date", {
     dateFormat: "Y-m-d",
     minDate: "today",
 
-"disable": [
+    "disable": [
         function(date) {
             // return true to disable
             return (date.getDay() === 0);
 
         }
-    ],
-    "locale": {
-        "firstDayOfWeek": 1 // start week on Monday
-    },
+    ]
 
 
 
@@ -49,6 +55,59 @@ flatpickr("#hour", {
     defaultDate: "12:00",
     minuteIncrement: 30,
     time_24hr: true,
+    onChange: function(dateObj) {
+       console.log(dateObj);
+       // console.log(dateStr);
+   }
+},)
+
+let caldate = Array.from(document.querySelectorAll('span'));
+console.log(caldate);
+
+caldate.forEach(date => {
+ date.addEventListener('click', (e) => {
+   console.log(e.currentTarget);
+ });
+});
+
+
+let test = document.querySelectorAll('td');
+test.forEach(date => {
+ date.addEventListener('click', (e) => {
+   console.log(e.currentTarget);
+ });
+});
+
+flatpickr("#autredate", {
+    onChange: function(dateObj, dateStr) {
+       console.log(dateStr);
+       var url = window.location.href.split("?")[0];
+       if (url.indexOf('?') > -1){
+          url += `?date=${dateStr}`
+       }else{
+          url += `?date=${dateStr}`
+       }
+       window.location.href = url;
+   },
+
+  altInput: true,
+    altFormat: "j F Y",
+    dateFormat: "Y-m-d",
+    minDate: "today",
+    inline: true,
+
+
+"disable": [
+        function(date) {
+            // return true to disable
+            return (date.getDay() === 0);
+
+        }
+    ],
+    "locale": {
+        "firstDayOfWeek": 1 // start week on Monday
+    },
+
 
 
 
@@ -92,6 +151,8 @@ $(document).ready(function() {
     nextText: '<i class="fa fa-fw fa-angle-right"></i>'
   });
 });
+
+
 
 
 
