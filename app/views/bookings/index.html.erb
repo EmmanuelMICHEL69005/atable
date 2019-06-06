@@ -1,16 +1,16 @@
+
  <div class ="container">
-  <h1> <%= current_user.restaurant.name %> </h1>
+  <div class="banner1">
+  <h1 > <%= current_user.restaurant.name %> </h1>
   <div class="BookingIndexTitle flexbox">
-    <div>Capacité Max : <%= current_user.restaurant.capacity %> couverts</div>
-    <div>Nous sommes le <%= Time.now.strftime("%d-%m-%y") %></div>
     <div class = "page-header">
       <ul class="collapsible">
         <li>
-          <div class="collapsible-header"><i class="material-icons">add_circle_outline</i>Ajouter une réservation</div>
-            <div class="collapsible-body">
-              <div class = " col-12 formulaire">
+          <div class="col-12 collapsible-header" style="color:rgb(27, 72, 103); background-color:rgba(255,255,255,0.8); font-weight:bold;"><i class="material-icons" >add_circle_outline</i>Ajouter une réservation</div>
+            <div class="collapsible-body" style ="background-color:rgba(255,255,255, 0.7); color:rgb(27, 72, 103);">
+              <div class = "col-12 formulaire" style="color:black;" >
                 <%= simple_form_for :booking, url: bookings_path, method: :post do |f| %>
-                <div class ="book-a-table">
+                <div class ="book-a-table"  >
                   <div> <%= f.input :first_name, label: "Prénom"  %> </div>
                   <div>
                     <%= f.input :last_name, label: "Nom de Famille" %>  </div>
@@ -34,17 +34,14 @@
         </li>
       </ul>
     </div>
+  </div>
 
-
-
-  <h3 class="OverSchedule text-align: center  ">Mes réservations du jour</h3>
-
-
-<h1>Service du midi:</h1>
+<h1 style = "background-color: rgb(27, 72, 103); color:white; padding:10px; border-radius: 5px;">Service du midi:</h1>
+<br>
       <div class="agendaMidi">
         <table class="schedule">
-        <thead class ="header-table">
-            <td >Nombre de réservation</td>
+        <thead class ="atableH">
+            <td ></td>
             <td >12h00</td>
             <td >12h30</td>
             <td >13h00</td>
@@ -55,7 +52,7 @@
         </thead>
 
         <tr class = "restaurant-capacity">
-          <td class = "nb-dispo"> Nombre de couverts disponibles</td>
+          <td class = "sous-block-dispo nb-dispo"> Couverts:</td>
           <td >
             <div class = "sous-block-dispo">
               <p class ="nb-dispo"> <%=current_user.restaurant.capacity - @total_customer[0].sum%></p>
@@ -93,14 +90,18 @@
 
          <% @bookings.where(date: Date.today).each_with_index do |booking, index| %>
            <% @heure = booking.hour %>
-           <% @origin = [['LaFourchette','http://i0.wp.com/lewebcestfood.fr/wp-content/uploads/2016/02/La-fourchette.png?fit=300%2C300'], ['Facebook', 'https://img.icons8.com/color/384/facebook.png'], ['WebSite', 'https://img.icons8.com/ios/384/internet.png'], ['Phone','https://img.icons8.com/metro/384/phone.png'], ['Other', 'https://img.icons8.com/ios/384/conference-call-filled.png']].sample%>
            <% @categorie= [['New', 'https://upload.wikimedia.org/wikipedia/commons/4/4a/Star_rating_0_of_5.png'], ['1 étoile', 'https://upload.wikimedia.org/wikipedia/commons/d/dd/Star_rating_1_of_5.png'], ['2 étoiles', 'https://upload.wikimedia.org/wikipedia/commons/9/95/Star_rating_2_of_5.png'], ['3 étoiles', 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Star_rating_3_of_5.png'], ['4 étoiles', 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Star_rating_4_of_5.png'], ['5 étoiles', 'https://upload.wikimedia.org/wikipedia/commons/1/17/Star_rating_5_of_5.png']].sample%>
            <% @customer = "#{booking.customer.first_name.capitalize} #{booking.customer.last_name.upcase}"%>
            <% @number_of_customers = booking.number_of_customers %>
 
+           <% if booking.status == "New" %>
+              <%@class="new"%>
+            <%else%>
+              <%@class=""%>
+            <%end%>
 
       <%if @heure =='12h00' || @heure == '12:00'%>
-         <tr><td><%=index +1 %></td><td colspan = 3 class= "booking <%=@origin[0]%>">
+         <tr><td></td><td colspan = 3 class= "booking <%=@class%>">
           <div class="reservation">
             <div class="reservation-head">
               <div class = "reservation-icons">
@@ -109,13 +110,12 @@
               </div>
               <div class="reservation-content">
                 <%= link_to @customer, edit_customer_path(booking.customer) %>
-                <a class ="nom-customer" href=""><%=@customer%></a>
                 <p class="card-text content">"Commentaire: <%=booking.content%>"</p>
               </div>
             </div>
             <div class="reservation-admin">
               <div class = "block-client">
-                <img src="<%=@origin[1]%>" class = "icone-client source">
+                <img src="<%=@origin[booking.source]%>" class = "icone-client source">
                 <div class = "sous-block-client">
                   <img src="https://img.icons8.com/metro/384/user-male.png" class = "icone-client">
                   <p class ="nb-clients"> <%=booking.number_of_customers%></p>
@@ -126,12 +126,13 @@
               <%= link_to 'Delete', booking_path(booking), method: :delete, data: { confirm: 'Are you sure?' } %>
               </div>
             </div>
+
             </div>
           </div>
         </td><td ></td><td></td><td ></td><td ></td></tr>
 
       <%elsif @heure =='12h30'|| @heure == '12:30' then%>
-        <tr><td><%=index +1 %></td><td></td><td  colspan = 3 class= "booking <%=@origin[0]%>">
+        <tr><td></td><td></td><td  colspan = 3 class= "booking <%=@class%>">
           <div class="reservation">
             <div class="reservation-head">
               <div class = "reservation-icons">
@@ -145,7 +146,7 @@
             </div>
             <div class="reservation-admin">
               <div class = "block-client">
-                <img src="<%=@origin[1]%>" class = "icone-client source">
+                <img src="<%=@origin[booking.source]%>" class = "icone-client source">
                 <div class = "sous-block-client">
                   <img src="https://img.icons8.com/metro/384/user-male.png" class = "icone-client">
                   <p class ="nb-clients"> <%=booking.number_of_customers%></p>
@@ -161,8 +162,8 @@
     </td><td ></td><td ></td><td ></td></tr>
 
       <%elsif @heure =='13h00' || @heure == '13:00'then%>
-       <tr><td><%=index +1 %></td><td></td><td></td>
-        <td colspan = 3  class= "booking <%=@origin%>">
+       <tr><td></td><td></td><td></td>
+        <td colspan = 3  class= "booking <%=@class%>">
         <div class="reservation">
                     <div class="reservation-head">
                       <div class = "reservation-icons">
@@ -176,7 +177,7 @@
                     </div>
                     <div class="reservation-admin">
                       <div class = "block-client">
-                        <img src="<%=@origin[1]%>" class = "icone-client source">
+                        <img src="<%=@origin[booking.source]%>" class = "icone-client source">
                         <div class = "sous-block-client">
                           <img src="https://img.icons8.com/metro/384/user-male.png" class = "icone-client">
                           <p class ="nb-clients"> <%=booking.number_of_customers%></p>
@@ -192,8 +193,8 @@
         </td><td ></td><td ></td></tr>
 
       <%elsif @heure =='13h30'|| @heure == '13:30' then%>
-       <tr><td><%=index +1 %></td><td></td><td></td><td></td>
-        <td colspan = 3  class= "booking <%=@origin%>">
+       <tr><td></td><td></td><td></td><td></td>
+        <td colspan = 3  class= "booking <%=@class%>" >
         <div class="reservation">
                     <div class="reservation-head">
                       <div class = "reservation-icons">
@@ -207,7 +208,7 @@
                     </div>
                     <div class="reservation-admin">
                       <div class = "block-client">
-                        <img src="<%=@origin[1]%>" class = "icone-client source">
+                        <img src="<%=@origin[booking.source]%>" class = "icone-client source">
                         <div class = "sous-block-client">
                           <img src="https://img.icons8.com/metro/384/user-male.png" class = "icone-client">
                           <p class ="nb-clients"> <%=booking.number_of_customers%></p>
@@ -236,9 +237,10 @@
   </div>
  <br>
  <h1>Service du soir:</h1>
+ <br>
   <div class="agendaSoir">
       <table class="schedule">
-        <thead class ="header-table-soir">
+        <thead class ="table-dark atableH">
             <td >18h30</td>
             <td >19h00</td>
             <td >19h30</td>
@@ -291,7 +293,6 @@
         <tbody>
          <% @bookings.where(date: Date.today.strftime("%d-%m-%Y")).each do |booking| %>
            <% @heure = booking.hour %>
-           <% @origin = [['LaFourchette','http://i0.wp.com/lewebcestfood.fr/wp-content/uploads/2016/02/La-fourchette.png?fit=300%2C300'], ['Facebook', 'https://img.icons8.com/color/384/facebook.png'], ['WebSite', 'https://img.icons8.com/ios/384/internet.png'], ['Phone','https://img.icons8.com/metro/384/phone.png'], ['Other', 'https://img.icons8.com/ios/384/conference-call-filled.png']].sample%>
            <% @categorie= [['New', 'https://upload.wikimedia.org/wikipedia/commons/4/4a/Star_rating_0_of_5.png'], ['1 étoile', 'https://upload.wikimedia.org/wikipedia/commons/d/dd/Star_rating_1_of_5.png'], ['2 étoiles', 'https://upload.wikimedia.org/wikipedia/commons/9/95/Star_rating_2_of_5.png'], ['3 étoiles', 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Star_rating_3_of_5.png'], ['4 étoiles', 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Star_rating_4_of_5.png'], ['5 étoiles', 'https://upload.wikimedia.org/wikipedia/commons/1/17/Star_rating_5_of_5.png']].sample%>
            <% @customer = "#{booking.customer.first_name.capitalize} #{booking.customer.last_name.upcase}"%>
            <% @number_of_customers = booking.number_of_customers %>
@@ -384,7 +385,7 @@
             </div>
             </div>
           </div>
-        </td><td ></td></tr>
+        </td><td ></td><td ></td></tr>
 
        <%elsif @heure =='21h00'|| @heure == '21:00' then%>
        <tr><td></td><td></td><td></td><td></td>

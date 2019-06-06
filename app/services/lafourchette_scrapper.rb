@@ -33,15 +33,16 @@ class LafourchetteScrapper
       reservation_status = resa["cell"]["reservation.state"]
       reservation_validation_link = resa["cell"]["reservation.url_to_validate"]
       reservation_edit_link = resa["cell"]["reservation.edit"]
+      reservation_id = resa["cell"]["reservation.idReservation"]
       date = reservation_date[0] + "/" + reservation_date[1] + "/20" + reservation_date[2]
-
       if Customer.find_by(fourchette_id: id_customer).nil?
       client = Customer.create!(first_name: first_name, last_name: last_name, phone_number: phone_number, email: email, fourchette_id: id_customer)
       else
         client = Customer.find_by(fourchette_id: id_customer)
       end
-
-     Booking.create!(date: date, hour: reservation_hour, content: reservation_comment, number_of_customers: reservation_people, source: "La fourchette", customer: client, restaurant: Restaurant.last)
+      if Booking.find_by(forkid: reservation_id).nil?
+        Booking.create!(date: date, hour: reservation_hour, forkid: reservation_id, content: reservation_comment, number_of_customers: reservation_people, source: "La Fourchette", customer: client, restaurant: Restaurant.last, status: "New")
+      end
      end
   end
 end

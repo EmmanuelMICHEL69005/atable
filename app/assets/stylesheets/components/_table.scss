@@ -15,7 +15,8 @@
 
  margin:0 auto;
  padding-bottom: 10px;
-
+background-color:white;
+border-radius:5px;
 
 .OverSchedule {
   text-align: center
@@ -38,8 +39,8 @@
 // }
 .booking:hover{
 
- background-color: rgba(30, 221, 136,0.3);
- height:35px;
+ background-color: rgba(62, 146, 204, 0.4);
+ cursor: pointer;
 }
 // .formulaire {
 //   height: 300px;
@@ -51,7 +52,16 @@
 
 }
 .booking {
-  background-color: rgb(220, 220, 220);
+  background-color: rgba(62, 146, 204, 0.1);
+  border-radius:30px;
+  border-bottom: 5px solid white;
+  margin-bottom:5px;
+}
+.new {
+  background-color: rgba(51, 178, 78, 0.3)
+}
+.book-a-table {
+  background-color: white;
 }
 
 .reservation-head{
@@ -68,9 +78,9 @@
   text-align: center;
   justify-content:center;
   font-size:14px;
-  background-color:rgb(30, 221, 136);
+  background-color:rgb(62, 146, 204);
   font-weight: bold;
-  color:black;
+  color:rgb(249, 250, 245);
   position:relative;
   top:-10px;
   left:-10px;
@@ -80,7 +90,7 @@
 
 .nb-dispo {
   font-size:20px;
-  color: grey;
+  color: rgb(27, 72, 103);
   font-style: italic;
   width:25px;
   height:25px;
@@ -141,6 +151,7 @@ margin-left:5px;
   margin-bottom: 5px;
 }
 
+
 .reservation-content{
   display:flex;
   position:relative;
@@ -171,33 +182,42 @@ margin-left:5px;
 }
 
 .restaurant-capacity {
+  background-color: white;
+  color: rgb(62, 146, 204);
+  font-weight: bold;
 
 }
 
 .page-header {
   display:flex;
+  background-color:white;
+  opacity:0.6;
 }
 
-
+.collapsible-body{
+  display:flex;
+  background-color:white;
+  opacity:0.6;
+}
 
  td {
- border-radius: 30px;
+
  width: 50px;
  height:40px;
+ border-right:1px solid rgba(27, 72, 103,0.2);
 
 
 }
 tr {
-  border-spacing:15px;
+border:0px;
 }
 tbody {
   tr:hover {
-  background-color:rgba(30, 221, 136,0.1);
+
 }
 }
  th  {
-  padding:10px;
-  border-spacing:15px;
+
 }
 }
 
@@ -247,3 +267,8 @@ tbody {
     width: auto;
 }
 
+.atableH {
+  background-color:rgba(27, 72, 103,0.6);
+  color:white;
+  font-weight:bold;
+}

@@ -1,6 +1,5 @@
 <div class="container">
-  <h1><%=@customer.first_name.capitalize%> <%=@customer.last_name.upcase%></h1>
-  <br>
+  <h1 class = "col-12 nom-client"><%=@customer.first_name.capitalize%> <%=@customer.last_name.upcase%></h1>
   <div class="fiche-client">
     <div class = "formulaire-client">
       <h2> Informations client: </h2>
@@ -11,6 +10,7 @@
         <%= f.input :email %>
         <%= f.input :facebook_id %>
         <%= f.input :fourchette_id %>
+        <br>
         <%= f.submit class: "btn-secondary" %>
       <% end %>
     </div>

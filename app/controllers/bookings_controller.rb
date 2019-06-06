@@ -8,9 +8,17 @@ class BookingsController < ApplicationController
     @customer = Customer.new
     @customer.bookings.build
     @total_customer = total_customers
+    @notification = total_notifications
     @calendar = []
     lunchHour = ['12h00', '12h30', '13h00', '13h30', '14h00']
     dinnerHour = ['19h00', '19h30', '20h00', '20h30', '21h00']
+    @origin = {
+              'La Fourchette' => "http://i0.wp.com/lewebcestfood.fr/wp-content/uploads/2016/02/La-fourchette.png?fit=300%2C300",
+              'Facebook' => "https://img.icons8.com/color/384/facebook.png",
+              'Site Internet' => "https://img.icons8.com/ios/384/internet.png",
+              'Phone' => "https://img.icons8.com/metro/384/phone.png",
+              'Other' => "https://img.icons8.com/ios/384/conference-call-filled.png"
+              }
     ap @bookings
 
     Date.today.upto(Date.today + 7).each do |date|
@@ -99,7 +107,7 @@ end
 private
 
 def booking_params
-  params.require(:booking).permit(:date, :hour, :customer, :restaurant, :number_of_customers, :content, :source,
+  params.require(:booking).permit(:date, :forkid, :hour, :customer, :restaurant, :number_of_customers, :content, :source,
     customers_attributes: [:id, :last_name, :phone_number, :email, :first_name])
 end
 
@@ -115,45 +123,54 @@ def total_customers
   h2030 = []
   h2100 = []
   @bookings.where(date: Date.today).each do |b|
-    if b.hour == '12h00'
+    if b.hour == '12h00' || b.hour == '12:00'
       h1200 << b.number_of_customers
       h1230 << b.number_of_customers
       h1300 << b.number_of_customers
-    elsif b.hour == '12h30'
+    elsif b.hour == '12h30' || b.hour == '12:30'
       h1230 << b.number_of_customers
       h1300 << b.number_of_customers
       h1330 << b.number_of_customers
-    elsif b.hour == '13h00'
+    elsif b.hour == '13h00' || b.hour == '13:00'
       h1400 << b.number_of_customers
       h1300 << b.number_of_customers
       h1330 << b.number_of_customers
-    elsif b.hour == '13h30'
+    elsif b.hour == '13h30' || b.hour == '13:30'
       h1400 << b.number_of_customers
       h1330 << b.number_of_customers
-    elsif b.hour == '14h00'
+    elsif b.hour == '14h00' || b.hour == '14:00'
       h1400 << b.number_of_customers
-    elsif b.hour == '19h00'
+    elsif b.hour == '19h00' || b.hour == '19:00'
       h1900 << b.number_of_customers
       h1930 << b.number_of_customers
       h2000 << b.number_of_customers
-    elsif b.hour == '19h30'
+    elsif b.hour == '19h30' || b.hour == '19:30'
       h1930 << b.number_of_customers
       h2030 << b.number_of_customers
       h2000 << b.number_of_customers
-    elsif b.hour == '20h00'
+    elsif b.hour == '20h00' || b.hour == '20:00'
       h2100 << b.number_of_customers
       h2030 << b.number_of_customers
       h2000 << b.number_of_customers
-    elsif b.hour == '20h30'
+    elsif b.hour == '20h30' || b.hour == '20:30'
       h2100 << b.number_of_customers
       h2030 << b.number_of_customers
-    elsif b.hour == '21h00'
+    elsif b.hour == '21h00' || b.hour == '21:00'
       h2100 << b.number_of_customers
     end
 end
 return [h1200, h1230, h1300, h1330, h1400, h1900, h1930, h2000, h2030, h2100]
 end
 
+def total_notifications
+  notification = 0
+  @bookings.where(date: Date.today).each do |booking|
+    if booking.status == "New"
+      notification += 1
+    end
+  end
+  return notification
+end
 
 
 

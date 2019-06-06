@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_04_101412) do
+ActiveRecord::Schema.define(version: 2019_06_05_125028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2019_06_04_101412) do
     t.string "status"
     t.string "validation_link"
     t.string "edit_link"
+    t.string "forkid"
     t.index ["customer_id"], name: "index_bookings_on_customer_id"
     t.index ["restaurant_id"], name: "index_bookings_on_restaurant_id"
   end

@@ -1,6 +1,6 @@
 .btn-primary {
   display: inline-block;
-  background-color: #1EDD88;
+  background-color: rgb(27, 72, 103);
   padding: 16px 32px;
   border-radius: 4px;
   color: white;
@@ -8,15 +8,31 @@
   margin-right: 56px;
 }
 
-.btn-secondary {
-  border: 1px solid #1EDD88;
-  padding: 8px 16px;
-  border-radius: 32px;
-  color: #1EDD88;
+.btn-primary:hover {
+  display: inline-block;
+  background-color: rgb(62, 146, 204);
+  padding: 16px 32px;
+  border-radius: 4px;
+  color: white;
   margin-left: 56px;
   margin-right: 56px;
 }
 
+
+.btn-secondary {
+  border: 1px solid rgb(27, 72, 103);
+  background-color:white;
+  padding: 8px 16px;
+  border-radius: 32px;
+  color: rgb(27, 72, 103);
+  margin-left: 56px;
+  margin-right: 56px;
+}
+.btn-secondary:hover {
+background-color:rgb(27, 72, 103);
+border: 1px solid white;
+ color: white;
+}
 
 .btn-session {
   width: 150px;

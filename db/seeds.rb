@@ -24,7 +24,7 @@ kevin_booking1 = Booking.create!(
   source: 'Facebook',
   hour: '12h30',
   content: 'Terrasse',
-  status: 'Valided',
+  status: 'New',
 )
 
 ['10/01/2019', '28/02/2019', '30/03/2019', '15/04/2019', '01/05/2019'].each do |d|
@@ -52,9 +52,10 @@ mathieu_booking1 = Booking.create!(
   number_of_customers: 7,
   restaurant: restaurant,
   customer: mathieu,
+  source: 'La Fourchette',
   hour: '19h30',
   content: 'Terrasse',
-  status: 'Valided'
+  status: 'New'
 )
 
 joseph = Customer.create!(
@@ -69,9 +70,10 @@ joseph_booking1 = Booking.create!(
   number_of_customers: 7,
   restaurant: restaurant,
   customer: joseph,
+  source: 'La Fourchette',
   hour: '20h30',
   content: 'une table Cool',
-  status: 'Valided'
+  status: 'New'
 )
 
 boris = Customer.create!(
@@ -86,9 +88,10 @@ boris_booking1 = Booking.create!(
   number_of_customers: 2,
   restaurant: restaurant,
   customer: boris,
+  source: 'La Fourchette',
   hour: '13h30',
   content: 'Terrasse',
-  status: 'Valided'
+  status: 'New'
 )
 
 gerard = Customer.create!(
@@ -103,9 +106,10 @@ gerard_booking1 = Booking.create!(
   number_of_customers: 3,
   restaurant: restaurant,
   customer: gerard,
+  source: 'La Fourchette',
   hour: '13hOO',
   content: 'Terrasse',
-  status: 'Valided'
+  status: 'New'
 )
 
 maxime = Customer.create!(
@@ -120,9 +124,10 @@ maxime_booking1 = Booking.create!(
   number_of_customers: 4,
   restaurant: restaurant,
   customer: maxime,
+  source: 'La Fourchette',
   hour: '19h00',
   content: 'un canapé svp',
-  status: 'Valided'
+  status: 'New'
 )
 alex = Customer.create!(
   first_name: "alex",
@@ -135,6 +140,7 @@ alex_booking1 = Booking.create!(
   date: Date.today,
   number_of_customers: 8,
   restaurant: restaurant,
+  source: 'La Fourchette',
   customer: alex,
   hour: '20h30',
   status: 'Valided'
