@@ -6,12 +6,14 @@ class EmbedsController < ApplicationController
   end
 
   def create
-    @customer = Customer.create(
-      first_name: params[:booking][:first_name],
-      last_name: params[:booking][:last_name],
-      email: params[:booking][:email],
-      phone_number: params[:booking][:phone_number]
-    )
+    if customer.blank?
+      @customer = Customer.create(
+        first_name: params[:booking][:first_name],
+        last_name: params[:booking][:last_name],
+        email: params[:booking][:email],
+        phone_number: params[:booking][:phone_number]
+      )
+    end
 
     @book = Booking.create(
       date: params[:booking][:date],
@@ -23,5 +25,11 @@ class EmbedsController < ApplicationController
       status: 'New',
       source: 'Site Internet'
     )
+  end
+
+  private
+
+  def customer
+    @customer = Customer.find_by(email: params[:booking][:email])
   end
 end
