@@ -5,27 +5,28 @@
       <br><br>
         <h4><%= "Gérez vos réservations simplement" %></h4>
         <br><br>
-          <a class="btn-primary homepage" <%= link_to "
-          se connecter", new_user_session_path, class: "nav-link" %>
-          </a>
-          <a class="btn-primary homepage" <%= link_to "
-          s'inscrire", new_user_registration_path, class: "nav-link" %>
-          </a>
-  <br><br><br><br><br><br>
+
       <div class="cards-home">
         <div class="card-home">
-          <%= image_tag("planning2.png", :alt => "plannig") %>
+          <i class="fas fa-calendar-alt fa-2x"></i>
           <p><%= "Centralisez en un clic toutes vos réservations" %></p>
         </div>
         <div class="card-home">
-          <%= image_tag("ca.png", :alt => "ca") %>
+          <i class="fas fa-chart-line fa-2x"></i>
           <p><%= "Améliorez votre Chiffre d'affaire" %></p>
         </div>
         <div class="card-home">
-          <%= image_tag("outgoing-call.png", :alt => "com") %>
+          <i class="fas fa-phone fa-2x"></i>
           <p> <%= "Optimisez l'expérience de vos clients" %> </p>
         </div>
       </div>
+
+      <br><br><br>
+          <a class="btn-primary homepage" <%= link_to "
+          se connecter", new_user_session_path, class: "nav-link" %>
+          </a>
+
+
   </div>
 </div>
 </div>
