@@ -73,13 +73,13 @@ end
 
 mathieu = Customer.create!(
   first_name: "mathieu",
-  last_name: "cartilier",
+  last_name: "droz",
   phone_number: "0675342561",
-  email: "mathieu.cartilier@gmail.com",
+  email: "mathieu.droz@gmail.com",
   )
 
 mathieu_booking1 = Booking.create!(
-  date: Date.today,
+  date: 2.days.from_now,
   number_of_customers: 7,
   restaurant: restaurant,
   customer: mathieu,
@@ -122,7 +122,7 @@ boris_booking1 = Booking.create!(
   source: 'La Fourchette',
   hour: '13h30',
   content: 'Terrasse',
-  status: 'New'
+  status: 'Valided'
 )
 
 gerard = Customer.create!(
@@ -140,7 +140,7 @@ gerard_booking1 = Booking.create!(
   source: 'La Fourchette',
   hour: '13hOO',
   content: 'Terrasse',
-  status: 'New'
+  status: 'Valided'
 )
 
 maxime = Customer.create!(
@@ -182,6 +182,7 @@ User.create!(
   password: 'azerty',
   restaurant: Restaurant.last
 )
+
 
 
 
