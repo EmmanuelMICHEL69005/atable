@@ -16,3 +16,7 @@
 .mega-container {
   flex-grow: 1;
 }
+
+.pages.home .banner {
+  min-height: calc(100vh - 70px - 40px);
+}
