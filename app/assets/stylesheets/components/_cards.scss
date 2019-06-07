@@ -10,39 +10,33 @@
 
 .card-home p {
   color: white;
-  margin-bottom: -0.1rem;
-  margin-top: 0 auto ;
   padding: 10px;
   line-height: 1.5;
-  font-size: 18px;
+  font-size: 25px;
   font-weight: lighter;
   font-family: 'Poppins', sans-serif;
   text-align: center;
-  width: 170px;
-
+  width: 400px;
 }
 
 
 .card-home {
 
-  display: flex;
-  background-color: rgba(27, 72, 103,0.7);
-  width: 450px;
-  height: 100px;
+  // display: flex;
+  // background-color: rgba(27, 72, 103,0.7);
+  // width: 450px;
+  // height: 100px;
   align-items: center;
   font-size: 30px;
   font-weight: bold;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  border-radius: 5px;
-  border-radius: 50px;
-  padding: 10px;
-  margin: 8px 64px;
+  // border-radius: 5px;
+  // border-radius: 50px;
 
 }
 
 
-
 .cards-home {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 }
