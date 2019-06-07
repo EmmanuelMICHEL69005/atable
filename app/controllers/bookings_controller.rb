@@ -22,6 +22,8 @@ class BookingsController < ApplicationController
     if params[:date]
       date = Date.strptime(params[:date][2..-1], "%y-%m-%d")
       @bookings = current_user.restaurant.bookings.where(date: date)
+      ap "je suis ici"
+      ap @bookings
     else
       @bookings = current_user.restaurant.bookings.where(date: Date.today)
     end

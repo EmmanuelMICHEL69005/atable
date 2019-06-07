@@ -114,8 +114,7 @@ border-radius:5px;
 }
 .block-client {
   display:flex;
-  position:relative;
-  display-content: space-between;
+  justify-content: flex-end;
 }
 .sous-block-client {
   display:flex;
@@ -137,9 +136,11 @@ border-radius:5px;
 }
 .block-admin {
   display:flex;
+  width: 90px;
+  justify-content: space-between;
 }
 .source {
-margin-right:10px;
+margin-right:24px;
 margin-left:5px;
 }
 

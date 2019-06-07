@@ -16,20 +16,20 @@ Manu = User.create!(
   restaurant: Restaurant.last
 )
 kevin = Customer.create!(
-  first_name: "kevin",
-  last_name: "Chavanne",
+  first_name: "nicolas",
+  last_name: "nerva",
   phone_number: "0675342561",
-  email: "kevin.chavanne@gmail.com",
+  email: "nicolas.nerva@gmail.com",
   )
 
-kevin_booking1 = Booking.create!(
+nicolas_booking1 = Booking.create!(
   date: Date.today,
   number_of_customers: 7,
   restaurant: restaurant,
   customer: kevin,
   source: 'Facebook',
   hour: '12h30',
-  content: 'Terrasse',
+  content: '',
   status: 'New',
 )
 
@@ -64,12 +64,29 @@ Review.create!(
   number_of_customers: rand(2..6),
   restaurant: restaurant,
   customer: kevin,
-  source: ['Facebook', 'La Fourchette', 'Site web', 'Telephone', 'Other'].sample,
+  source: ['Facebook', 'La Fourchette', 'Site Internet', 'Telephone', 'Other'].sample,
   hour: ['12h30', '13h30', '19h30', '20h30', '21h00'].sample,
   content: ["Il s'agit d'un anniversaire", '', '','','Table ronde svp', 'Menu vegetarian svp'].sample,
   status: 'Service rendu',
 )
 end
+paul = Customer.create!(
+  first_name: "paul",
+  last_name: "jacques",
+  phone_number: "0675342561",
+  email: "paul.jacques@gmail.com",
+  )
+
+paul_booking1 = Booking.create!(
+  date: 1.days.from_now.to_date,
+  number_of_customers: 3,
+  restaurant: restaurant,
+  customer: paul,
+  source: 'La Fourchette',
+  hour: '19h30',
+  content: 'XXXXX',
+  status: ''
+)
 
 mathieu = Customer.create!(
   first_name: "mathieu",
@@ -79,14 +96,14 @@ mathieu = Customer.create!(
   )
 
 mathieu_booking1 = Booking.create!(
-  date: 2.days.from_now,
-  number_of_customers: 7,
+  date: 1.days.from_now.to_date,
+  number_of_customers: 3,
   restaurant: restaurant,
   customer: mathieu,
   source: 'La Fourchette',
   hour: '19h30',
   content: 'Terrasse',
-  status: 'New'
+  status: ''
 )
 
 joseph = Customer.create!(
@@ -157,8 +174,8 @@ maxime_booking1 = Booking.create!(
   customer: maxime,
   source: 'La Fourchette',
   hour: '19h00',
-  content: 'un canapé svp',
-  status: 'New'
+  content: 'un table au calme svp',
+  status: 'Valided'
 )
 alex = Customer.create!(
   first_name: "alex",
@@ -171,7 +188,7 @@ alex_booking1 = Booking.create!(
   date: Date.today,
   number_of_customers: 8,
   restaurant: restaurant,
-  source: 'Site web',
+  source: 'Site Internet',
   customer: alex,
   hour: '20h30',
   status: 'Valided'
@@ -185,14 +202,14 @@ charly = Customer.create!(
   )
 
 charly_booking1 = Booking.create!(
-  date: 1.days.from_now,
-  number_of_customers: 7,
+  date: 1.days.from_now.to_date,
+  number_of_customers: 5,
   restaurant: restaurant,
   customer: charly,
-  source: 'Site web',
+  source: 'Site Internet',
   hour: '19h30',
   content: 'Terrasse',
-  status: 'New'
+  status: 'Valided'
 )
 
 pierre = Customer.create!(
@@ -203,14 +220,14 @@ pierre = Customer.create!(
   )
 
 pierre_booking1 = Booking.create!(
-  date: 1.days.from_now,
-  number_of_customers: 7,
+  date: 1.days.from_now.to_date,
+  number_of_customers: 4,
   restaurant: restaurant,
   customer: pierre,
-  source: 'Site web',
+  source: 'Site Internet',
   hour: '20h30',
   content: 'Terrasse',
-  status: 'New'
+  status: ''
 )
 
 florian = Customer.create!(
@@ -221,14 +238,14 @@ florian = Customer.create!(
   )
 
 florian_booking1 = Booking.create!(
-  date: 1.days.from_now,
-  number_of_customers: 7,
+  date: 1.days.from_now.to_date,
+  number_of_customers: 5,
   restaurant: restaurant,
   customer: florian,
-  source: 'Site web',
+  source: 'Site Internet',
   hour: '19h30',
-  content: 'Terrasse',
-  status: 'New'
+  content: 'En terrasse svp',
+  status: 'Valided'
 )
 
 juliette = Customer.create!(
@@ -239,29 +256,29 @@ juliette = Customer.create!(
   )
 
 juliette_booking1 = Booking.create!(
-  date: 1.days.from_now,
-  number_of_customers: 7,
+  date: 1.days.from_now.to_date,
+  number_of_customers: 2,
   restaurant: restaurant,
   customer: juliette,
-  source: 'Site web',
+  source: 'Site Internet',
   hour: '13h00',
   content: 'Terrasse',
   status: 'Valided'
 )
 
-léa = Customer.create!(
+lea = Customer.create!(
   first_name: "léa",
   last_name: "gavoille",
   phone_number: "0675342561",
   email: "léa.gavoille@gmail.com",
   )
 
-léa_booking1 = Booking.create!(
-  date: 1.days.from_now,
-  number_of_customers: 7,
+lea_booking1 = Booking.create!(
+  date: 1.days.from_now.to_date,
+  number_of_customers: 5,
   restaurant: restaurant,
-  customer: léa,
-  source: 'Site web',
+  customer: lea,
+  source: 'Site Internet',
   hour: '13h00',
   content: 'Terrasse',
   status: 'Valided'
