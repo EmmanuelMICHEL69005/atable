@@ -11,13 +11,12 @@
   <div class="reservation-admin">
     <div class = "block-client">
       <img src="<%=@origin[booking.source]%>" class = "icone-client source">
-      <div class = "sous-block-client">
-        <img src="https://img.icons8.com/metro/384/user-male.png" class = "icone-client">
-        <p class ="nb-clients"> <%=booking.number_of_customers%></p>
-      </div>
+      <img src="https://img.icons8.com/metro/384/user-male.png" class = "icone-client">
+      <p class ="nb-clients"> <%=booking.number_of_customers%></p>
     </div>
     <div class="block-admin">
       <%= link_to 'Edit', edit_booking_path(booking) %>
+
       <%= link_to 'Delete', booking_path(booking), method: :delete, data: { confirm: 'Are you sure?' } %>
     </div>
   </div>
